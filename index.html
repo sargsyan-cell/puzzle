@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Mini Jigsaw Puzzle</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preload" as="image" href="assets/cards/africa/card_01.png">
+  <link rel="preload" as="image" href="assets/cards/fantasy/card_01.png">
+  <link rel="preload" as="image" href="assets/cards/pixar/card_01.png">
+  <link rel="preload" as="image" href="assets/cards/holiday/card_01.png">
+  <link rel="preload" as="image" href="assets/cards/space/card_01.png">
+  <link rel="preload" as="image" href="assets/cards/postapoc/card_01.png">
+  <link rel="preload" as="image" href="assets/cards/paris/card_01.png">
+  <link rel="preload" as="image" href="assets/cards/victorian/card_01.png">
+  <link rel="preload" as="image" href="assets/ui/pack_reference.png">
+  <link rel="preload" as="image" href="assets/ui/kart_rush/header_bg.png">
+  <link rel="preload" as="image" href="assets/ui/kart_rush/chest_podium.png">
+  <link rel="preload" as="image" href="assets/ui/kart_rush/track_bg.png">
+  <link rel="preload" as="image" href="assets/ui/kart_rush/kart_red.png">
+  <link rel="preload" as="image" href="assets/ui/kart_rush/kart_blue.png">
+  <link rel="preload" as="image" href="assets/ui/kart_rush/medal_badge.png">
+</head>
+<body>
+  <div id="app" class="app-layout">
+    <header class="app-header" id="app-header">
+      <div class="status-strip status-strip-game hidden" id="status-strip-game">
+        <div class="hud-left-cluster-game">
+          <div class="hud-profile-piggy-stack">
+            <button type="button" id="btn-profile-widget-game" class="profile-widget profile-widget--game" aria-label="Profile" title="Profile">
+              <span id="profile-widget-avatar-game" class="profile-widget-avatar" aria-hidden="true"></span>
+            </button>
+            <button type="button" id="piggy-widget" class="piggy-widget piggy-widget--stacked" aria-label="Piggy Bank" title="Piggy Bank">
+          <span class="piggy-widget-icon" aria-hidden="true">
+            <svg class="piggy-icon-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="piggy-head-shade" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#ffc0cb"/><stop offset="100%" stop-color="#ffb6c1"/></radialGradient><radialGradient id="piggy-snout-shade" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#ffa8b4"/><stop offset="100%" stop-color="#ff9ead"/></radialGradient></defs><circle cx="16" cy="16" r="12" fill="url(#piggy-head-shade)"/><circle cx="16" cy="16" r="11" fill="#ffc0cb" opacity="0.6"/><ellipse cx="10" cy="8" rx="3.5" ry="4" fill="url(#piggy-head-shade)"/><ellipse cx="22" cy="8" rx="3.5" ry="4" fill="url(#piggy-head-shade)"/><ellipse cx="16" cy="20" rx="5" ry="4.5" fill="url(#piggy-snout-shade)"/><circle cx="14" cy="12" r="1.8" fill="#333"/><circle cx="18" cy="12" r="1.8" fill="#333"/><circle cx="14.5" cy="20.5" r="1.2" fill="#333"/><circle cx="17.5" cy="20.5" r="1.2" fill="#333"/></svg>
+          </span>
+          <span id="piggy-widget-count" class="piggy-widget-count">0/500</span>
+          <span id="piggy-full-badge" class="piggy-full-badge hidden">FULL!</span>
+        </button>
+          </div>
+        </div>
+        <button id="btn-back" class="icon-btn btn-back" aria-label="Back">←</button>
+        <div class="level-badge">
+          <span id="level-number">1</span>
+        </div>
+        <div id="coins-display" class="coins-display">
+          <span class="coins-icon">🪙</span>
+          <span id="coins-count">0</span>
+        </div>
+        <div id="energy-display-game" class="energy-display">
+          <span class="energy-display-icon">⚡</span>
+          <span id="energy-count-game">20</span>
+        </div>
+        <div id="battle-pass-widget-game" class="battle-pass-widget battle-pass-widget--game hidden" style="display:none!important" aria-label="Battle Pass progress">
+          <div class="battle-pass-widget-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+            <span id="battle-pass-widget-fill-game" class="battle-pass-widget-fill" style="width: 0%"></span>
+          </div>
+          <button type="button" id="btn-battle-pass-widget-game" class="battle-pass-widget-btn">
+            <span class="battle-pass-widget-icon" aria-hidden="true">⭐</span>
+            <span id="battle-pass-widget-count-game" class="battle-pass-widget-count">0/10</span>
+          </button>
+        </div>
+      </div>
+      <div class="status-strip status-strip-start" id="status-strip-start">
+        <span class="header-title">Mini Jigsaw</span>
+        <div class="hud-right-cluster hud-right-cluster--start">
+          <div class="hud-profile-piggy-stack">
+            <button type="button" id="btn-profile-widget-start" class="profile-widget" aria-label="Profile" title="Profile">
+              <span id="profile-widget-avatar-start" class="profile-widget-avatar" aria-hidden="true"></span>
+            </button>
+            <button type="button" id="piggy-widget-start" class="piggy-widget piggy-widget--stacked" aria-label="Piggy Bank" title="Piggy Bank">
+              <span class="piggy-widget-icon" aria-hidden="true">
+                <svg class="piggy-icon-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="piggy-head-shade-s" cx="35%" cy="30%" r="70%"><stop offset="0%" stop-color="#ffc0cb"/><stop offset="100%" stop-color="#ffb6c1"/></radialGradient><radialGradient id="piggy-snout-shade-s" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#ffa8b4"/><stop offset="100%" stop-color="#ff9ead"/></radialGradient></defs><circle cx="16" cy="16" r="12" fill="url(#piggy-head-shade-s)"/><circle cx="16" cy="16" r="11" fill="#ffc0cb" opacity="0.6"/><ellipse cx="10" cy="8" rx="3.5" ry="4" fill="url(#piggy-head-shade-s)"/><ellipse cx="22" cy="8" rx="3.5" ry="4" fill="url(#piggy-head-shade-s)"/><ellipse cx="16" cy="20" rx="5" ry="4.5" fill="url(#piggy-snout-shade-s)"/><circle cx="14" cy="12" r="1.8" fill="#333"/><circle cx="18" cy="12" r="1.8" fill="#333"/><circle cx="14.5" cy="20.5" r="1.2" fill="#333"/><circle cx="17.5" cy="20.5" r="1.2" fill="#333"/></svg>
+              </span>
+              <span id="piggy-widget-count-start" class="piggy-widget-count">0/500</span>
+              <span id="piggy-full-badge-start" class="piggy-full-badge hidden">FULL!</span>
+            </button>
+          </div>
+          <div id="coins-display-start" class="coins-display coins-display--pill">
+            <span class="coins-icon" aria-hidden="true">🪙</span>
+            <span id="coins-count-start">0</span>
+          </div>
+        </div>
+        <div id="battle-pass-widget" class="battle-pass-widget hidden" style="display:none!important" aria-label="Battle Pass progress">
+          <div class="battle-pass-widget-progress" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="10">
+            <span id="battle-pass-widget-fill" class="battle-pass-widget-fill" style="width: 0%"></span>
+          </div>
+          <button type="button" id="btn-battle-pass-widget" class="battle-pass-widget-btn">
+            <span class="battle-pass-widget-icon" aria-hidden="true">⭐</span>
+            <span id="battle-pass-widget-count" class="battle-pass-widget-count">0/10</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="top-features-left" id="top-features-left">
+      <div id="wheel-widget" class="top-feature-icon wheel-widget" aria-label="Wheel of Fortune">
+        <button type="button" id="btn-wheel-widget" class="top-feature-btn top-feature-btn--wheel">
+          <span class="top-feature-emoji" aria-hidden="true">🎡</span>
+          <span class="wheel-widget-label top-feature-sublabel">FREE</span>
+        </button>
+        <span id="wheel-badge" class="top-feature-badge hidden" aria-hidden="true">!</span>
+      </div>
+      <div id="race-event-widget" class="top-feature-icon race-event-widget" aria-label="Race Event">
+        <button type="button" id="btn-race-event-widget" class="top-feature-btn top-feature-btn--race">
+          <span class="top-feature-emoji" aria-hidden="true">🏎️</span>
+        </button>
+        <span id="race-event-badge" class="race-event-badge top-feature-badge hidden" aria-hidden="true">!</span>
+      </div>
+      <div id="lost-temple-widget" class="top-feature-icon lost-temple-widget" aria-label="Lost Temple">
+        <button type="button" id="btn-lost-temple-widget" class="top-feature-btn top-feature-btn--temple">
+          <span class="top-feature-emoji" aria-hidden="true">🔨</span>
+          <span id="lost-temple-widget-hammers" class="top-feature-sublabel lost-temple-widget-count">0</span>
+          <span id="lost-temple-widget-timer" class="top-feature-timer lost-temple-widget-timer">--</span>
+        </button>
+        <span id="lost-temple-badge" class="lost-temple-badge top-feature-badge hidden" aria-hidden="true">!</span>
+      </div>
+    </div>
+    <div class="top-features-right" id="top-features-right">
+      <div class="top-feature-icon" id="top-leaderboard-widget" aria-label="Leaderboard">
+        <button type="button" id="curs_add_leaderboard_from_trophy_button" class="top-feature-btn top-feature-btn--leaderboard">
+          <span class="top-feature-emoji" aria-hidden="true">🏆</span>
+          <span class="top-feature-sublabel"><span id="nav-trophies-count">0</span></span>
+        </button>
+      </div>
+      <div class="top-feature-icon" id="top-battlepass-widget" aria-label="Battle Pass">
+        <button type="button" id="nav-battle-pass" class="top-feature-btn top-feature-btn--bp">
+          <span class="top-feature-emoji" aria-hidden="true">⭐</span>
+          <span class="top-feature-sublabel"><span id="nav-battle-pass-count">0</span></span>
+        </button>
+      </div>
+    </div>
+
+    <main class="app-main" id="app-main">
+      <section id="start-screen" class="screen active">
+        <div class="cards-progress-widget cards-progress-widget--home hidden" id="cards-progress-widget-home">
+          <span class="cards-progress-label-inline">Cards:</span>
+          <span id="cards-progress-text-home" class="cards-progress-numbers">0/8</span>
+          <div class="cards-progress-bar cards-progress-bar--mini">
+            <div id="cards-progress-fill-home" class="cards-progress-fill" style="width: 0%"></div>
+          </div>
+        </div>
+        <div class="main-center">
+          <div class="start-content">
+            <h1 class="game-title">Mini Jigsaw</h1>
+            <p class="game-subtitle">Piece the picture together!</p>
+            <button id="btn-play" class="btn btn-primary">Play</button>
+          </div>
+        </div>
+      </section>
+
+      <section id="game-screen" class="screen">
+        <div class="progress-bar">
+          <span id="progress-text">Pieces placed 0 / 0</span>
+        </div>
+        <div class="game-area">
+          <div class="board-area">
+            <div id="puzzle-board" class="puzzle-board"></div>
+          </div>
+          <div class="tray-area">
+            <div id="piece-tray" class="piece-tray"></div>
+          </div>
+        </div>
+        <div id="debug-cheat-panel" class="debug-panel">
+          <button type="button" id="btn-skip-level" class="btn-debug">Skip Level</button>
+          <button type="button" id="btn-cheat-auto" class="cheat-auto-btn btn-debug cheat-auto-nav" aria-label="Auto place one piece" title="Auto place one piece">
+            <span class="cheat-auto-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </span>
+            <span class="cheat-auto-label">AUTO</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="album-screen" class="screen">
+        <header class="album-header">
+          <button id="btn-album-back" class="icon-btn" aria-label="Back">←</button>
+          <h1 id="album-screen-title" class="album-title">Album Event</h1>
+          <div id="album-header-progress" class="album-progress-wrap hidden">
+            <span id="album-progress-text">0/8</span>
+          </div>
+          <p id="album-event-timer" class="event-timer">Event ends in: —</p>
+          <div class="album-header-actions">
+            <button type="button" id="btn-album-info" class="album-btn-info" aria-label="How does it work?">&#8505;</button>
+            <button type="button" id="btn-album-stars" class="album-stars-btn" aria-label="Star Chests">
+              <span class="album-stars-btn-icon" aria-hidden="true">⭐</span>
+              <span id="album-stars-count" class="album-stars-count">0</span>
+            </button>
+          </div>
+        </header>
+        <div class="cards-progress-widget cards-progress-widget--album album-hub-only" id="cards-progress-widget-album">
+          <div class="cards-progress-pill">
+            <span class="cards-progress-label">Cards Collected:</span>
+            <span id="cards-progress-text" class="cards-progress-numbers">0 / 8</span>
+          </div>
+          <div class="cards-progress-bar-wrap">
+            <span class="cards-progress-icon cards-progress-icon--cards" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="4" width="8" height="16" rx="1"/><rect x="14" y="4" width="8" height="16" rx="1"/></svg>
+            </span>
+            <div class="cards-progress-bar">
+              <div id="cards-progress-fill" class="cards-progress-fill" style="width: 0%"></div>
+              <span class="cards-progress-fill-knob"></span>
+            </div>
+            <button type="button" id="cards-progress-gift" class="cards-progress-icon cards-progress-icon--gift" aria-label="Open prize level">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12v10H4V12"/><rect x="2" y="7" width="20" height="5" rx="1"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+              <span class="cards-progress-gift-lock hidden" id="cards-progress-gift-lock" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" stroke="currentColor" stroke-width="2"/></svg>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div id="album-overview-hub" class="album-overview-hub">
+          <div id="album-tiles-grid" class="album-tiles-grid" role="list"></div>
+          <button type="button" id="btn-album-ok" class="btn btn-primary album-hub-ok">OK</button>
+        </div>
+        <div id="album-detail-view" class="album-detail-view hidden">
+          <div class="album-name" id="album-name">Safari</div>
+          <div class="album-grid-wrap">
+            <div id="album-grid" class="album-grid"></div>
+          </div>
+          <p id="album-tap-collect-hint" class="album-tap-collect hidden">Tap to Collect!</p>
+        </div>
+      </section>
+
+      <div id="albumInfoOverlay" class="album-info-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="album-info-title">
+        <div class="album-info-inner">
+          <button type="button" id="btn-album-info-close" class="album-info-close bp-btn-close" aria-label="Close">×</button>
+          <h2 id="album-info-title" class="album-info-title">How does it work?</h2>
+          <div class="album-info-steps">
+            <div class="album-info-step">
+              <div class="album-info-step-icon album-info-step-icon--play" aria-hidden="true">🧩</div>
+              <p class="album-info-step-label">Play Levels!</p>
+              <div class="album-info-arrow album-info-arrow--down" aria-hidden="true"></div>
+            </div>
+            <div class="album-info-step">
+              <div class="album-info-step-icon album-info-step-icon--cards" aria-hidden="true">🃏</div>
+              <p class="album-info-step-label">Collect Cards!</p>
+              <div class="album-info-arrow album-info-arrow--down" aria-hidden="true"></div>
+            </div>
+            <div class="album-info-step">
+              <div class="album-info-step-icon album-info-step-icon--trophy" aria-hidden="true">🏆</div>
+              <p class="album-info-step-label">Complete the Album & Win!</p>
+            </div>
+          </div>
+          <p class="album-info-desc">Play the game to earn album cards. Collect them to fill albums. Complete the full collection to claim the main reward!</p>
+          <p class="album-info-continue">Tap to Continue</p>
+        </div>
+      </div>
+
+      <div id="star-chests-modal" class="modal star-chests-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="star-chests-title">
+        <div class="star-chests-panel">
+          <button type="button" id="star-chests-close" class="star-chests-close bp-btn-close" aria-label="Close">×</button>
+          <h2 id="star-chests-title" class="star-chests-title">Star Chests</h2>
+          <div class="star-chests-banner" aria-hidden="true">
+            <div class="star-chests-banner-card star-chests-banner-card--1"></div>
+            <div class="star-chests-banner-card star-chests-banner-card--2"></div>
+            <div class="star-chests-banner-card star-chests-banner-card--3"></div>
+          </div>
+          <p class="star-chests-subtitle">Use your extra stars to open chests!</p>
+          <div class="star-chests-balance">
+            <span class="star-chests-balance-icon" aria-hidden="true">⭐</span>
+            <span id="star-chests-balance-count" class="star-chests-balance-count">0</span>
+          </div>
+          <div class="star-chests-list">
+            <div class="star-chest-row">
+              <div class="star-chest-icon star-chest-icon--wood" aria-hidden="true">🧰</div>
+              <div class="star-chest-name">Wooden Chest</div>
+              <button type="button" id="btn-star-chest-wood" class="star-chest-cost-btn">
+                <span class="star-chest-cost-icon" aria-hidden="true">⭐</span><span>100</span>
+              </button>
+            </div>
+            <div class="star-chest-row">
+              <div class="star-chest-icon star-chest-icon--silver" aria-hidden="true">🧰</div>
+              <div class="star-chest-name">Silver Chest</div>
+              <button type="button" id="btn-star-chest-silver" class="star-chest-cost-btn">
+                <span class="star-chest-cost-icon" aria-hidden="true">⭐</span><span>250</span>
+              </button>
+            </div>
+            <div class="star-chest-row">
+              <div class="star-chest-icon star-chest-icon--gold" aria-hidden="true">🧰</div>
+              <div class="star-chest-name">Premium Gold Chest</div>
+              <button type="button" id="btn-star-chest-gold" class="star-chest-cost-btn">
+                <span class="star-chest-cost-icon" aria-hidden="true">⭐</span><span>500</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="star-chest-reward-overlay" class="modal star-chest-reward-overlay hidden" aria-modal="true" role="dialog">
+        <div class="star-chest-reward-card">
+          <h3 class="star-chest-reward-title">Chest Opened!</h3>
+          <p id="star-chest-reward-text" class="star-chest-reward-text">+0 coins</p>
+          <button type="button" id="btn-star-chest-reward-ok" class="btn btn-primary">Awesome!</button>
+        </div>
+      </div>
+    </main>
+
+    <div id="rubyCaveScreen" class="rc-screen hidden">
+      <div class="rc-inner">
+      <div id="rc-hub" class="rc-view">
+        <div class="rc-hub-scene">
+          <div class="rc-scene-sky"></div>
+          <div class="rc-scene-dome"></div>
+          <div class="rc-scene-dome-struts"></div>
+          <div class="rc-scene-wall-l"></div>
+          <div class="rc-scene-wall-r"></div>
+          <div class="rc-scene-wall-c"></div>
+          <div class="rc-scene-floor-area"></div>
+          <div class="rc-scene-debris"></div>
+          <div class="rc-scene-glow"></div>
+        </div>
+        <div class="rc-hub-header">
+          <button id="rc-closeBtn" class="rc-hdr-btn" type="button" aria-label="Back">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <span class="rc-hub-title">Moon Observatory</span>
+          <button id="rc-infoBtn" class="rc-hdr-btn" type="button" aria-label="Info">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </button>
+        </div>
+        <div id="rc-info-panel" class="rc-info-panel rc-info-panel--hidden">
+          <div class="rc-info-panel-card">
+            <div class="rc-info-step">
+              <span class="rc-info-step-icon">🧩</span>
+              <span class="rc-info-step-text">Play levels</span>
+            </div>
+            <div class="rc-info-arrow">↓</div>
+            <div class="rc-info-step">
+              <span class="rc-info-step-icon">⏳</span>
+              <span class="rc-info-step-text">Event time is limited</span>
+            </div>
+            <div class="rc-info-arrow">↓</div>
+            <div class="rc-info-step">
+              <span class="rc-info-step-icon">🏆</span>
+              <span class="rc-info-step-text">Complete all levels and get a reward</span>
+            </div>
+          </div>
+        </div>
+        <div id="rc-info-backdrop" class="rc-info-backdrop rc-info-panel--hidden"></div>
+        <div class="rc-hub-badges">
+          <div class="rc-timer-badge" id="rc-hubTimer">🕐 2d 00:00:00</div>
+          <div class="rc-energy-badge"><span class="rc-energy-icon">⚡</span><span id="rc-hubEnergy">5/5</span> <span id="rc-hubRegen">• Full</span></div>
+        </div>
+        <div id="rc-hubProgress" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)"></div>
+        <div id="rc-hubSum" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)"></div>
+        <div class="rc-hub-progress-area">
+          <div class="rc-map">
+            <svg class="rc-path-line" viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="5" y1="5" x2="95" y2="5" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <div id="rc-nodes"></div>
+          </div>
+        </div>
+        <button id="rc-enterBtn" class="rc-hub-play" type="button">Play</button>
+      </div>
+      <div id="rc-game" class="rc-view rc-view--hidden">
+        <div class="rc-game-bg"></div>
+        <div class="rc-hud">
+          <div class="rc-pill rc-timer-pill" id="rc-gameTimer">Event: 2d 00:00:00</div>
+          <div class="rc-pill rc-energy-pill"><span class="rc-energy-icon">⚡</span><span id="rc-gameEnergy">5/5</span><span id="rc-gameRegen">• Full</span></div>
+          <div class="rc-pill rc-progress-pill" id="rc-gameInfo">Level 1 / 10</div>
+        </div>
+        <button id="rc-backBtn" class="rc-back" type="button">← Hub</button>
+        <div class="rc-game-title">Puzzle Room</div>
+        <div id="rc-scene" class="rc-scene"></div>
+        <div id="rc-tray" class="rc-tray"></div>
+      </div>
+      <div id="rc-done" class="rc-overlay"><div class="rc-modal"><h3>Level Cleared!</h3><p>You advanced deeper into the Moon Observatory.</p><button id="rc-nextLevelBtn" class="rc-btn" type="button">Next Level</button></div></div>
+      <div id="rc-energyModal" class="rc-overlay"><div class="rc-modal"><h3>Out of Energy</h3><p>Refill your event energy to continue exploring the cave.</p><button id="rc-refillBtn" class="rc-btn" type="button">Refill to 5/5</button></div></div>
+      <div id="rc-toast" class="rc-toast">Not enough energy</div>
+      <div id="rc-tutorial-overlay" class="rc-tutor-overlay rc-tutor-hidden">
+        <div id="rc-tutor-highlight" class="rc-tutor-highlight"></div>
+        <div id="rc-tutor-bubble" class="rc-tutor-bubble">
+          <p id="rc-tutor-text" class="rc-tutor-text"></p>
+          <span class="rc-tutor-tap">Tap to continue</span>
+        </div>
+        <div id="rc-tutor-finger" class="rc-tutor-finger">👆</div>
+      </div>
+      </div>
+    </div>
+
+    <nav class="bottom-nav" id="bottom-nav" aria-label="Main navigation">
+      <button type="button" class="nav-item" id="nav-home" data-screen="start-screen" aria-label="Home">
+        <span class="nav-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </span>
+        <span class="nav-label">Home</span>
+      </button>
+      <button type="button" class="nav-item" id="nav-game" data-screen="game-screen" aria-label="Game">
+        <span class="nav-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4M14 12h4"/></svg>
+        </span>
+        <span class="nav-label">Game</span>
+      </button>
+      <button type="button" class="nav-item collection-btn" id="nav-collection" aria-label="Collection" title="Collection" aria-disabled="false">
+        <span class="nav-icon nav-icon-cards" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="8" height="16" rx="1"/><rect x="14" y="4" width="8" height="16" rx="1"/></svg>
+        </span>
+        <span class="nav-icon nav-icon-lock hidden" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </span>
+        <span class="nav-label">Cards</span>
+        <span class="collection-badge nav-badge hidden">!</span>
+      </button>
+      <button type="button" class="nav-item" id="nav-settings" aria-label="Settings">
+        <span class="nav-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        </span>
+        <span class="nav-label">Settings</span>
+      </button>
+      <button type="button" class="nav-item" id="nav-ruby-cave" aria-label="Moon Observatory Event">
+        <span class="nav-icon" aria-hidden="true">💎</span>
+        <span class="nav-label">Event</span>
+      </button>
+    </nav>
+  </div>
+
+  <div id="toast-card-found" class="toast-card hidden">
+    <span class="toast-icon">🃏</span>
+    <span>Card found!</span>
+  </div>
+  <div id="toast-collection-locked" class="toast-card hidden">
+    <span class="toast-icon">🔒</span>
+    <span>Unlocks after Level 2</span>
+  </div>
+  <div id="toast-battle-pass-locked" class="toast-card hidden">
+    <span class="toast-icon">🔒</span>
+    <span>Unlocks after Level 3</span>
+  </div>
+  <div id="toast-card-earned" class="toast-card hidden">
+    <span class="toast-icon">🃏</span>
+    <span>Card Earned!</span>
+  </div>
+  <div id="toast-event-ended" class="toast-card hidden">
+    <span class="toast-icon">⏱</span>
+    <span>Event ended</span>
+  </div>
+  <div id="toast-leaderboard-locked" class="toast-card hidden">
+    <span class="toast-icon">🔒</span>
+    <span>Unlocks after Level 4</span>
+  </div>
+  <div id="toast-bonus-level-locked" class="toast-card hidden">
+    <span class="toast-icon">🎁</span>
+    <span>Collect all cards to unlock the prize level!</span>
+  </div>
+  <div id="toast-bonus-completed" class="toast-card hidden">
+    <span class="toast-icon">🏆</span>
+    <span>Bonus Completed!</span>
+  </div>
+  <div id="toast-race-locked" class="toast-card hidden">
+    <span class="toast-icon">🏎️</span>
+    <span>Unlocks after Level 6</span>
+  </div>
+  <div id="toast-lost-temple-locked" class="toast-card hidden">
+    <span class="toast-icon">⛏️</span>
+    <span>Unlocks after Level 8</span>
+  </div>
+
+  <div id="bonus-level-modal" class="modal collection-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="bonus-level-modal-title">
+    <div class="bonus-level-modal-content">
+      <h2 id="bonus-level-modal-title" class="bonus-level-modal-title">Bonus Level</h2>
+      <p class="bonus-level-modal-subtitle">Prize for completing the album!</p>
+      <p id="bonus-level-modal-completed-hint" class="bonus-level-modal-completed-hint hidden">Completed! Play again?</p>
+      <button type="button" id="btn-bonus-level-play" class="btn btn-primary">Play</button>
+      <button type="button" id="btn-bonus-level-close" class="btn btn-secondary">Close</button>
+    </div>
+  </div>
+
+  <div id="battle-pass-unlock-modal" class="modal collection-overlay hidden" aria-modal="true" role="dialog">
+    <div class="battle-pass-unlock-content">
+      <h2 class="battle-pass-unlock-title">BATTLE PASS</h2>
+      <p class="battle-pass-unlock-subtitle">Unlocked</p>
+      <button type="button" id="btn-battle-pass-lets-go" class="btn btn-primary">Let's Go!</button>
+    </div>
+  </div>
+
+  <div id="leaderboard-tutorial-overlay" class="modal leaderboard-tutorial-overlay hidden" aria-modal="true" role="dialog">
+    <div class="leaderboard-tutorial-content">
+      <h2 class="leaderboard-tutorial-title">Leaderboard unlocked!</h2>
+      <p class="leaderboard-tutorial-text">Earn points by placing puzzle pieces.</p>
+      <p class="leaderboard-tutorial-text">Tap the trophy to see the weekly ranking.</p>
+      <button type="button" id="btn-leaderboard-tutorial-got-it" class="btn btn-primary">Got it</button>
+    </div>
+  </div>
+
+  <div id="wheel-tutorial-overlay" class="modal wheel-tutorial-overlay hidden" aria-modal="true" role="dialog">
+    <div class="wheel-tutorial-content">
+      <p class="wheel-tutorial-text">Wheel of Fortune unlocked! Spin to win cards!</p>
+      <button type="button" id="btn-wheel-tutorial-ok" class="btn btn-primary">Tap to continue</button>
+    </div>
+  </div>
+
+  <div id="wheel-modal" class="modal wheel-modal-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="wheel-modal-title">
+    <div class="wheel-modal-content">
+      <div class="wheel-modal-header">
+        <h2 id="wheel-modal-title" class="wheel-modal-title">WHEEL OF FORTUNE</h2>
+        <button type="button" id="btn-wheel-close" class="wheel-close-btn" aria-label="Close">×</button>
+      </div>
+      <div class="wheel-container-wrap">
+        <div class="wheel-pointer" aria-hidden="true"></div>
+        <div id="wheel-rotatable" class="wheel-rotatable">
+          <div id="wheel-segments" class="wheel-segments"></div>
+        </div>
+      </div>
+      <p id="wheel-subtitle" class="wheel-subtitle">Spin the wheel for free.</p>
+      <button type="button" id="btn-wheel-spin" class="btn wheel-spin-btn">FREE</button>
+      <button type="button" id="btn-wheel-spin-cheat" class="btn wheel-spin-cheat-btn">SPIN Cheat</button>
+      <p id="wheel-timer" class="wheel-timer hidden">Next free spin in: <span id="wheel-timer-value">00:00:00</span></p>
+    </div>
+  </div>
+
+  <div id="wheel-reward-modal" class="modal collection-overlay hidden" aria-modal="true" role="dialog">
+    <div class="wheel-reward-content">
+      <h2 class="wheel-reward-title">You won a Card!</h2>
+      <div class="wheel-reward-card-back" id="wheel-reward-card-back"></div>
+      <button type="button" id="btn-wheel-reward-ok" class="btn btn-primary">Awesome!</button>
+    </div>
+  </div>
+
+  <div id="battlePassScreen" class="bp-screen hidden" aria-modal="true" role="dialog" aria-labelledby="bp-screen-title">
+    <div class="bp-screen-inner">
+      <header class="bp-screen-top">
+        <button type="button" id="btn-battle-pass-info" class="bp-btn-info" aria-label="How does it work?">&#8505;</button>
+        <h1 id="bp-screen-title" class="bp-screen-title">Battle Pass</h1>
+        <button type="button" id="btn-battle-pass-close" class="bp-btn-close" aria-label="Close">×</button>
+      </header>
+      <div class="bp-screen-banner">
+        <div class="bp-banner-art" aria-hidden="true">
+          <span class="bp-banner-star">⭐</span>
+          <span class="bp-banner-piece">🧩</span>
+          <span class="bp-banner-glow"></span>
+        </div>
+        <p id="battle-pass-event-timer" class="bp-banner-timer event-timer--bp">Event ends in: —</p>
+        <div class="battle-pass-progress-wrap bp-banner-progress">
+          <span class="battle-pass-progress-label">Stars</span>
+          <span id="battle-pass-modal-count" class="battle-pass-progress-count">0</span>
+        </div>
+        <p id="battle-pass-modal-toward" class="bp-banner-toward">0/10 toward next tier</p>
+        <div class="battle-pass-modal-bar-wrap bp-banner-bar">
+          <span id="battle-pass-modal-fill" class="battle-pass-modal-fill" style="width: 0%"></span>
+        </div>
+      </div>
+      <div class="bp-header-row bp-screen-cols">
+        <span class="bp-col-label bp-col-label--free">Free</span>
+        <span class="bp-header-spacer" aria-hidden="true"></span>
+        <div class="bp-header-premium">
+          <span class="bp-activate-price" id="bp-activate-price">$19.99</span>
+          <span class="bp-col-label bp-col-label--premium">Puzzle Pass</span>
+          <button type="button" id="btn-battle-pass-activate" class="btn bp-activate-btn hidden" aria-label="Activate Premium">Activate</button>
+        </div>
+      </div>
+      <div id="battle-pass-reward-list" class="bp-scroll bp-screen-list" aria-label="Reward tiers"></div>
+      <p class="bp-screen-desc">Collect stars during levels. Free: XP. Puzzle Pass: card packs!</p>
+    </div>
+  </div>
+
+  <div id="battlePassInfoOverlay" class="bp-info-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="bp-info-title">
+    <div class="bp-info-inner">
+      <button type="button" id="btn-bp-info-close" class="bp-btn-close bp-info-close" aria-label="Close">×</button>
+      <h2 id="bp-info-title" class="bp-info-title">How does it work?</h2>
+      <div class="bp-info-steps">
+        <div class="bp-info-step">
+          <div class="bp-info-step-icon bp-info-step-icon--levels" aria-hidden="true">🧩</div>
+          <p class="bp-info-step-label">Win Levels!</p>
+          <div class="bp-info-arrow bp-info-arrow--down" aria-hidden="true"></div>
+        </div>
+        <div class="bp-info-step">
+          <div class="bp-info-step-icon bp-info-step-icon--stars" aria-hidden="true">⭐</div>
+          <p class="bp-info-step-label">Collect Puzzle</p>
+          <div class="bp-info-arrow bp-info-arrow--down" aria-hidden="true"></div>
+        </div>
+        <div class="bp-info-step">
+          <div class="bp-info-step-icon bp-info-step-icon--rewards" aria-hidden="true">🎁</div>
+          <p class="bp-info-step-label">Better Rewards!</p>
+        </div>
+      </div>
+      <p class="bp-info-continue">Tap to Continue</p>
+    </div>
+  </div>
+
+  <div id="raceEventScreen" class="race-event-screen hidden" aria-modal="true" role="dialog" aria-labelledby="race-event-title">
+    <div class="race-event-inner">
+      <header class="race-event-header">
+        <div class="race-event-header-bg" aria-hidden="true"></div>
+        <button type="button" id="btn-race-event-info" class="race-btn-info race-btn-info--circle" aria-label="How does it work?">&#8505;</button>
+        <button type="button" id="btn-race-event-close" class="race-btn-close race-btn-close--circle" aria-label="Close">×</button>
+        <div class="race-event-chest-wrap">
+          <img src="assets/ui/kart_rush/chest_podium.png" alt="" class="race-event-chest-img" id="race-event-chest-img">
+        </div>
+        <div class="race-event-title-plaque">
+          <h1 id="race-event-title" class="race-event-title">Kart Rush I</h1>
+        </div>
+        <div class="race-event-timer-pill">
+          <span class="race-event-timer-icon" aria-hidden="true">🕐</span>
+          <span id="race-event-timer" class="race-event-timer-text">01:36:03</span>
+        </div>
+        <p class="race-event-desc-bar">Earn points by solving puzzles. First to 50 points wins the grand prize!</p>
+      </header>
+      <div class="race-track-wrap">
+        <div class="race-track-bg" aria-hidden="true"></div>
+        <div class="race-medal-badge-wrap">
+          <img src="assets/ui/kart_rush/medal_badge.png" alt="" class="race-medal-badge-img">
+          <span id="race-medal-number" class="race-medal-number">1</span>
+        </div>
+        <div id="race-track-lanes" class="race-track-lanes" role="list">
+          <div class="race-lane" data-lane="0" aria-label="Lane 1"></div>
+          <div class="race-lane" data-lane="1" aria-label="Lane 2"></div>
+          <div class="race-lane" data-lane="2" aria-label="Lane 3"></div>
+          <div class="race-lane" data-lane="3" aria-label="Lane 4"></div>
+          <div class="race-lane" data-lane="4" aria-label="Lane 5"></div>
+        </div>
+      </div>
+      <div class="race-racers-row">
+        <div class="race-racer-panel" data-racer="0">
+          <img src="assets/ui/kart_rush/avatar_01.png" alt="" class="race-racer-avatar-img" aria-hidden="true">
+          <span class="race-racer-name" id="race-racer-name-0">Shiny Rhino</span>
+        </div>
+        <div class="race-racer-panel" data-racer="1">
+          <img src="assets/ui/kart_rush/avatar_02.png" alt="" class="race-racer-avatar-img" aria-hidden="true">
+          <span class="race-racer-name" id="race-racer-name-1">Standing Collar</span>
+        </div>
+        <div class="race-racer-panel race-racer-panel--player" data-racer="player">
+          <img src="assets/ui/kart_rush/avatar_03.png" alt="" class="race-racer-avatar-img" aria-hidden="true">
+          <span class="race-racer-name" id="race-racer-name-player">You</span>
+        </div>
+        <div class="race-racer-panel" data-racer="3">
+          <img src="assets/ui/kart_rush/avatar_04.png" alt="" class="race-racer-avatar-img" aria-hidden="true">
+          <span class="race-racer-name" id="race-racer-name-3">Wonder Warrior</span>
+        </div>
+        <div class="race-racer-panel" data-racer="4">
+          <img src="assets/ui/kart_rush/avatar_05.png" alt="" class="race-racer-avatar-img" aria-hidden="true">
+          <span class="race-racer-name" id="race-racer-name-4">Angry Diamond</span>
+        </div>
+      </div>
+      <div class="race-bottom-bar">
+        <p id="race-your-points" class="race-your-points">Your points: <span id="race-your-points-num">0</span>/50</p>
+        <button type="button" id="btn-race-continue" class="race-continue-btn">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="lostTempleScreen" class="lost-temple-screen hidden" aria-modal="true" role="dialog" aria-labelledby="lost-temple-title">
+    <div class="lost-temple-inner">
+      <header class="lost-temple-header">
+        <button type="button" id="btn-lost-temple-info" class="lost-temple-btn-info" aria-label="How does it work?">&#8505;</button>
+        <h1 id="lost-temple-title" class="lost-temple-title">Lost Temple</h1>
+        <button type="button" id="btn-lost-temple-close" class="lost-temple-btn-close" aria-label="Close">×</button>
+        <p id="lost-temple-timer" class="lost-temple-timer">Ends in: —</p>
+        <div class="lost-temple-hud">
+          <div class="lost-temple-hammers-pill">
+            <span class="lost-temple-hammers-icon" aria-hidden="true">🔨</span>
+            <span id="lost-temple-hammers-count">0</span>
+          </div>
+          <div class="lost-temple-chest-pill">
+            <span class="lost-temple-chest-icon" aria-hidden="true">🧰</span>
+            <span id="lost-temple-chest-progress">0/0</span>
+          </div>
+        </div>
+      </header>
+      <section class="lost-temple-board-wrap">
+        <div id="lost-temple-board" class="lost-temple-board" role="grid" aria-label="Excavation board"></div>
+      </section>
+      <footer class="lost-temple-footer">
+        <div class="lost-temple-stage-text">
+          <span id="lost-temple-stage-label">Stage 1/3</span>
+          <span id="lost-temple-objective">Find chest tokens</span>
+        </div>
+        <button type="button" id="btn-lost-temple-claim" class="btn btn-primary lost-temple-claim-btn hidden">Claim Chest</button>
+        <button type="button" id="btn-lost-temple-next-stage" class="btn btn-secondary lost-temple-next-btn hidden">Next Stage</button>
+      </footer>
+    </div>
+  </div>
+
+  <div id="lostTempleChestPopup" class="modal lost-temple-chest-popup hidden" aria-modal="true" role="dialog" aria-labelledby="lost-temple-chest-title">
+    <div class="lost-temple-chest-card">
+      <h3 id="lost-temple-chest-title" class="lost-temple-chest-title">Adventurer's Chest</h3>
+      <p class="lost-temple-chest-subtitle">Rewards</p>
+      <p id="lost-temple-chest-reward-text" class="lost-temple-chest-reward-text">+0 coins</p>
+      <button type="button" id="btn-lost-temple-chest-ok" class="btn btn-primary">Awesome!</button>
+    </div>
+  </div>
+
+  <div id="lostTempleInfoOverlay" class="lost-temple-info-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="lost-temple-info-title">
+    <div class="lost-temple-info-inner">
+      <button type="button" id="btn-lost-temple-info-close" class="bp-btn-close lost-temple-info-close" aria-label="Close">×</button>
+      <h2 id="lost-temple-info-title" class="lost-temple-info-title">How does it work?</h2>
+      <div class="lost-temple-info-steps">
+        <div class="lost-temple-info-step">
+          <div class="lost-temple-info-icon" aria-hidden="true">🔨</div>
+          <p>Use hammers to break dig tiles.</p>
+        </div>
+        <div class="lost-temple-info-step">
+          <div class="lost-temple-info-icon" aria-hidden="true">💎</div>
+          <p>Hidden treasures are under the tiles.</p>
+        </div>
+        <div class="lost-temple-info-step">
+          <div class="lost-temple-info-icon" aria-hidden="true">🧰</div>
+          <p>Find chest tokens to unlock valuable chests.</p>
+        </div>
+      </div>
+      <p class="lost-temple-info-continue">Tap to Continue</p>
+    </div>
+  </div>
+
+  <div id="lostTempleTutorialOverlay" class="lost-temple-tutorial-overlay hidden" aria-modal="true" role="dialog">
+    <div class="lost-temple-tutorial-card">
+      <h3 class="lost-temple-tutorial-title">Excavation Event Unlocked!</h3>
+      <p id="lost-temple-tutorial-text" class="lost-temple-tutorial-text">Tap a tile to use 1 hammer and reveal hidden treasure.</p>
+      <button type="button" id="btn-lost-temple-tutorial-ok" class="btn btn-primary">Start Digging</button>
+    </div>
+  </div>
+
+  <div id="raceEventTutorialOverlay" class="race-tutorial-overlay hidden" aria-modal="true" role="dialog">
+    <div class="race-tutorial-inner">
+      <h2 class="race-tutorial-title">Race Event</h2>
+      <p class="race-tutorial-text">Earn points by solving puzzles.</p>
+      <p class="race-tutorial-text">First to 50 points wins the grand prize.</p>
+      <p class="race-tutorial-text">Four rivals are racing too—beat them!</p>
+      <button type="button" id="btn-race-tutorial-ok" class="btn btn-primary">Got it</button>
+    </div>
+  </div>
+
+  <div id="raceEventInfoOverlay" class="race-info-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="race-info-title">
+    <div class="race-info-inner">
+      <button type="button" id="btn-race-info-close" class="bp-btn-close bp-info-close" aria-label="Close">×</button>
+      <h2 id="race-info-title" class="bp-info-title">How does it work?</h2>
+      <p class="race-info-desc">Complete puzzles to earn race points. First to 50 points wins the grand prize card pack. Four bots are racing with you—finish first!</p>
+      <p class="bp-info-continue">Tap to Continue</p>
+    </div>
+  </div>
+
+  <div id="raceResultPopup" class="race-result-popup hidden" aria-modal="true" role="dialog">
+    <div class="race-result-inner">
+      <h2 id="race-result-title" class="race-result-title">You Won!</h2>
+      <p id="race-result-message" class="race-result-message">Claim your Grand Prize</p>
+      <button type="button" id="btn-race-claim-prize" class="btn btn-primary hidden">Claim Grand Prize</button>
+      <button type="button" id="btn-race-result-close" class="btn btn-secondary">Continue</button>
+    </div>
+  </div>
+
+  <div id="pack-opening-modal" class="modal pack-opening-overlay hidden" aria-modal="true" role="dialog" aria-label="Card pack">
+    <div class="pack-opening-card">
+      <div id="pack-opening-phase" class="pack-opening-phase" data-phase="closed">
+        <div id="pack-pack-view" class="pack-pack-view">
+          <div id="pack-pack-icon" class="pack-pack-icon" aria-hidden="true"></div>
+          <p id="pack-tap-hint" class="pack-tap-hint">Tap to open</p>
+        </div>
+        <div id="pack-reveal-view" class="pack-reveal-view hidden">
+          <h3 class="pack-reveal-title">Your cards</h3>
+          <div id="pack-reveal-list" class="pack-reveal-list" role="list"></div>
+          <button type="button" id="pack-done-btn" class="btn btn-primary">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="leaderboard-modal" class="modal leaderboard-modal hidden" aria-modal="true" role="dialog" aria-labelledby="leaderboard-title">
+    <div class="leaderboard-content">
+      <div class="leaderboard-header">
+        <button type="button" id="btn-leaderboard-info" class="leaderboard-btn-info" aria-label="How does it work?">&#8505;</button>
+        <h2 id="leaderboard-title" class="leaderboard-title">Weekly Leaderboard</h2>
+        <p id="leaderboard-subtitle" class="leaderboard-subtitle">Puzzle Pieces Collected</p>
+        <p id="leaderboard-timer" class="leaderboard-timer">Ends in: 5d 5h</p>
+        <button type="button" id="leaderboard-close" class="leaderboard-close-btn" aria-label="Close">×</button>
+      </div>
+      <div id="leaderboard-top3" class="leaderboard-top3"></div>
+      <div class="leaderboard-list-wrap">
+        <div id="leaderboard-list" class="leaderboard-list" role="list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="leaderboard-info-overlay" class="leaderboard-info-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="leaderboard-info-title">
+    <div class="leaderboard-info-inner">
+      <button type="button" id="btn-leaderboard-info-close" class="leaderboard-info-close bp-btn-close" aria-label="Close">×</button>
+      <h2 id="leaderboard-info-title" class="leaderboard-info-title">How does it work?</h2>
+      <div class="leaderboard-info-steps">
+        <div class="leaderboard-info-step">
+          <div class="leaderboard-info-step-icon leaderboard-info-step-icon--play" aria-hidden="true">🧩</div>
+          <p class="leaderboard-info-step-label">Play Levels!</p>
+          <div class="leaderboard-info-arrow leaderboard-info-arrow--down" aria-hidden="true"></div>
+        </div>
+        <div class="leaderboard-info-step">
+          <div class="leaderboard-info-step-icon leaderboard-info-step-icon--points" aria-hidden="true">🃏</div>
+          <p class="leaderboard-info-step-label">Earn Points!</p>
+          <div class="leaderboard-info-arrow leaderboard-info-arrow--down" aria-hidden="true"></div>
+        </div>
+        <div class="leaderboard-info-step">
+          <div class="leaderboard-info-step-icon leaderboard-info-step-icon--trophy" aria-hidden="true">🏆</div>
+          <p class="leaderboard-info-step-label">Climb & Win!</p>
+        </div>
+      </div>
+      <p class="leaderboard-info-desc">Solve puzzles to earn points. Each puzzle piece placed = 1 point. Climb the weekly leaderboard and win rewards!</p>
+      <p id="leaderboard-info-continue" class="leaderboard-info-continue">Tap to Continue</p>
+    </div>
+  </div>
+
+  <div id="collection-unlock-modal" class="modal collection-overlay hidden">
+    <div class="collection-unlock-content">
+      <div class="collection-unlock-header">
+        <div class="collection-cards-preview" id="collection-unlock-preview"></div>
+        <h2 class="collection-unlock-title">COLLECTION</h2>
+        <p class="collection-unlock-subtitle">Unlocked</p>
+      </div>
+      <div class="collection-unlock-body">
+        <p class="collection-unlock-desc">Discover and capture 3 special Blockies!</p>
+        <div class="collection-unlock-placeholders" id="collection-unlock-placeholders"></div>
+        <button id="btn-collection-lets-go" class="btn btn-lets-go">Let's Go!</button>
+      </div>
+      <div class="tap-to-skip-bar" id="collection-unlock-skip">
+        <span class="tap-to-skip-text">Tap to skip</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="collection-tutorial-overlay" class="modal collection-overlay hidden">
+    <div class="collection-tutorial-content">
+      <div class="tutorial-speech-bubble" id="collection-tutorial-bubble">
+        <p id="collection-tutorial-text"></p>
+      </div>
+      <div class="tap-to-skip-bar" id="collection-tutorial-skip">
+        <span class="tap-to-skip-text">Tap to skip</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="final-reward-modal" class="modal final-reward-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="final-reward-title">
+    <div class="final-reward-content">
+      <h2 id="final-reward-title" class="final-reward-title">Your Reward!</h2>
+      <p class="final-reward-subtitle">Congratulations!</p>
+      <div class="final-reward-trophy-wrap">
+        <div class="final-reward-rays" aria-hidden="true"></div>
+        <div class="final-reward-trophy" aria-hidden="true">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M5 9v13"/><path d="M19 9v13"/><path d="M9 9h6v4a3 3 0 0 1-6 0V9z"/><path d="M12 2v3"/><path d="M8 5l4-2 4 2"/></svg>
+        </div>
+      </div>
+      <p class="final-reward-desc">You collected all the cards!</p>
+      <button type="button" id="btn-final-reward-close" class="btn btn-primary final-reward-cta">Awesome!</button>
+    </div>
+  </div>
+
+  <div id="piggy-bank-modal" class="modal piggy-bank-modal-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="piggy-bank-modal-title">
+    <div class="piggy-bank-modal-card">
+      <button type="button" id="btn-piggy-info" class="piggy-btn-info" aria-label="How do I use Piggy Bank?">&#8505;</button>
+      <button type="button" id="piggy-modal-close" class="piggy-modal-close" aria-label="Close">×</button>
+      <span class="piggy-savings-badge" aria-hidden="true">500% SAVINGS</span>
+      <h2 id="piggy-bank-modal-title" class="piggy-bank-modal-title">PIGGY BANK</h2>
+      <p id="piggy-modal-desc" class="piggy-modal-desc">The piggy bank is full! Open it and get lots of gems!</p>
+      <div class="piggy-illustration-wrap">
+        <div class="piggy-illustration" aria-hidden="true">
+          <span class="piggy-emoji" aria-hidden="true">🐷</span>
+        </div>
+      </div>
+      <div class="piggy-progress-wrap">
+        <div class="piggy-progress-bar">
+          <div id="piggy-progress-fill" class="piggy-progress-fill" style="width: 0%"></div>
+        </div>
+        <div class="piggy-progress-labels">
+          <span class="piggy-progress-min"><span class="piggy-gem-icon">💎</span> <span id="piggy-progress-current">0</span></span>
+          <span class="piggy-progress-max"><span class="piggy-gem-icon">💎</span> <span id="piggy-progress-cap">500</span></span>
+        </div>
+      </div>
+      <button type="button" id="piggy-btn-purchase" class="btn piggy-price-btn" disabled>$1.99</button>
+      <button type="button" id="piggy-btn-later" class="btn btn-secondary piggy-btn-later">LATER</button>
+    </div>
+  </div>
+
+  <div id="piggy-reward-popup" class="modal piggy-reward-popup-overlay hidden" aria-modal="true" role="dialog">
+    <div class="piggy-reward-popup-card">
+      <h2 class="piggy-reward-title">Congratulations! Your reward</h2>
+      <div class="piggy-reward-amount-wrap">
+        <span class="piggy-reward-gem">💎</span>
+        <span id="piggy-reward-amount" class="piggy-reward-amount">+0 gems</span>
+      </div>
+      <button type="button" id="piggy-reward-close" class="btn btn-primary">Awesome!</button>
+    </div>
+  </div>
+
+  <div id="piggy-info-overlay" class="piggy-info-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="piggy-info-title">
+    <div class="piggy-info-inner">
+      <h2 id="piggy-info-title" class="piggy-info-title">HOW DO I USE PIGGY BANK?</h2>
+      <p class="piggy-info-subtitle">Fill the piggy bank to claim rewards!</p>
+      <div class="piggy-info-steps">
+        <div class="piggy-info-step">
+          <div class="piggy-info-step-icon piggy-info-step-icon--play" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 7l10 5 10-5-10-5z" fill="#f39c12"/><path d="M2 17l10 5 10-5" stroke="#e67e22" stroke-width="2" stroke-linecap="round"/></svg>
+          </div>
+          <p class="piggy-info-step-label">Play levels</p>
+          <div class="piggy-info-arrow piggy-info-arrow--down" aria-hidden="true">
+            <svg width="28" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M7 14l5 5 5-5" stroke="#ffd93d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="piggy-info-step">
+          <div class="piggy-info-step-icon piggy-info-step-icon--fill" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l2 6 6 1-4 4 1 6-5-3-5 3 1-6-4-4 6-1 2-6z" fill="#e74c3c"/><circle cx="8" cy="14" r="2" fill="#e74c3c"/><circle cx="16" cy="18" r="2" fill="#e74c3c"/></svg>
+          </div>
+          <p class="piggy-info-step-label">Each completed level fills the piggy bank</p>
+          <div class="piggy-info-arrow piggy-info-arrow--down" aria-hidden="true">
+            <svg width="28" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5v14M7 14l5 5 5-5" stroke="#ffd93d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="piggy-info-step">
+          <div class="piggy-info-step-icon piggy-info-step-icon--break" aria-hidden="true">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" fill="#ffb6c1" stroke="#ff9ead" stroke-width="2"/><ellipse cx="12" cy="15" rx="4" ry="3" fill="#ff9ead"/><circle cx="10" cy="11" r="1.2" fill="#333"/><circle cx="14" cy="11" r="1.2" fill="#333"/><path d="M8 6l2 2M16 6l-2 2" stroke="#f6b93b" stroke-width="1.5"/><circle cx="6" cy="18" r="1.5" fill="#e74c3c"/><circle cx="18" cy="18" r="1.5" fill="#e74c3c"/></svg>
+          </div>
+          <p class="piggy-info-step-label">When it's full, break it to claim everything inside</p>
+        </div>
+      </div>
+      <p id="piggy-info-continue" class="piggy-info-continue">TAP TO CONTINUE</p>
+    </div>
+  </div>
+
+  <div id="reward-modal" class="modal collection-overlay hidden">
+    <div class="reward-modal-content">
+      <h2 class="reward-title">NEW BLOCKIE<br>DISCOVERED!</h2>
+      <div class="reward-character-wrap" id="reward-character-wrap"></div>
+      <p class="reward-name" id="reward-name">Truffle</p>
+      <span class="reward-rarity" id="reward-rarity">Common</span>
+      <div class="reward-progress-bar" id="reward-progress-bar">
+        <span id="reward-progress-text">0/6</span>
+      </div>
+      <div class="tap-to-skip-bar" id="reward-modal-skip">
+        <span class="tap-to-skip-text">Tap to continue</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="win-modal" class="modal hidden">
+    <div class="modal-content win-modal-content">
+      <h2>Level Complete!</h2>
+      <div id="win-stars" class="stars-container">
+        <span class="star" data-star="1">★</span>
+        <span class="star" data-star="2">★</span>
+        <span class="star" data-star="3">★</span>
+      </div>
+      <p id="win-stats" class="win-stats"></p>
+      <button id="btn-next-level" class="btn btn-primary">Next Level</button>
+      <button id="btn-replay" class="btn btn-secondary">Replay</button>
+    </div>
+  </div>
+
+  <div id="energy-refill-modal" class="modal energy-refill-modal hidden" aria-modal="true" role="dialog">
+    <div class="energy-refill-card">
+      <div class="energy-refill-icon">⚡</div>
+      <h2 class="energy-refill-title">Out of Energy!</h2>
+      <p class="energy-refill-desc">You need energy to place puzzle pieces. Get more to keep playing!</p>
+      <div class="energy-refill-options">
+        <button type="button" id="btn-energy-refill-ad" class="energy-refill-btn energy-refill-btn--ad">
+          <span class="energy-refill-btn-icon">🎬</span>
+          <span class="energy-refill-btn-text">Watch Ad<br><strong>+20 Energy</strong></span>
+        </button>
+        <button type="button" id="btn-energy-refill-gems" class="energy-refill-btn energy-refill-btn--gems">
+          <span class="energy-refill-btn-icon">💎</span>
+          <span class="energy-refill-btn-text">10 Gems<br><strong>+20 Energy</strong></span>
+        </button>
+      </div>
+      <button type="button" id="btn-energy-refill-close" class="energy-refill-close">Not now</button>
+    </div>
+  </div>
+
+  <div id="settings-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Settings</h2>
+      <div class="setting-row">
+        <label for="toggle-music">Music</label>
+        <button id="toggle-music" class="toggle-btn" role="switch" aria-checked="false"></button>
+      </div>
+      <div class="setting-row">
+        <label for="toggle-sfx">Sound effects</label>
+        <button id="toggle-sfx" class="toggle-btn" role="switch" aria-checked="true"></button>
+      </div>
+      <div class="setting-row">
+        <span>Trophies</span>
+        <span id="settings-trophies-count">0</span>
+      </div>
+      <div class="setting-row setting-row--gold-cup hidden" id="settings-gold-cup-row">
+        <span>Golden Cup</span>
+        <span class="settings-trophy-icon" aria-hidden="true">🏆</span>
+      </div>
+      <div class="setting-row">
+        <button type="button" id="btn-edit-profile" class="btn btn-secondary">Edit Profile</button>
+      </div>
+      <div class="setting-row">
+        <button id="btn-reset-progress" class="btn btn-secondary">Reset progress</button>
+      </div>
+      <div class="setting-row">
+        <button id="btn-cheat-open-all-albums" class="btn btn-secondary" title="Unlock collection and all album cards">Open all albums</button>
+      </div>
+      <div class="setting-row">
+        <button id="btn-cheat-add-album-stars" class="btn btn-secondary" title="Add 10,000 album stars">Add 10,000 album stars</button>
+      </div>
+      <div class="setting-row">
+        <button id="btn-cheat-add-hammers" class="btn btn-secondary" title="Add 10,000 event hammers">Add 10,000 event hammers</button>
+      </div>
+      <button id="btn-close-settings" class="btn btn-primary">Done</button>
+    </div>
+  </div>
+
+  <div id="profile-modal" class="profile-modal-overlay hidden" aria-modal="true" role="dialog" aria-labelledby="profile-modal-title">
+    <div class="profile-modal-card">
+      <header class="profile-modal-header">
+        <h2 id="profile-modal-title" class="profile-modal-title">Profile</h2>
+        <button type="button" id="profile-modal-close" class="profile-modal-close" aria-label="Close">×</button>
+      </header>
+      <div class="profile-modal-user-row">
+        <div id="profile-preview" class="profile-preview" aria-hidden="true"></div>
+        <div class="profile-username-wrap">
+          <span id="profile-username-pill" class="profile-username-pill" tabindex="0" role="button">User0000000</span>
+          <input type="text" id="profile-username-input" class="profile-username-input hidden" maxlength="16" placeholder="Your name" aria-label="Username">
+        </div>
+      </div>
+      <div class="profile-tabs">
+        <button type="button" id="profile-tab-accessories" class="profile-tab profile-tab--inactive">Accessories</button>
+        <button type="button" id="profile-tab-skins" class="profile-tab profile-tab--active">Skins</button>
+      </div>
+      <div id="profile-accessories-panel" class="profile-accessories-panel hidden">
+        <div id="profile-accessories-grid" class="profile-accessories-grid" role="list"></div>
+      </div>
+      <div id="profile-skins-panel" class="profile-skins-panel">
+        <div id="profile-skins-grid" class="profile-skins-grid" role="list">
+          <div class="profile-skin-tile" data-profile-avatar="0" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="1" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="2" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="3" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="4" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="5" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="6" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="7" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="8" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="9" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="10" role="listitem"></div>
+          <div class="profile-skin-tile" data-profile-avatar="11" role="listitem"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="bp-tutor-overlay" class="bp-tutor-overlay hidden" aria-hidden="true">
+    <div class="bp-tutor-hand-wrap">
+      <div class="bp-tutor-hand" id="bp-tutor-hand"></div>
+      <div class="bp-tutor-ripple" id="bp-tutor-ripple"></div>
+    </div>
+    <p class="bp-tutor-tooltip" id="bp-tutor-tooltip"></p>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>

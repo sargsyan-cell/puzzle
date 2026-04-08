@@ -177,6 +177,7 @@
       rubyCaveNextEnergyAt: null,
       rubyCaveEventEnd: null,
       rubyCaveTutorialDone: false,
+      rubyCaveRewardClaimed: false,
       puzzleEnergy: DEFAULT_PUZZLE_ENERGY,
     };
   }
@@ -552,6 +553,7 @@
         }
         if (typeof merged.puzzleEnergy !== "number") merged.puzzleEnergy = DEFAULT_PUZZLE_ENERGY;
         if (typeof merged.rubyCaveTutorialDone !== "boolean") merged.rubyCaveTutorialDone = false;
+        if (typeof merged.rubyCaveRewardClaimed !== "boolean") merged.rubyCaveRewardClaimed = false;
         merged.collectionUnlocked = true;
         merged.collectionTutorialCompleted = true;
         merged.battlePassUnlocked = true;
@@ -3035,6 +3037,8 @@
         nodes: q("rc-nodes"),
         scene: q("rc-scene"),
         tray: q("rc-tray"),
+        grandReward: q("rc-grand-reward"),
+        grandClaim: q("rc-grand-claim"),
       };
     }
 
@@ -3052,6 +3056,7 @@
         this._updateEnergyUI();
         this.el.energyModal.classList.remove("rc-visible");
       });
+      this.el.grandClaim.addEventListener("click", () => this._claimGrandReward());
 
       this._onDown = (e) => this._pointerDown(e);
       this._onMove = (e) => this._pointerMove(e);
@@ -3271,7 +3276,11 @@
         if (this.placed >= RubyCaveManager.LEVELS[this.currentLevel].tray.length) {
           this.completed = Math.max(this.completed, this.currentLevel + 1);
           this._persist();
-          this.el.done.classList.add("rc-visible");
+          if (this.completed >= RubyCaveManager.LEVELS.length && !this._save.rubyCaveRewardClaimed) {
+            this._showGrandReward();
+          } else {
+            this.el.done.classList.add("rc-visible");
+          }
         }
       };
       piece.addEventListener("transitionend", end);
@@ -3282,6 +3291,7 @@
       if (this.el.game.classList.contains("rc-view--hidden")) return;
       if (this.el.done.classList.contains("rc-visible")) return;
       if (this.el.energyModal.classList.contains("rc-visible")) return;
+      if (this.el.grandReward.classList.contains("rc-visible")) return;
       const piece = e.target.closest(".rc-piece");
       if (!piece) return;
       if (this.energy <= 0) {
@@ -3351,6 +3361,17 @@
       this._showView("hub");
     }
 
+    _showGrandReward() {
+      this.el.grandReward.classList.add("rc-visible");
+    }
+
+    _claimGrandReward() {
+      this._save.rubyCaveRewardClaimed = true;
+      this._persist();
+      this.el.grandReward.classList.remove("rc-visible");
+      this._showView("hub");
+    }
+
     open() {
       this._screen.classList.remove("hidden");
       this._showView("hub");
@@ -3364,6 +3385,7 @@
       this._endTutorial();
       this.el.done.classList.remove("rc-visible");
       this.el.energyModal.classList.remove("rc-visible");
+      this.el.grandReward.classList.remove("rc-visible");
       this._screen.classList.add("hidden");
     }
 

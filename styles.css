@@ -6535,6 +6535,90 @@ body.leaderboard-tutor-active #curs_add_leaderboard_from_trophy_button {
   line-height: 1.35;
 }
 .rc-modal .rc-btn { margin-top: 14px; }
+
+/* Grand Reward Popup */
+.rc-grand-modal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 32px;
+  z-index: 2;
+}
+.rc-grand-confetti {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 22%, #ffd639 2px, transparent 2px),
+    radial-gradient(circle at 82% 18%, #ff5c8a 2.5px, transparent 2.5px),
+    radial-gradient(circle at 50% 8%, #4fc3f7 2px, transparent 2px),
+    radial-gradient(circle at 12% 55%, #a47cff 1.8px, transparent 1.8px),
+    radial-gradient(circle at 88% 48%, #7ed957 2px, transparent 2px),
+    radial-gradient(circle at 30% 85%, #ff9a8b 2.2px, transparent 2.2px),
+    radial-gradient(circle at 72% 80%, #ffd639 1.5px, transparent 1.5px),
+    radial-gradient(circle at 55% 92%, #4fc3f7 2px, transparent 2px);
+  animation: rcConfettiFade 2s ease-in-out infinite alternate;
+}
+@keyframes rcConfettiFade {
+  0% { opacity: .4; transform: translateY(0); }
+  100% { opacity: 1; transform: translateY(-6px); }
+}
+.rc-grand-title {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 12px rgba(0,212,255,.5), 0 0 30px rgba(100,68,165,.4);
+  margin-bottom: 4px;
+  letter-spacing: .02em;
+}
+.rc-grand-sub {
+  font-size: .95rem;
+  color: rgba(255,255,255,.7);
+  text-align: center;
+  margin-bottom: 16px;
+}
+.rc-grand-building {
+  width: min(60%, 180px);
+  aspect-ratio: 1 / 2;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow:
+    0 0 40px rgba(0,212,255,.25),
+    0 0 80px rgba(100,68,165,.2),
+    0 4px 20px rgba(0,0,0,.4);
+  animation: rcBuildingReveal .8s cubic-bezier(.22,.68,.36,1.2) both;
+}
+@keyframes rcBuildingReveal {
+  0% { opacity: 0; transform: scale(.7) translateY(30px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+.rc-skyscraper-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.rc-grand-reward-label {
+  margin-top: 16px;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffd639;
+  text-align: center;
+  text-shadow: 0 1px 8px rgba(255,214,57,.4);
+}
+.rc-grand-claim-btn {
+  margin-top: 18px;
+  width: min(80%, 260px);
+  font-size: 1.1rem;
+  animation: rcClaimPulse 1.8s ease-in-out infinite;
+}
+@keyframes rcClaimPulse {
+  0%, 100% { box-shadow: 0 8px 18px rgba(141,92,255,.35); }
+  50% { box-shadow: 0 8px 30px rgba(141,92,255,.55), 0 0 20px rgba(0,212,255,.2); }
+}
 .rc-toast {
   position: absolute;
   left: 50%;

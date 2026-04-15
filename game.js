@@ -27,10 +27,54 @@
   const LEVEL_8_INDEX = 7;
   const RACE_TARGET_POINTS = 50;
   const RACE_BOT_INTERVALS_MS = [12000, 15000, 18000, 22000];
-  const RACE_BOT_NAMES = ["Shiny Rhino", "Standing Collar", "Wonder Warrior", "Angry Diamond"];
+  const RACE_BOT_NAMES = ["Orange Lime", "Orange Lime", "Orange Lime", "Orange Lime"];
   const RACE_EVENT_DURATION_MS = 10 * 24 * 60 * 60 * 1000;
-  const RACE_KART_RED_SRC = "assets/ui/kart_rush/kart_red.png";
-  const RACE_KART_BLUE_SRC = "assets/ui/kart_rush/kart_blue.png";
+  const RACE_LANE_CAR_SRCS = [
+    "https://www.figma.com/api/mcp/asset/c4d902f4-3391-4c00-a764-74855c071d2b",
+    "https://www.figma.com/api/mcp/asset/237c68c9-e7c8-4477-b5dc-94f29c1d4f20",
+    "https://www.figma.com/api/mcp/asset/936a3a05-8563-4d7a-91e1-d804ea98accd",
+    "https://www.figma.com/api/mcp/asset/4f6b9fc2-4de2-4c37-a6a1-c15f054f7cae",
+    "https://www.figma.com/api/mcp/asset/412b9eb5-852c-42f8-98b9-ba2f246152f1",
+  ];
+  const PROFILE_ICON_ADS_SRC = "https://www.figma.com/api/mcp/asset/16a01535-a730-4ad0-9f6b-3e00e77e156a";
+  const PROFILE_ICON_GEM_SRC = "https://www.figma.com/api/mcp/asset/56ae3d16-19e0-4617-b81c-8a74914f2997";
+  const BP_GEM_ICON_SRC = "https://www.figma.com/api/mcp/asset/a0a4ff75-7918-4c31-aec2-8293de3ed8d4";
+  const BP_CHEST_ICON_SRC = "https://www.figma.com/api/mcp/asset/3963bbf8-0846-49af-bbb1-918d04dc750d";
+  const LEADERBOARD_BG_SRC = "https://www.figma.com/api/mcp/asset/15be4824-a30a-48f1-a5f5-009d86f4da60";
+  const LEADERBOARD_BANNER_SRC = "https://www.figma.com/api/mcp/asset/2e431d04-8cc9-457c-8137-d1faebf495e2";
+  const LEADERBOARD_NAV_BACK_SRC = "https://www.figma.com/api/mcp/asset/e4d08226-c9b2-4ee0-bf02-a51bb9b38b78";
+  const LEADERBOARD_NAV_INFO_SRC = "https://www.figma.com/api/mcp/asset/27dbf6f8-c200-40e1-85f7-76638f04c380";
+  const LEADERBOARD_TOP_WREATH_GOLD_SRC = "https://www.figma.com/api/mcp/asset/7f2a78df-aa97-4f3b-9e60-c69e393cd73d";
+  const LEADERBOARD_TOP_WREATH_SILVER_SRC = "https://www.figma.com/api/mcp/asset/04060ce3-b519-4d6a-b550-c716785ef83e";
+  const LEADERBOARD_TOP_WREATH_BRONZE_SRC = "https://www.figma.com/api/mcp/asset/75626547-756f-4536-8548-6ef95f15cf65";
+  const LEADERBOARD_REWARD_GOLD_SRC = "https://www.figma.com/api/mcp/asset/c125d8e9-2b1f-480c-b73b-7a8f9241806e";
+  const LEADERBOARD_REWARD_SILVER_SRC = "https://www.figma.com/api/mcp/asset/247bfb7a-0c6c-49da-a8f9-43514a7f2bb1";
+  const LEADERBOARD_REWARD_BRONZE_SRC = "https://www.figma.com/api/mcp/asset/170f228f-d243-428a-adc2-a4c4fa9d765d";
+  const LEADERBOARD_BOT_AVATAR_SRC = "https://www.figma.com/api/mcp/asset/19f75488-c193-4a14-9314-0d6729052844";
+  const ALBUM_BG_SRC = "https://www.figma.com/api/mcp/asset/84afe2d8-1ff4-477b-9680-739aa648d61c";
+  const ALBUM_ICON_CARD_SRC = "https://www.figma.com/api/mcp/asset/7fdb2bba-f0ab-4ec0-aca8-ef019d3ddc22";
+  const ALBUM_ICON_CHEST_SRC = "https://www.figma.com/api/mcp/asset/e1f42bd0-a9af-4287-a86a-e80cc38455d6";
+  const ALBUM_ICON_INFO_SRC = "https://www.figma.com/api/mcp/asset/c0296964-9880-4e32-98cf-876913353eca";
+  const ALBUM_ICON_COIN_SRC = "https://www.figma.com/api/mcp/asset/dc3dcad6-307d-4ce3-be5f-bc6404e1cc9b";
+  const ALBUM_ICON_GEM_SRC = "https://www.figma.com/api/mcp/asset/026579c0-3798-4877-8fb2-d9b4300e48f9";
+  const ALBUM_ICON_SORT_SRC = "https://www.figma.com/api/mcp/asset/a526d657-e4e8-47de-912e-186906fe4e03";
+  const ALBUM_ICON_ARROW_LEFT_SRC = "https://www.figma.com/api/mcp/asset/e4264505-f865-4c9d-a831-3b90b5b637bc";
+  const ALBUM_ICON_ARROW_RIGHT_SRC = "https://www.figma.com/api/mcp/asset/7ae51612-ac18-4f8f-9d2c-7470bebc8b0e";
+  const ALBUM_CARD_STAR_SRC = "https://www.figma.com/api/mcp/asset/87463e49-ca29-4aaf-9bcf-774e410672d6";
+  const ALBUM_QUESTION_TILE_SRC = "https://www.figma.com/api/mcp/asset/92f62589-2b94-483d-9980-f075e362c4b7";
+  const ALBUM_BOTTOM_BANNER_SRC = "https://www.figma.com/api/mcp/asset/2e431d04-8cc9-457c-8137-d1faebf495e2";
+  const ALBUM_EXCHANGE_CLOSE_SRC = "https://www.figma.com/api/mcp/asset/0cdd32d2-f712-4dfd-8be4-b9660f147249";
+  const ALBUM_EXCHANGE_CHEST_WOOD_SRC = "https://www.figma.com/api/mcp/asset/b2e1fde9-830c-45c0-9d3c-9545fe919d23";
+  const ALBUM_EXCHANGE_CHEST_SILVER_SRC = "https://www.figma.com/api/mcp/asset/00c500a7-e411-4c32-b0b9-0e859d2d32b0";
+  const ALBUM_EXCHANGE_CHEST_GOLD_SRC = "https://www.figma.com/api/mcp/asset/1caf35f4-4818-4a6f-8f91-8bf404e8d89c";
+  const ALBUM_EXCHANGE_COIN_SRC = "https://www.figma.com/api/mcp/asset/3ebc2fd3-3079-40e8-9686-99b4964feab2";
+  const ALBUM_EXCHANGE_ENERGY_SRC = "https://www.figma.com/api/mcp/asset/cad4e6b3-cac1-41f2-94b9-62e61df32e45";
+  const ALBUM_EXCHANGE_GEM_SRC = "https://www.figma.com/api/mcp/asset/66522874-ab1e-4b32-9b41-2f0ae0524afa";
+  const ALBUM_EXCHANGE_BP_STAR_SRC = "https://www.figma.com/api/mcp/asset/d40a259d-e54a-488e-8e4e-82ed8fcaf048";
+  const ALBUM_FEATURES_INFO_PACK_SRC = "https://www.figma.com/api/mcp/asset/1562f3d9-b0cd-4425-9815-4c1c7f6fbe6c";
+  const ALBUM_FEATURES_INFO_STAR_SRC = "https://www.figma.com/api/mcp/asset/44c9eef2-f8b9-4800-b8a9-fde938e376a4";
+  const ALBUM_FEATURES_INFO_CHEST_SRC = "https://www.figma.com/api/mcp/asset/70af29b5-fa34-486b-80ea-58f67edb6e4f";
+  const ALBUM_FEATURES_INFO_TAP_SRC = "https://www.figma.com/api/mcp/asset/6a0f4487-017d-47c2-a7f0-8b28a0b067b5";
   const BP_STARS_PER_CARD = 10;
   const BP_XP_PER_TIER = 100;
   const WHEEL_FREE_COOLDOWN_MS = 6 * 60 * 60 * 1000;
@@ -43,9 +87,42 @@
   const CARD_IMAGE_BASE = "assets/cards/";
   const PACK_REFERENCE_IMAGE = "assets/ui/pack_reference.png";
   const LOST_TEMPLE_STAGES = [
-    { id: 1, boardSize: 5, chestGoal: 5, tier: "adventurer", loot: { chest: 5, gem: 4, relic: 3, bonusHammer: 2, coins: 3 } },
-    { id: 2, boardSize: 5, chestGoal: 7, tier: "archaeologist", loot: { chest: 7, gem: 4, relic: 4, bonusHammer: 2, coins: 4 } },
-    { id: 3, boardSize: 6, chestGoal: 9, tier: "mystery", loot: { chest: 9, gem: 6, relic: 5, bonusHammer: 3, coins: 5 } },
+    { id: 1, boardSize: 4, chestGoal: 4, gemGoal: 2, tier: "adventurer", loot: { chest: 4, gem: 2, relic: 2, bonusHammer: 2, coins: 2 } },
+    { id: 2, boardSize: 4, chestGoal: 4, gemGoal: 2, tier: "archaeologist", loot: { chest: 4, gem: 2, relic: 3, bonusHammer: 2, coins: 3 } },
+    { id: 3, boardSize: 4, chestGoal: 2, gemGoal: 2, tier: "mystery", loot: { chest: 2, gem: 2, relic: 4, bonusHammer: 3, coins: 3 } },
+  ];
+  // Registry for uploaded HTML playables (Level 1, Level 2, etc.).
+  // Add new files to this array to plug additional external levels.
+  const EXTERNAL_PLAYABLE_LEVELS = [
+    {
+      id: "city2_unity_level_1",
+      title: "City 2",
+      type: "html-playable",
+      src: "levels/events/APW_Lvl_4_applovin_Full_1.html",
+    },
+    {
+      id: "city_level_3_unity_level_2",
+      title: "City Level 3",
+      type: "html-playable",
+      src: "levels/PuzzleCity_Level_3_unity_Full.html",
+    },
+  ];
+  const GALLERY_LEVEL_DEFS = [
+    { id: "gallery_level_1", label: "Tutorial", featureIcon: "feature-bp", playableLevelIndex: 0 },
+    { id: "gallery_level_2", label: "Tutorial", featureIcon: "feature-leaderboard", playableLevelIndex: 1 },
+    { id: "gallery_level_3", label: "Tutorial", featureIcon: "feature-wheel" },
+    { id: "gallery_level_4", label: "Tutorial", featureIcon: "feature-race" },
+    { id: "gallery_level_5", label: "Tutorial", featureIcon: "feature-temple" },
+    { id: "gallery_level_6", label: "Tutorial", featureIcon: "feature-piggy" },
+    { id: "gallery_level_7", label: "Tutorial", featureIcon: "feature-ads" },
+    { id: "gallery_level_8", label: "Tutorial", featureIcon: "feature-cards" },
+  ];
+  const DAILY_TASK_DEFS = [
+    { id: "complete_level_1", title: "Complete Level 1", target: 1, points: 5, progressKey: "level1Complete", rewardText: "30C", rewardCoins: 30 },
+    { id: "place_100_pieces", title: "Place 100 puzzle pieces", target: 100, points: 5, progressKey: "piecesPlaced", rewardText: "60C", rewardCoins: 60 },
+    { id: "spin_wheel_5", title: "Spin Wheel of Fortune 5 times", target: 5, points: 5, progressKey: "wheelSpins", rewardText: "5G", rewardGems: 5 },
+    { id: "race_action", title: "Complete a Race action", target: 1, points: 10, progressKey: "raceActions", rewardText: "80C", rewardCoins: 80 },
+    { id: "piggy_claim", title: "Claim Piggy Bank reward", target: 1, points: 10, progressKey: "piggyClaims", rewardText: "10G", rewardGems: 10 },
   ];
 
   function ensureEvent(save, key, startNowIfMissing) {
@@ -105,6 +182,8 @@
       boardSize: def.boardSize,
       chestProgress: 0,
       chestGoal: def.chestGoal,
+      gemProgress: 0,
+      gemGoal: Math.max(1, parseInt(def.gemGoal, 10) || 2),
       chestTier: def.tier,
       chestClaimable: false,
       chestClaimed: false,
@@ -179,6 +258,17 @@
       rubyCaveTutorialDone: false,
       rubyCaveRewardClaimed: false,
       puzzleEnergy: DEFAULT_PUZZLE_ENERGY,
+      dailyTasksDateKey: "",
+      dailyTasksClaims: {},
+      dailyTasksProgress: {
+        level1Complete: 0,
+        piecesPlaced: 0,
+        wheelSpins: 0,
+        raceActions: 0,
+        piggyClaims: 0,
+      },
+      dailyTasksMainRewardClaimed: false,
+      dailyTasksDayIndex: 1,
     };
   }
 
@@ -392,59 +482,96 @@
       return wrap;
     }
 
+    getWeeklyRemainingMs() {
+      const now = new Date();
+      const end = new Date(now);
+      const day = end.getDay();
+      const daysUntilMonday = day === 0 ? 1 : 8 - day;
+      end.setDate(end.getDate() + daysUntilMonday);
+      end.setHours(0, 0, 0, 0);
+      return Math.max(0, end.getTime() - now.getTime());
+    }
+
+    _renderLeaderboardAvatar(entry, size) {
+      const wrap = document.createElement("div");
+      wrap.className = size === "podium" ? "leaderboard-podium-avatar" : "leaderboard-row-avatar";
+      const usePlayerAvatar = entry.isPlayer && (typeof entry.avatarId === "number" || typeof entry.avatarId === "string");
+      if (usePlayerAvatar) {
+        wrap.classList.add("leaderboard-avatar--svg");
+        wrap.innerHTML = renderPlayerAvatar({ avatarId: entry.avatarId, accessoryId: entry.accessoryId || "none", size: "small" });
+      } else {
+        const img = document.createElement("img");
+        img.className = "leaderboard-avatar-img";
+        img.src = LEADERBOARD_BOT_AVATAR_SRC;
+        img.alt = "";
+        wrap.appendChild(img);
+      }
+      return wrap;
+    }
+
     openLeaderboardModal() {
       const modal = document.getElementById("leaderboard-modal");
       if (!modal) return;
       const entries = this.getLeaderboardEntries();
       const hammersGranted = this.grantWeeklyHammerRewardIfEligible(entries);
-      const top3 = entries.slice(0, 3);
+      const top3 = [entries[0], entries[1], entries[2]].map((entry) => entry || { rank: 0, name: "—", score: 0, isPlayer: false });
       const rest = entries.slice(3);
       const podiumOrder = [top3[2], top3[0], top3[1]];
-      const podiumClasses = ["podium-third", "podium-first", "podium-second"];
-      const chestTypes = ["bronze", "gold", "silver"];
+      const podiumMeta = [
+        { rankClass: "rank-3", wreath: LEADERBOARD_TOP_WREATH_BRONZE_SRC, reward: LEADERBOARD_REWARD_BRONZE_SRC, cardClass: "leaderboard-podium-card--third" },
+        { rankClass: "rank-1", wreath: LEADERBOARD_TOP_WREATH_GOLD_SRC, reward: LEADERBOARD_REWARD_GOLD_SRC, cardClass: "leaderboard-podium-card--first" },
+        { rankClass: "rank-2", wreath: LEADERBOARD_TOP_WREATH_SILVER_SRC, reward: LEADERBOARD_REWARD_SILVER_SRC, cardClass: "leaderboard-podium-card--second" }
+      ];
 
       const titleEl = document.getElementById("leaderboard-title");
-      if (titleEl) titleEl.textContent = "Weekly Leaderboard";
+      if (titleEl) titleEl.textContent = "Weekly Leaders";
       const subtitleEl = document.getElementById("leaderboard-subtitle");
       if (subtitleEl) subtitleEl.textContent = hammersGranted > 0 ? ("Puzzle Pieces Collected • +" + hammersGranted + " hammers") : "Puzzle Pieces Collected";
       const timerEl = document.getElementById("leaderboard-timer");
-      if (timerEl) timerEl.textContent = "Ends in: 5d 5h";
+      if (timerEl) {
+        const ms = this.getWeeklyRemainingMs();
+        timerEl.textContent = "Ends in: " + formatRemaining(ms);
+      }
+
+      const bgEl = modal.querySelector(".leaderboard-screen-bg");
+      if (bgEl) bgEl.style.backgroundImage = "url('" + LEADERBOARD_BG_SRC + "')";
+      const bannerEl = modal.querySelector(".leaderboard-bottom-banner");
+      if (bannerEl) bannerEl.style.backgroundImage = "url('" + LEADERBOARD_BANNER_SRC + "')";
+      const backBtn = document.getElementById("leaderboard-close");
+      if (backBtn) backBtn.style.backgroundImage = "url('" + LEADERBOARD_NAV_BACK_SRC + "')";
+      const infoBtnEl = document.getElementById("btn-leaderboard-info");
+      if (infoBtnEl) infoBtnEl.style.backgroundImage = "url('" + LEADERBOARD_NAV_INFO_SRC + "')";
 
       const top3El = document.getElementById("leaderboard-top3");
       if (top3El) {
         top3El.innerHTML = "";
         podiumOrder.forEach((e, i) => {
+          const meta = podiumMeta[i];
           const card = document.createElement("div");
-          card.className = "leaderboard-top-card " + podiumClasses[i] + (e.isPlayer ? " leaderboard-entry--you" : "");
-          const rankBadge = document.createElement("div");
-          rankBadge.className = "leaderboard-rank-badge leaderboard-rank-badge--" + e.rank;
-          rankBadge.textContent = e.rank;
-          const avatar = document.createElement("div");
-          avatar.className = "leaderboard-avatar leaderboard-avatar--top";
-          if (e.isPlayer && (typeof e.avatarId === "number" || typeof e.avatarId === "string")) {
-            avatar.innerHTML = renderPlayerAvatar({ avatarId: e.avatarId, accessoryId: e.accessoryId || "none", size: "medium" });
-            avatar.classList.add("leaderboard-avatar--svg");
-          } else {
-            avatar.textContent = e.initials;
-          }
+          card.className = "leaderboard-podium-card " + meta.cardClass + (e.isPlayer ? " leaderboard-entry--you" : "");
+
+          const topBadge = document.createElement("div");
+          topBadge.className = "leaderboard-podium-badge " + meta.rankClass;
+          topBadge.style.backgroundImage = "url('" + meta.wreath + "')";
+          const avatar = this._renderLeaderboardAvatar(e, "podium");
+          topBadge.appendChild(avatar);
+
           const nameEl = document.createElement("div");
-          nameEl.className = "leaderboard-name";
+          nameEl.className = "leaderboard-podium-name";
           nameEl.textContent = e.name;
-          if (e.isPlayer) {
-            const youSpan = document.createElement("span");
-            youSpan.className = "leaderboard-you-badge";
-            youSpan.textContent = " YOU";
-            nameEl.appendChild(youSpan);
-          }
+
           const scoreEl = document.createElement("div");
-          scoreEl.className = "leaderboard-score";
-          scoreEl.textContent = e.score;
-          const chestWrap = this.renderChest(chestTypes[i]);
-          card.appendChild(rankBadge);
-          card.appendChild(avatar);
+          scoreEl.className = "leaderboard-podium-score";
+          scoreEl.innerHTML = "<span>Points:</span><span>" + e.score + "</span>";
+
+          const reward = document.createElement("div");
+          reward.className = "leaderboard-podium-reward";
+          reward.style.backgroundImage = "url('" + meta.reward + "')";
+
+          card.appendChild(topBadge);
           card.appendChild(nameEl);
           card.appendChild(scoreEl);
-          card.appendChild(chestWrap);
+          card.appendChild(reward);
           top3El.appendChild(card);
         });
       }
@@ -455,22 +582,34 @@
         rest.forEach((e) => {
           const row = document.createElement("div");
           row.className = "leaderboard-row" + (e.isPlayer ? " leaderboard-entry--you" : "");
-          const useSvg = e.isPlayer && (typeof e.avatarId === "number" || typeof e.avatarId === "string");
-          const avatarContent = useSvg ? renderPlayerAvatar({ avatarId: e.avatarId, accessoryId: e.accessoryId || "none", size: "small" }) : (e.initials || "??");
-          const avatarClass = "leaderboard-avatar leaderboard-avatar--small" + (useSvg ? " leaderboard-avatar--svg" : "");
-          row.innerHTML =
-            "<span class=\"leaderboard-row-rank\">" + e.rank + "</span>" +
-            "<div class=\"" + avatarClass + "\">" + avatarContent + "</div>" +
-            "<span class=\"leaderboard-row-name\">" + e.name + (e.isPlayer ? " <span class=\"leaderboard-you-badge\">YOU</span>" : "") + "</span>" +
-            "<span class=\"leaderboard-row-score\">" + e.score + "</span>";
+
+          const rankEl = document.createElement("span");
+          rankEl.className = "leaderboard-row-rank";
+          rankEl.textContent = String(e.rank);
+
+          const nameEl = document.createElement("span");
+          nameEl.className = "leaderboard-row-name";
+          nameEl.textContent = e.name;
+
+          const scoreWrap = document.createElement("span");
+          scoreWrap.className = "leaderboard-row-score";
+          scoreWrap.innerHTML = "<span class=\"leaderboard-row-score-label\">Points:</span> <span>" + e.score + "</span>";
+
+          const avatarEl = this._renderLeaderboardAvatar(e, "row");
+
+          row.appendChild(rankEl);
+          row.appendChild(nameEl);
+          row.appendChild(scoreWrap);
+          row.appendChild(avatarEl);
           listEl.appendChild(row);
         });
       }
 
       modal.classList.remove("hidden");
+      document.documentElement.classList.add("leaderboard-screen-active");
+      document.body.classList.add("leaderboard-screen-active");
       const close = () => this.closeLeaderboardModal();
       document.getElementById("leaderboard-close").onclick = close;
-      modal.onclick = (e) => { if (e.target === modal) close(); };
       const infoOverlay = document.getElementById("leaderboard-info-overlay");
       const btnLeaderboardInfo = document.getElementById("btn-leaderboard-info");
       const closeInfo = () => {
@@ -483,28 +622,45 @@
       }
       if (infoOverlay) {
         infoOverlay.onclick = (e) => { if (e.target === infoOverlay) closeInfo(); };
-        const btnInfoClose = document.getElementById("btn-leaderboard-info-close");
         const infoContinue = document.getElementById("leaderboard-info-continue");
-        if (btnInfoClose) btnInfoClose.onclick = closeInfo;
         if (infoContinue) infoContinue.onclick = closeInfo;
       }
+      if (this._leaderboardEscapeHandler) {
+        window.removeEventListener("keydown", this._leaderboardEscapeHandler);
+      }
+      this._leaderboardEscapeHandler = (e) => {
+        if (e.key !== "Escape") return;
+        const info = document.getElementById("leaderboard-info-overlay");
+        if (info && !info.classList.contains("hidden")) {
+          closeInfo();
+          e.preventDefault();
+          return;
+        }
+        e.preventDefault();
+        close();
+      };
+      window.addEventListener("keydown", this._leaderboardEscapeHandler);
     }
 
     closeLeaderboardModal() {
       const modal = document.getElementById("leaderboard-modal");
       if (modal) modal.classList.add("hidden");
+      document.documentElement.classList.remove("leaderboard-screen-active");
+      document.body.classList.remove("leaderboard-screen-active");
       document.getElementById("leaderboard-close").onclick = null;
       const infoOverlay = document.getElementById("leaderboard-info-overlay");
       if (infoOverlay) {
         infoOverlay.classList.add("hidden");
         infoOverlay.onclick = null;
       }
-      const btnInfoClose = document.getElementById("btn-leaderboard-info-close");
       const infoContinue = document.getElementById("leaderboard-info-continue");
-      if (btnInfoClose) btnInfoClose.onclick = null;
       if (infoContinue) infoContinue.onclick = null;
       const btnLeaderboardInfo = document.getElementById("btn-leaderboard-info");
       if (btnLeaderboardInfo) btnLeaderboardInfo.onclick = null;
+      if (this._leaderboardEscapeHandler) {
+        window.removeEventListener("keydown", this._leaderboardEscapeHandler);
+        this._leaderboardEscapeHandler = null;
+      }
     }
   }
 
@@ -554,6 +710,18 @@
         if (typeof merged.puzzleEnergy !== "number") merged.puzzleEnergy = DEFAULT_PUZZLE_ENERGY;
         if (typeof merged.rubyCaveTutorialDone !== "boolean") merged.rubyCaveTutorialDone = false;
         if (typeof merged.rubyCaveRewardClaimed !== "boolean") merged.rubyCaveRewardClaimed = false;
+        if (typeof merged.dailyTasksDateKey !== "string") merged.dailyTasksDateKey = "";
+        if (!merged.dailyTasksClaims || typeof merged.dailyTasksClaims !== "object") merged.dailyTasksClaims = {};
+        if (!merged.dailyTasksProgress || typeof merged.dailyTasksProgress !== "object") {
+          merged.dailyTasksProgress = { level1Complete: 0, piecesPlaced: 0, wheelSpins: 0, raceActions: 0, piggyClaims: 0 };
+        }
+        if (typeof merged.dailyTasksProgress.level1Complete !== "number") merged.dailyTasksProgress.level1Complete = 0;
+        if (typeof merged.dailyTasksProgress.piecesPlaced !== "number") merged.dailyTasksProgress.piecesPlaced = 0;
+        if (typeof merged.dailyTasksProgress.wheelSpins !== "number") merged.dailyTasksProgress.wheelSpins = 0;
+        if (typeof merged.dailyTasksProgress.raceActions !== "number") merged.dailyTasksProgress.raceActions = 0;
+        if (typeof merged.dailyTasksProgress.piggyClaims !== "number") merged.dailyTasksProgress.piggyClaims = 0;
+        if (typeof merged.dailyTasksMainRewardClaimed !== "boolean") merged.dailyTasksMainRewardClaimed = false;
+        if (typeof merged.dailyTasksDayIndex !== "number") merged.dailyTasksDayIndex = 1;
         merged.collectionUnlocked = true;
         merged.collectionTutorialCompleted = true;
         merged.battlePassUnlocked = true;
@@ -692,6 +860,14 @@
 
   function isRaceClaimable(save) {
     return getRaceWinner(save) === "player" && !(save.raceState && save.raceState.claimed);
+  }
+
+  function formatRaceRemaining(ms) {
+    const remaining = Math.max(0, Math.floor(ms / 1000));
+    const days = Math.floor(remaining / 86400);
+    const hours = Math.floor((remaining % 86400) / 3600);
+    const minutes = Math.floor((remaining % 3600) / 60);
+    return days > 0 ? `${days}d ${hours}h ${minutes}m` : `${hours}h ${minutes}m`;
   }
 
   const SHAPE_TYPES = ["triangle", "square", "pentagon", "hexagon", "star", "circle", "heart"];
@@ -1475,6 +1651,9 @@
       this.toast = document.getElementById("toast-card-found");
       this._selectedAlbumId = ALBUM_DEFS[0] ? ALBUM_DEFS[0].id : "pixar";
       this._collectionView = "hub";
+      this._albumDetailPage = 1;
+      this._albumDetailPageSize = 6;
+      this._albumEscapeHandler = null;
     }
 
     getAlbumProgress(albumId) {
@@ -1572,6 +1751,32 @@
     showAlbum(onBackCallback) {
       this._onAlbumBackCallback = onBackCallback;
       this.app.ui.showScreen("album-screen");
+      this._applyAlbumFigmaAssets();
+      document.documentElement.classList.add("album-screen-active");
+      document.body.classList.add("album-screen-active");
+      if (this._albumEscapeHandler) window.removeEventListener("keydown", this._albumEscapeHandler);
+      this._albumEscapeHandler = (e) => {
+        if (e.key !== "Escape") return;
+        const featuresInfo = document.getElementById("albumFeaturesInfoOverlay");
+        if (featuresInfo && !featuresInfo.classList.contains("hidden")) {
+          this.closeAlbumFeaturesInfoOverlay();
+          e.preventDefault();
+          return;
+        }
+        const info = document.getElementById("albumInfoOverlay");
+        if (info && !info.classList.contains("hidden")) {
+          this.closeAlbumInfoOverlay();
+          e.preventDefault();
+          return;
+        }
+        if (this._collectionView === "albumDetail") {
+          this._onAlbumBackToHub();
+        } else {
+          this._onAlbumClose();
+        }
+        e.preventDefault();
+      };
+      window.addEventListener("keydown", this._albumEscapeHandler);
       this.updateGlobalCardsProgress();
       this.updateAlbumStarsUI();
       this._collectionView = "hub";
@@ -1582,8 +1787,14 @@
     }
 
     openAlbumInfoOverlay() {
+      this.openAlbumFeaturesInfoOverlay();
+    }
+
+    openAlbumExchangeOverlay() {
       const overlay = document.getElementById("albumInfoOverlay");
       if (!overlay) return;
+      this._applyAlbumExchangeAssets();
+      this.updateAlbumStarsUI();
       overlay.classList.remove("hidden");
       const self = this;
       overlay.onclick = (e) => {
@@ -1591,6 +1802,26 @@
       };
       const closeBtn = document.getElementById("btn-album-info-close");
       if (closeBtn) closeBtn.onclick = () => self.closeAlbumInfoOverlay();
+      const woodBtn = document.getElementById("btn-album-info-open-wood");
+      const silverBtn = document.getElementById("btn-album-info-open-silver");
+      const goldBtn = document.getElementById("btn-album-info-open-gold");
+      if (woodBtn) woodBtn.onclick = () => self._openStarChest("wood");
+      if (silverBtn) silverBtn.onclick = () => self._openStarChest("silver");
+      if (goldBtn) goldBtn.onclick = () => self._openStarChest("gold");
+    }
+
+    openAlbumFeaturesInfoOverlay() {
+      const overlay = document.getElementById("albumFeaturesInfoOverlay");
+      if (!overlay) return;
+      this._applyAlbumFeaturesInfoAssets();
+      overlay.classList.remove("hidden");
+      const self = this;
+      const close = () => self.closeAlbumFeaturesInfoOverlay();
+      overlay.onclick = (e) => {
+        if (e.target === overlay) close();
+      };
+      const closeBtn = document.getElementById("btn-album-features-info-close");
+      if (closeBtn) closeBtn.onclick = close;
     }
 
     closeAlbumInfoOverlay() {
@@ -1601,6 +1832,22 @@
       }
       const closeBtn = document.getElementById("btn-album-info-close");
       if (closeBtn) closeBtn.onclick = null;
+      const woodBtn = document.getElementById("btn-album-info-open-wood");
+      const silverBtn = document.getElementById("btn-album-info-open-silver");
+      const goldBtn = document.getElementById("btn-album-info-open-gold");
+      if (woodBtn) woodBtn.onclick = null;
+      if (silverBtn) silverBtn.onclick = null;
+      if (goldBtn) goldBtn.onclick = null;
+    }
+
+    closeAlbumFeaturesInfoOverlay() {
+      const overlay = document.getElementById("albumFeaturesInfoOverlay");
+      if (overlay) {
+        overlay.classList.add("hidden");
+        overlay.onclick = null;
+      }
+      const closeBtn = document.getElementById("btn-album-features-info-close");
+      if (closeBtn) closeBtn.onclick = null;
     }
 
     _bindAlbumInfoButton() {
@@ -1610,7 +1857,7 @@
 
     _bindAlbumStarButton() {
       const btn = document.getElementById("btn-album-stars");
-      if (btn) btn.onclick = () => this.openStarChestsModal();
+      if (btn) btn.onclick = () => this.openAlbumExchangeOverlay();
       this.updateAlbumStarsUI();
     }
 
@@ -1619,15 +1866,23 @@
       const compact = stars > 9999 ? "9999+" : String(stars);
       const albumCountEl = document.getElementById("album-stars-count");
       if (albumCountEl) albumCountEl.textContent = compact;
+      const exchangeCountEl = document.getElementById("album-exchange-stars-count");
+      if (exchangeCountEl) exchangeCountEl.textContent = compact;
       const modalCountEl = document.getElementById("star-chests-balance-count");
       if (modalCountEl) modalCountEl.textContent = compact;
 
       const woodBtn = document.getElementById("btn-star-chest-wood");
       const silverBtn = document.getElementById("btn-star-chest-silver");
       const goldBtn = document.getElementById("btn-star-chest-gold");
+      const infoWoodBtn = document.getElementById("btn-album-info-open-wood");
+      const infoSilverBtn = document.getElementById("btn-album-info-open-silver");
+      const infoGoldBtn = document.getElementById("btn-album-info-open-gold");
       if (woodBtn) woodBtn.disabled = !this.cm.canAffordStarChest(STAR_CHEST_COSTS.wood);
       if (silverBtn) silverBtn.disabled = !this.cm.canAffordStarChest(STAR_CHEST_COSTS.silver);
       if (goldBtn) goldBtn.disabled = !this.cm.canAffordStarChest(STAR_CHEST_COSTS.gold);
+      if (infoWoodBtn) infoWoodBtn.disabled = !this.cm.canAffordStarChest(STAR_CHEST_COSTS.wood);
+      if (infoSilverBtn) infoSilverBtn.disabled = !this.cm.canAffordStarChest(STAR_CHEST_COSTS.silver);
+      if (infoGoldBtn) infoGoldBtn.disabled = !this.cm.canAffordStarChest(STAR_CHEST_COSTS.gold);
     }
 
     openStarChestsModal() {
@@ -1707,25 +1962,28 @@
 
     _showHubView() {
       this._collectionView = "hub";
+      this.closeAlbumFeaturesInfoOverlay();
       const hub = document.getElementById("album-overview-hub");
       const detail = document.getElementById("album-detail-view");
       const screen = document.getElementById("album-screen");
+      const backBtn = document.getElementById("btn-album-back");
       if (hub) hub.classList.remove("hidden");
       if (detail) detail.classList.add("hidden");
       if (screen) screen.classList.remove("album-screen--detail");
       const titleEl = document.getElementById("album-screen-title");
-      if (titleEl) titleEl.textContent = "Album Event";
+      if (titleEl) titleEl.textContent = "Cards Album";
       const progressWrap = document.getElementById("album-header-progress");
       if (progressWrap) progressWrap.classList.add("hidden");
+      if (backBtn) {
+        backBtn.classList.add("hidden");
+        backBtn.onclick = null;
+      }
       this.renderAlbumsOverview();
-      const okBtn = document.getElementById("btn-album-ok");
-      if (okBtn) okBtn.onclick = () => this._onAlbumClose();
-      const backBtn = document.getElementById("btn-album-back");
-      if (backBtn) backBtn.onclick = () => this._onAlbumClose();
     }
 
     _showDetailView() {
       this._collectionView = "albumDetail";
+      this.closeAlbumFeaturesInfoOverlay();
       const hub = document.getElementById("album-overview-hub");
       const detail = document.getElementById("album-detail-view");
       const screen = document.getElementById("album-screen");
@@ -1738,8 +1996,16 @@
       const progressWrap = document.getElementById("album-header-progress");
       if (progressWrap) progressWrap.classList.remove("hidden");
       this._updateAlbumProgress(this._selectedAlbumId);
+      this._updateDetailPagerUI();
       const backBtn = document.getElementById("btn-album-back");
-      if (backBtn) backBtn.onclick = () => this._onAlbumBackToHub();
+      if (backBtn) {
+        backBtn.classList.remove("hidden");
+        backBtn.onclick = () => this._onAlbumBackToHub();
+      }
+      const prevBtn = document.getElementById("btn-album-detail-prev");
+      const nextBtn = document.getElementById("btn-album-detail-next");
+      if (prevBtn) prevBtn.onclick = () => this._changeAlbumPage(-1);
+      if (nextBtn) nextBtn.onclick = () => this._changeAlbumPage(1);
     }
 
     _onAlbumClose() {
@@ -1748,6 +2014,13 @@
         this._albumEventTimerId = null;
       }
       this.closeStarChestsModal();
+      this.closeAlbumFeaturesInfoOverlay();
+      if (this._albumEscapeHandler) {
+        window.removeEventListener("keydown", this._albumEscapeHandler);
+        this._albumEscapeHandler = null;
+      }
+      document.documentElement.classList.remove("album-screen-active");
+      document.body.classList.remove("album-screen-active");
       const cb = this._onAlbumBackCallback;
       this._onAlbumBackCallback = null;
       if (cb) cb();
@@ -1763,7 +2036,7 @@
       if (!albumTimerEl) return;
       const tick = () => {
         const ms = getRemainingMs(this.cm.getState(), "albumEvent");
-        albumTimerEl.textContent = ms > 0 ? "Ends in: " + formatRemaining(ms) : "Event ended";
+        albumTimerEl.textContent = ms > 0 ? "Ends in: " + formatRemaining(ms) : "Ended";
         if (ms <= 0 && this._albumEventTimerId) {
           clearInterval(this._albumEventTimerId);
           this._albumEventTimerId = null;
@@ -1783,7 +2056,9 @@
         const hasNew = this.albumHasNewCards(def.id);
         const tile = document.createElement("button");
         tile.type = "button";
-        tile.className = "album-cover-tile" + (hasNew ? " album-cover-tile--new" : "");
+        tile.className = "album-cover-tile"
+          + (hasNew ? " album-cover-tile--new" : "")
+          + (p.collected >= p.total ? " album-cover-tile--complete" : "");
         tile.dataset.albumId = def.id;
         const cover = document.createElement("div");
         cover.className = "album-cover-tile-art";
@@ -1822,8 +2097,10 @@
 
     openAlbum(albumId) {
       this._selectedAlbumId = albumId;
+      this._albumDetailPage = 1;
       this._renderAlbumGrid(albumId);
       this._updateAlbumProgress(albumId);
+      this._updateDetailPagerUI();
       this._updateTapCollectHint();
       this._showDetailView();
       if (this._shouldAnimateNewPack()) {
@@ -1850,29 +2127,45 @@
       if (nameEl) nameEl.textContent = def ? def.name : "";
     }
 
+    _getAlbumPageCount(albumId) {
+      const cards = this.cm.getCardsForAlbum(albumId || this._selectedAlbumId);
+      const perPage = Math.max(1, this._albumDetailPageSize || 6);
+      return Math.max(1, Math.ceil(cards.length / perPage));
+    }
+
+    _updateDetailPagerUI() {
+      const pageCount = this._getAlbumPageCount(this._selectedAlbumId);
+      this._albumDetailPage = Math.max(1, Math.min(pageCount, this._albumDetailPage || 1));
+      const pageText = document.getElementById("album-detail-page-text");
+      if (pageText) pageText.textContent = this._albumDetailPage + "/" + pageCount;
+      const prevBtn = document.getElementById("btn-album-detail-prev");
+      const nextBtn = document.getElementById("btn-album-detail-next");
+      if (prevBtn) prevBtn.disabled = this._albumDetailPage <= 1;
+      if (nextBtn) nextBtn.disabled = this._albumDetailPage >= pageCount;
+    }
+
+    _changeAlbumPage(delta) {
+      const pageCount = this._getAlbumPageCount(this._selectedAlbumId);
+      const next = Math.max(1, Math.min(pageCount, this._albumDetailPage + delta));
+      if (next === this._albumDetailPage) return;
+      this._albumDetailPage = next;
+      this._renderAlbumGrid(this._selectedAlbumId);
+      this._updateDetailPagerUI();
+      this._updateTapCollectHint();
+    }
+
     updateGlobalCardsProgress() {
       const total = getTotalCardsAvailable();
       const collected = this.cm.getCollectedTotal(true);
       const pct = total > 0 ? Math.min(100, (collected / total) * 100) : 0;
       const isComplete = total > 0 && collected >= total;
-      const nearComplete = total > 0 && pct >= 90 && !isComplete;
 
       const textEl = document.getElementById("cards-progress-text");
       if (textEl) textEl.textContent = collected + " / " + total;
-      const fillEl = document.getElementById("cards-progress-fill");
-      if (fillEl) fillEl.style.width = pct + "%";
       const textHomeEl = document.getElementById("cards-progress-text-home");
       if (textHomeEl) textHomeEl.textContent = collected + "/" + total;
       const fillHomeEl = document.getElementById("cards-progress-fill-home");
       if (fillHomeEl) fillHomeEl.style.width = pct + "%";
-
-      const widgetAlbum = document.getElementById("cards-progress-widget-album");
-      if (widgetAlbum) {
-        widgetAlbum.classList.toggle("cards-progress-gift-ready", isComplete);
-        widgetAlbum.classList.toggle("cards-progress-near-complete", nearComplete);
-      }
-      const giftLock = document.getElementById("cards-progress-gift-lock");
-      if (giftLock) giftLock.classList.toggle("hidden", isComplete);
 
       if (isComplete && this.app && this.app._save) {
         this.app._save.bonusLevelUnlocked = true;
@@ -1905,7 +2198,8 @@
     }
 
     _updateTapCollectHint() {
-      const hasNew = this.cm.hasUncollectedNew();
+      const cards = this.cm.getCardsForAlbum(this._selectedAlbumId) || [];
+      const hasNew = cards.some((c) => c.isNew);
       const el = document.getElementById("album-tap-collect-hint");
       if (hasNew) el.classList.remove("hidden");
       else el.classList.add("hidden");
@@ -1917,12 +2211,28 @@
       grid.innerHTML = "";
       const id = albumId || this._selectedAlbumId;
       const cards = this.cm.getCardsForAlbum(id);
-      cards.forEach((card) => {
+      const perPage = Math.max(1, this._albumDetailPageSize || 6);
+      const pageCount = Math.max(1, Math.ceil(cards.length / perPage));
+      this._albumDetailPage = Math.max(1, Math.min(pageCount, this._albumDetailPage || 1));
+      const start = (this._albumDetailPage - 1) * perPage;
+      const pageCards = cards.slice(start, start + perPage);
+      pageCards.forEach((card) => {
         const tile = document.createElement("div");
-        tile.className = "album-card-tile" + (!card.collected && !card.isNew ? " locked" : "");
+        const cardState = card.isNew ? "new" : (card.collected ? "collected" : "locked");
+        tile.className = "album-card-tile album-card-tile--" + cardState + (cardState === "locked" ? " locked" : "");
         tile.dataset.cardId = card.id;
-        const stars = "★".repeat(card.rarityStars);
-        tile.innerHTML = '<span class="card-stars">' + stars + "</span>";
+        tile.innerHTML = '<span class="card-stars"></span>';
+        const starsEl = tile.querySelector(".card-stars");
+        if (starsEl) {
+          starsEl.innerHTML = "";
+          for (let i = 0; i < card.rarityStars; i++) {
+            const s = document.createElement("img");
+            s.src = ALBUM_CARD_STAR_SRC;
+            s.alt = "";
+            s.className = "card-star-icon";
+            starsEl.appendChild(s);
+          }
+        }
         if (card.isNew) {
           const tag = document.createElement("span");
           tag.className = "card-new-tag";
@@ -1960,12 +2270,83 @@
         } else {
           const sil = document.createElement("div");
           sil.className = "card-silhouette";
-          sil.textContent = "?";
+          sil.style.backgroundImage = "url('" + ALBUM_QUESTION_TILE_SRC + "')";
           tile.appendChild(sil);
         }
         tile.onclick = () => this._onCardTap(tile, card);
         grid.appendChild(tile);
       });
+      this._updateDetailPagerUI();
+    }
+
+    _applyAlbumFigmaAssets() {
+      const bg = document.querySelector("#album-screen .album-screen-bg");
+      if (bg) bg.style.backgroundImage = "url('" + ALBUM_BG_SRC + "')";
+      const cardIcon = document.querySelector("#album-screen .album-resource-icon--cards");
+      if (cardIcon) cardIcon.style.backgroundImage = "url('" + ALBUM_ICON_CARD_SRC + "')";
+      const chestBtn = document.getElementById("btn-album-stars");
+      if (chestBtn) chestBtn.style.backgroundImage = "url('" + ALBUM_ICON_CHEST_SRC + "')";
+      const infoBtn = document.getElementById("btn-album-info");
+      if (infoBtn) infoBtn.style.backgroundImage = "url('" + ALBUM_ICON_INFO_SRC + "')";
+      const coinIcon = document.querySelector("#album-screen .album-prize-icon--coin");
+      if (coinIcon) coinIcon.style.backgroundImage = "url('" + ALBUM_ICON_COIN_SRC + "')";
+      const gemIcon = document.querySelector("#album-screen .album-prize-icon--gem");
+      if (gemIcon) gemIcon.style.backgroundImage = "url('" + ALBUM_ICON_GEM_SRC + "')";
+      const sortIcon = document.querySelector("#album-screen .album-prize-icon--sort");
+      if (sortIcon) sortIcon.style.backgroundImage = "url('" + ALBUM_ICON_SORT_SRC + "')";
+      const prev = document.getElementById("btn-album-detail-prev");
+      const next = document.getElementById("btn-album-detail-next");
+      if (prev) prev.style.backgroundImage = "url('" + ALBUM_ICON_ARROW_LEFT_SRC + "')";
+      if (next) next.style.backgroundImage = "url('" + ALBUM_ICON_ARROW_RIGHT_SRC + "')";
+      const bottomBanner = document.querySelector("#album-screen .album-bottom-banner");
+      if (bottomBanner) bottomBanner.style.backgroundImage = "url('" + ALBUM_BOTTOM_BANNER_SRC + "')";
+    }
+
+    _applyAlbumExchangeAssets() {
+      const closeIcon = document.querySelector("#albumInfoOverlay .album-exchange-close");
+      if (closeIcon) closeIcon.style.backgroundImage = "url('" + ALBUM_EXCHANGE_CLOSE_SRC + "')";
+      const woodChest = document.querySelector("#albumInfoOverlay .album-exchange-chest--wood");
+      if (woodChest) woodChest.style.backgroundImage = "url('" + ALBUM_EXCHANGE_CHEST_WOOD_SRC + "')";
+      const silverChest = document.querySelector("#albumInfoOverlay .album-exchange-chest--silver");
+      if (silverChest) silverChest.style.backgroundImage = "url('" + ALBUM_EXCHANGE_CHEST_SILVER_SRC + "')";
+      const goldChest = document.querySelector("#albumInfoOverlay .album-exchange-chest--gold");
+      if (goldChest) goldChest.style.backgroundImage = "url('" + ALBUM_EXCHANGE_CHEST_GOLD_SRC + "')";
+      document.querySelectorAll("#albumInfoOverlay .album-exchange-pill-icon--coin").forEach((el) => {
+        el.style.backgroundImage = "url('" + ALBUM_EXCHANGE_COIN_SRC + "')";
+      });
+      document.querySelectorAll("#albumInfoOverlay .album-exchange-pill-icon--energy").forEach((el) => {
+        el.style.backgroundImage = "url('" + ALBUM_EXCHANGE_ENERGY_SRC + "')";
+      });
+      document.querySelectorAll("#albumInfoOverlay .album-exchange-pill-icon--gem").forEach((el) => {
+        el.style.backgroundImage = "url('" + ALBUM_EXCHANGE_GEM_SRC + "')";
+      });
+      document.querySelectorAll("#albumInfoOverlay .album-exchange-pill-icon--bp").forEach((el) => {
+        el.style.backgroundImage = "url('" + ALBUM_EXCHANGE_BP_STAR_SRC + "')";
+      });
+      document.querySelectorAll("#albumInfoOverlay .album-exchange-requirement-icon, #albumInfoOverlay .album-exchange-stars-icon").forEach((el) => {
+        el.style.backgroundImage = "url('" + ALBUM_CARD_STAR_SRC + "')";
+      });
+    }
+
+    _isFeaturesAlbum(albumId) {
+      if (!albumId) return this._collectionView === "albumDetail";
+      const def = ALBUM_DEFS.find((a) => a.id === albumId);
+      const name = def && def.name ? String(def.name) : "";
+      const explicitMatch = albumId === "features" || /features?/i.test(name);
+      const hasExplicitFeaturesAlbum = ALBUM_DEFS.some((a) => a.id === "features" || /features?/i.test(String(a.name || "")));
+      if (hasExplicitFeaturesAlbum) return explicitMatch;
+      return this._collectionView === "albumDetail";
+    }
+
+    _applyAlbumFeaturesInfoAssets() {
+      const pack = document.querySelector("#albumFeaturesInfoOverlay .album-features-tutorial-icon--pack");
+      const star = document.querySelector("#albumFeaturesInfoOverlay .album-features-tutorial-icon--star");
+      const chest = document.querySelector("#albumFeaturesInfoOverlay .album-features-tutorial-icon--chest");
+      const tap = document.querySelector("#albumFeaturesInfoOverlay .album-features-info-close-icon");
+      if (pack) pack.style.backgroundImage = "url('" + ALBUM_FEATURES_INFO_PACK_SRC + "')";
+      if (star) star.style.backgroundImage = "url('" + ALBUM_FEATURES_INFO_STAR_SRC + "')";
+      if (chest) chest.style.backgroundImage = "url('" + ALBUM_FEATURES_INFO_CHEST_SRC + "')";
+      if (tap) tap.style.backgroundImage = "url('" + ALBUM_FEATURES_INFO_TAP_SRC + "')";
     }
 
     _onCardTap(tile, card) {
@@ -2068,6 +2449,7 @@
       this._timerId = null;
       this._tutorialActive = false;
       this._breakAnimActive = false;
+      this._escapeHandler = null;
     }
 
     _ensureEventAndStage() {
@@ -2077,7 +2459,10 @@
       const maxStage = LOST_TEMPLE_STAGES.length - 1;
       const stageIndex = Math.max(0, Math.min(maxStage, this._save.lostTempleCurrentStage || 0));
       this._save.lostTempleCurrentStage = stageIndex;
-      if (!this._save.lostTempleState || this._save.lostTempleState.stageIndex !== stageIndex) {
+      if (!this._save.lostTempleState
+        || this._save.lostTempleState.stageIndex !== stageIndex
+        || this._save.lostTempleState.boardSize !== LOST_TEMPLE_STAGES[stageIndex].boardSize
+        || typeof this._save.lostTempleState.gemGoal !== "number") {
         this._save.lostTempleState = buildLostTempleStageState(stageIndex);
       }
     }
@@ -2105,6 +2490,20 @@
       const screen = document.getElementById("lostTempleScreen");
       if (!screen) return;
       this._bindButtons();
+      document.documentElement.classList.add("lost-temple-screen-active");
+      document.body.classList.add("lost-temple-screen-active");
+      this._escapeHandler = (e) => {
+        if (e.key !== "Escape") return;
+        const infoOverlay = document.getElementById("lostTempleInfoOverlay");
+        if (infoOverlay && !infoOverlay.classList.contains("hidden")) {
+          this.closeInfoOverlay();
+          e.preventDefault();
+          return;
+        }
+        e.preventDefault();
+        this.closeScreen();
+      };
+      window.addEventListener("keydown", this._escapeHandler);
       this._render();
       screen.classList.remove("hidden");
       this._startTimer();
@@ -2119,6 +2518,12 @@
       this._stopTimer();
       this._unbindButtons();
       this.closeInfoOverlay();
+      if (this._escapeHandler) {
+        window.removeEventListener("keydown", this._escapeHandler);
+        this._escapeHandler = null;
+      }
+      document.documentElement.classList.remove("lost-temple-screen-active");
+      document.body.classList.remove("lost-temple-screen-active");
     }
 
     _bindButtons() {
@@ -2132,8 +2537,8 @@
       if (nextBtn) nextBtn.onclick = () => this.nextStage();
       const infoOverlay = document.getElementById("lostTempleInfoOverlay");
       if (infoOverlay) infoOverlay.onclick = (e) => { if (e.target === infoOverlay) this.closeInfoOverlay(); };
-      const infoClose = document.getElementById("btn-lost-temple-info-close");
-      if (infoClose) infoClose.onclick = () => this.closeInfoOverlay();
+      const infoContinue = document.getElementById("btn-lost-temple-info-continue");
+      if (infoContinue) infoContinue.onclick = () => this.closeInfoOverlay();
     }
 
     _unbindButtons() {
@@ -2142,7 +2547,7 @@
         "btn-lost-temple-info",
         "btn-lost-temple-claim",
         "btn-lost-temple-next-stage",
-        "btn-lost-temple-info-close",
+        "btn-lost-temple-info-continue",
       ];
       ids.forEach((id) => {
         const el = document.getElementById(id);
@@ -2177,11 +2582,10 @@
       st.tiles.forEach((tile, idx) => {
         const btn = document.createElement("button");
         btn.type = "button";
-        btn.className = "lost-temple-tile" + (tile.broken ? " lost-temple-tile--broken" : "") + ((this._save.eventHammers || 0) <= 0 ? " lost-temple-tile--nohammer" : "");
+        const patternClass = " lost-temple-tile--pattern-" + (idx % 4);
+        btn.className = "lost-temple-tile" + patternClass + (tile.broken ? " lost-temple-tile--broken" : "") + ((this._save.eventHammers || 0) <= 0 ? " lost-temple-tile--nohammer" : "");
         btn.setAttribute("role", "gridcell");
-        if (!tile.broken) {
-          btn.textContent = "▦";
-        } else {
+        if (tile.broken) {
           const icon = this._lootIcon(tile.lootType);
           btn.textContent = icon;
           const label = document.createElement("span");
@@ -2198,6 +2602,8 @@
       if (obj) obj.textContent = st.chestClaimable ? "Chest is ready! Claim your reward." : "Find chest tokens to fill progress.";
       const ch = document.getElementById("lost-temple-chest-progress");
       if (ch) ch.textContent = st.chestProgress + "/" + st.chestGoal;
+      const gem = document.getElementById("lost-temple-gem-progress");
+      if (gem) gem.textContent = st.gemProgress + "/" + st.gemGoal;
       const hm = document.getElementById("lost-temple-hammers-count");
       if (hm) hm.textContent = String(Math.max(0, this._save.eventHammers || 0));
       const claimBtn = document.getElementById("btn-lost-temple-claim");
@@ -2292,7 +2698,8 @@
         return;
       }
       if (type === "gem") {
-        this.app.addCoins(30);
+        st.gemProgress = Math.min(st.gemGoal, (st.gemProgress || 0) + 1);
+        this._save.gemsTotal = (this._save.gemsTotal || 0) + 1;
         return;
       }
       if (type === "relic") {
@@ -2367,9 +2774,8 @@
       const overlay = document.getElementById("lostTempleInfoOverlay");
       if (!overlay) return;
       overlay.classList.remove("hidden");
-      const continueClose = () => this.closeInfoOverlay();
-      const cont = overlay.querySelector(".lost-temple-info-continue");
-      if (cont) cont.onclick = continueClose;
+      const infoContinue = document.getElementById("btn-lost-temple-info-continue");
+      if (infoContinue) infoContinue.onclick = () => this.closeInfoOverlay();
     }
 
     closeInfoOverlay() {
@@ -2587,11 +2993,32 @@
 
   class LevelManager {
     constructor() {
-      this.levels = buildShapeLevels();
+      this.levelEntries = [];
+      EXTERNAL_PLAYABLE_LEVELS.forEach((entry) => {
+        this.levelEntries.push({
+          id: entry.id,
+          title: entry.title || entry.id,
+          type: "html-playable",
+          src: entry.src,
+        });
+      });
+      buildShapeLevels().forEach((level, idx) => {
+        this.levelEntries.push({
+          id: "native_level_" + (idx + 1),
+          title: "Native Level " + (idx + 1),
+          type: "native-shape",
+          level,
+        });
+      });
+    }
+
+    getLevelEntry(index) {
+      return this.levelEntries[index] || null;
     }
 
     getLevel(index) {
-      return this.levels[index] || null;
+      const entry = this.getLevelEntry(index);
+      return entry && entry.type === "native-shape" ? entry.level : null;
     }
 
     getBonusLevel() {
@@ -2599,7 +3026,7 @@
     }
 
     getTotalLevels() {
-      return this.levels.length;
+      return this.levelEntries.length;
     }
   }
 
@@ -2850,14 +3277,22 @@
       document.querySelectorAll(".screen").forEach((s) => s.classList.remove("active"));
       const el = document.getElementById(id);
       if (el) el.classList.add("active");
+      document.body.classList.toggle("cards-screen-clean", id === "album-screen");
+      document.body.classList.toggle("daily-tasks-clean", id === "daily-tasks-screen");
+      const externalLevelActive = !!(window.gameApp && window.gameApp._externalLevelActive);
+      const galleryActive = id === "gallery-screen";
+      document.body.classList.toggle("home-layout-active", id === "start-screen" || galleryActive || (id === "game-screen" && externalLevelActive));
+      document.body.classList.toggle("level-active", id === "game-screen");
+      document.body.classList.toggle("gallery-screen-active", galleryActive);
       const stripStart = document.getElementById("status-strip-start");
       const stripGame = document.getElementById("status-strip-game");
       if (stripStart) stripStart.classList.add("hidden");
       if (stripGame) stripGame.classList.add("hidden");
-      if (id === "start-screen" && stripStart) stripStart.classList.remove("hidden");
-      if (id === "game-screen" && stripGame) stripGame.classList.remove("hidden");
+      if ((id === "start-screen" || id === "gallery-screen") && stripStart) stripStart.classList.remove("hidden");
+      if (id === "game-screen" && externalLevelActive && stripStart) stripStart.classList.remove("hidden");
+      if (id === "game-screen" && !externalLevelActive && stripGame) stripGame.classList.remove("hidden");
       document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
-      const navMap = { "start-screen": "nav-home", "game-screen": "nav-game", "album-screen": "nav-collection" };
+      const navMap = { "start-screen": "nav-home", "gallery-screen": "nav-game", "album-screen": "nav-collection", "daily-tasks-screen": "nav-daily-tasks" };
       const navId = navMap[id];
       if (navId) {
         const navEl = document.getElementById(navId);
@@ -2869,6 +3304,9 @@
       if (id !== "game-screen" && window.gameApp && typeof window.gameApp._clearBattlePassTutorial === "function") {
         window.gameApp._clearBattlePassTutorial();
       }
+      if (id !== "daily-tasks-screen" && window.gameApp && typeof window.gameApp.closeDailyTasksScreen === "function") {
+        window.gameApp.closeDailyTasksScreen();
+      }
       if (window.gameApp && typeof window.gameApp.updateBattlePassWidget === "function") {
         window.gameApp.updateBattlePassWidget();
       }
@@ -2879,10 +3317,14 @@
 
     setLevelNumber(n) {
       if (this.levelNumberEl) this.levelNumberEl.textContent = n + 1;
+      const homeLevel = document.getElementById("level-number-home");
+      if (homeLevel) homeLevel.textContent = n + 1;
     }
 
     setLevelLabel(text) {
       if (this.levelNumberEl) this.levelNumberEl.textContent = text;
+      const homeLevel = document.getElementById("level-number-home");
+      if (homeLevel) homeLevel.textContent = text;
     }
 
     setCoins(n) {
@@ -2978,6 +3420,9 @@
       {slots:[{shape:"heart",x:13,y:23,size:13.4},{shape:"moon",x:31,y:24,size:13.4},{shape:"diamond",x:50,y:22,size:13.4},{shape:"bolt",x:69,y:24,size:13.4},{shape:"star",x:87,y:22,size:13.4},{shape:"tree",x:31,y:69,size:13.4},{shape:"clover",x:69,y:69,size:13.4}],tray:["bolt","heart","clover","moon","tree","diamond","star"]},
       {slots:[{shape:"star",x:14,y:20,size:13},{shape:"heart",x:33,y:18,size:13},{shape:"moon",x:50,y:22,size:13},{shape:"diamond",x:67,y:18,size:13},{shape:"tree",x:86,y:20,size:13},{shape:"bolt",x:33,y:69,size:13},{shape:"clover",x:67,y:69,size:13}],tray:["tree","heart","bolt","diamond","star","clover","moon"]}
     ];
+    static EVENT_LEVELS = [
+      { id: "event_level_1_html", type: "html-playable", src: "levels/PuzzleCity_City2_unity_Full_merged.html" }
+    ];
     static ENERGY_MAX = 5;
     static REGEN_MS = 5 * 60 * 1000;
     static NODE_POS = [
@@ -3006,6 +3451,14 @@
       this.offX = 0;
       this.offY = 0;
       this._toastTimer = null;
+      this._eventExternalActive = false;
+      this._eventExternalFrameBound = false;
+      this._eventExternalLoadedLevelIndex = -1;
+      this._eventExternalLoadedSrc = "";
+      this._eventExternalSeenPieceIds = new Set();
+      this._eventExternalObserver = null;
+      this._eventExternalLevelDone = false;
+      this._activeInternalLevelIndex = 0;
 
       this._cacheEls();
       this._bindEvents();
@@ -3037,6 +3490,8 @@
         nodes: q("rc-nodes"),
         scene: q("rc-scene"),
         tray: q("rc-tray"),
+        externalHost: q("rc-external-host"),
+        externalFrame: q("rc-external-frame"),
         grandReward: q("rc-grand-reward"),
         grandClaim: q("rc-grand-claim"),
       };
@@ -3076,6 +3531,8 @@
         infoBtn.addEventListener("click", toggle);
         infoBackdrop.addEventListener("click", toggle);
       }
+
+      this._bindExternalEventFrame();
     }
 
     _startTimers() {
@@ -3102,10 +3559,36 @@
       this._toastTimer = setTimeout(() => this.el.toast.classList.remove("rc-show"), 850);
     }
 
+    _eventLevelDefs() {
+      if (this._cachedEventLevelDefs) return this._cachedEventLevelDefs;
+      const defs = RubyCaveManager.EVENT_LEVELS.slice();
+      RubyCaveManager.LEVELS.forEach((_, idx) => {
+        defs.push({
+          id: "event_internal_level_" + String(idx + 2),
+          type: "internal",
+          internalIndex: idx,
+        });
+      });
+      this._cachedEventLevelDefs = defs;
+      return defs;
+    }
+
+    _eventLevelCount() {
+      return this._eventLevelDefs().length;
+    }
+
+    _eventLevelDef(index) {
+      const defs = this._eventLevelDefs();
+      if (!defs.length) return null;
+      const safeIndex = Math.max(0, Math.min(index, defs.length - 1));
+      return defs[safeIndex];
+    }
+
     _showView(name) {
       this.el.hub.classList.add("rc-view--hidden");
       this.el.game.classList.add("rc-view--hidden");
       if (name === "hub") {
+        this._stopExternalEventLevel();
         this.el.hub.classList.remove("rc-view--hidden");
         this._updateHubProgress();
       } else {
@@ -3157,7 +3640,7 @@
     }
 
     _updateHubProgress() {
-      const total = RubyCaveManager.LEVELS.length;
+      const total = this._eventLevelCount();
       const current = Math.min(this.completed + 1, total);
       const remain = Math.max(0, total - this.completed);
       this.el.hubProgress.textContent = `Completed ${this.completed} • Current ${current} • Remaining ${remain}`;
@@ -3175,9 +3658,11 @@
 
     _drawNodes() {
       this.el.nodes.innerHTML = "";
-      const total = RubyCaveManager.LEVELS.length;
+      const total = this._eventLevelCount();
       for (let i = 0; i < total; i++) {
-        const [x, y] = RubyCaveManager.NODE_POS[i];
+        const fallbackX = total > 1 ? (5 + (90 * i / (total - 1))) : 50;
+        const nodePos = RubyCaveManager.NODE_POS[i] || [fallbackX, 50];
+        const [x, y] = nodePos;
         const n = document.createElement("div");
         n.className = "rc-node";
         if (i < this.completed) n.classList.add("rc-done");
@@ -3191,7 +3676,9 @@
     }
 
     _buildLevel(idx) {
+      this._stopExternalEventLevel();
       const lvl = RubyCaveManager.LEVELS[idx];
+      this._activeInternalLevelIndex = idx;
       this.placed = 0;
       this.slots = [];
       this.el.scene.innerHTML = "";
@@ -3224,6 +3711,114 @@
         d.innerHTML = this._svg(shape, S[shape].rich);
         this.el.tray.appendChild(d);
       });
+    }
+
+    _bindExternalEventFrame() {
+      if (!this.el.externalFrame || this._eventExternalFrameBound) return;
+      this._eventExternalFrameBound = true;
+      this.el.externalFrame.addEventListener("load", () => {
+        if (!this._eventExternalActive) return;
+        this._attachExternalEventBridge();
+      });
+    }
+
+    _attachExternalEventBridge() {
+      try {
+        const frameWin = this.el.externalFrame.contentWindow;
+        if (!frameWin) return;
+        const doc = frameWin.document;
+        frameWin.gameEnd = () => this._onExternalEventLevelCompleted();
+        frameWin.openStore = () => {};
+        if (doc && doc.head) {
+          const style = doc.createElement("style");
+          style.textContent = "#dl,#winDl,.downloadBtn,#winBtns{display:none !important;}";
+          doc.head.appendChild(style);
+        }
+        this._stopExternalEventObserver();
+        const layer = doc ? doc.getElementById("pieceLayer") : null;
+        if (!layer) return;
+        this._eventExternalSeenPieceIds = new Set();
+        layer.querySelectorAll(".piece[data-i]").forEach((el) => {
+          const id = String(el.getAttribute("data-i") || "");
+          if (id) this._eventExternalSeenPieceIds.add(id);
+        });
+        this._eventExternalObserver = new MutationObserver((mutations) => {
+          mutations.forEach((m) => {
+            m.addedNodes.forEach((node) => {
+              if (!(node instanceof frameWin.Element)) return;
+              if (!node.classList.contains("piece")) return;
+              const pieceId = String(node.getAttribute("data-i") || "");
+              if (!pieceId || this._eventExternalSeenPieceIds.has(pieceId)) return;
+              this._eventExternalSeenPieceIds.add(pieceId);
+              this._onExternalEventPiecePlaced(pieceId);
+            });
+          });
+        });
+        this._eventExternalObserver.observe(layer, { childList: true });
+      } catch (_) {
+        // Keep event-level bridge best-effort.
+      }
+    }
+
+    _stopExternalEventObserver() {
+      if (this._eventExternalObserver) {
+        this._eventExternalObserver.disconnect();
+        this._eventExternalObserver = null;
+      }
+      this._eventExternalSeenPieceIds = new Set();
+    }
+
+    _onExternalEventPiecePlaced(pieceId) {
+      if (this._eventExternalLevelDone) return;
+      if (this.energy < 1) {
+        this.el.energyModal.classList.add("rc-visible");
+        this._showToast("Not enough energy");
+        return;
+      }
+      this.energy -= 1;
+      if (this.energy < RubyCaveManager.ENERGY_MAX && !this.nextEnergyAt) {
+        this.nextEnergyAt = Date.now() + RubyCaveManager.REGEN_MS;
+      }
+      this._persist();
+      this._updateEnergyUI();
+    }
+
+    _startExternalEventLevel(levelDef) {
+      const src = levelDef && levelDef.src ? String(levelDef.src) : "";
+      if (!src || !this.el.externalHost || !this.el.externalFrame) return false;
+      this._bindExternalEventFrame();
+      this._eventExternalActive = true;
+      this._eventExternalLevelDone = false;
+      this.el.game.classList.add("rc-game--external");
+      this.el.externalHost.classList.remove("rc-external-host--hidden");
+      if (this._eventExternalLoadedLevelIndex === this.currentLevel && this._eventExternalLoadedSrc === src) {
+        this._attachExternalEventBridge();
+        return true;
+      }
+      this._eventExternalLoadedLevelIndex = this.currentLevel;
+      this._eventExternalLoadedSrc = src;
+      this.el.externalFrame.src = src;
+      return true;
+    }
+
+    _stopExternalEventLevel() {
+      this._eventExternalActive = false;
+      this._eventExternalLevelDone = false;
+      this._stopExternalEventObserver();
+      if (this.el.game) this.el.game.classList.remove("rc-game--external");
+      if (this.el.externalHost) this.el.externalHost.classList.add("rc-external-host--hidden");
+    }
+
+    _onExternalEventLevelCompleted() {
+      if (!this._eventExternalActive || this._eventExternalLevelDone) return;
+      this._eventExternalLevelDone = true;
+      this.completed = Math.max(this.completed, this.currentLevel + 1);
+      this._persist();
+      if (this.completed >= this._eventLevelCount() && !this._save.rubyCaveRewardClaimed) {
+        this._showGrandReward();
+      } else {
+        this.el.done.classList.add("rc-visible");
+      }
     }
 
     _matchSlot(piece) {
@@ -3273,10 +3868,12 @@
         slot.classList.add("rc-filled");
         piece.remove();
         this.placed += 1;
-        if (this.placed >= RubyCaveManager.LEVELS[this.currentLevel].tray.length) {
+        const internalIdx = typeof this._activeInternalLevelIndex === "number" ? this._activeInternalLevelIndex : 0;
+        const targetCount = RubyCaveManager.LEVELS[internalIdx] ? RubyCaveManager.LEVELS[internalIdx].tray.length : 0;
+        if (targetCount > 0 && this.placed >= targetCount) {
           this.completed = Math.max(this.completed, this.currentLevel + 1);
           this._persist();
-          if (this.completed >= RubyCaveManager.LEVELS.length && !this._save.rubyCaveRewardClaimed) {
+          if (this.completed >= this._eventLevelCount() && !this._save.rubyCaveRewardClaimed) {
             this._showGrandReward();
           } else {
             this.el.done.classList.add("rc-visible");
@@ -3342,14 +3939,25 @@
       if (evt) { evt.preventDefault(); evt.stopPropagation(); }
       this.el.done.classList.remove("rc-visible");
       this.el.energyModal.classList.remove("rc-visible");
-      if (this.completed >= RubyCaveManager.LEVELS.length) {
+      const totalLevels = this._eventLevelCount();
+      if (this.completed >= totalLevels) {
         this._showToast("All event levels completed");
         return;
       }
-      const nextIdx = Math.min(Math.max(0, this.completed), RubyCaveManager.LEVELS.length - 1);
+      const nextIdx = Math.min(Math.max(0, this.completed), totalLevels - 1);
       this.currentLevel = nextIdx;
-      this._buildLevel(nextIdx);
-      this.el.gameInfo.textContent = `Level ${nextIdx + 1} / ${RubyCaveManager.LEVELS.length}`;
+      const def = this._eventLevelDef(nextIdx);
+      if (def && def.type === "html-playable") {
+        const started = this._startExternalEventLevel(def);
+        if (!started) {
+          this._showToast("Event level unavailable");
+          return;
+        }
+      } else {
+        const internalIdx = def && typeof def.internalIndex === "number" ? def.internalIndex : 0;
+        this._buildLevel(internalIdx);
+      }
+      this.el.gameInfo.textContent = `Level ${nextIdx + 1} / ${totalLevels}`;
       this._showView("game");
     }
 
@@ -3358,6 +3966,7 @@
       this.completed = Math.max(this.completed, this.currentLevel + 1);
       this._persist();
       this.el.done.classList.remove("rc-visible");
+      this._stopExternalEventLevel();
       this._showView("hub");
     }
 
@@ -3386,6 +3995,7 @@
       this.el.done.classList.remove("rc-visible");
       this.el.energyModal.classList.remove("rc-visible");
       this.el.grandReward.classList.remove("rc-visible");
+      this._stopExternalEventLevel();
       this._screen.classList.add("hidden");
     }
 
@@ -3566,6 +4176,8 @@
       this.currentLevel = 0;
       this.placed = 0;
       this.slots = [];
+      this._activeInternalLevelIndex = 0;
+      this._stopExternalEventLevel();
     }
   }
 
@@ -3604,8 +4216,17 @@
       this._pendingLostTempleUnlockAfterWin = false;
       this._bpTutorDragAnimationId = null;
       this._playingBonusLevel = false;
+      this._dailyTasksResetTimerId = null;
+      this._dailyTasksEscapeHandler = null;
+      this._externalLevelActive = false;
+      this._externalLevelFrameBound = false;
+      this._externalLevelLoadedIndex = -1;
+      this._externalLevelLoadedSrc = "";
+      this.externalLevelHostEl = document.getElementById("external-level-host");
+      this.externalLevelFrameEl = document.getElementById("external-level-frame");
       this._applySaveToUI();
       this._bindGlobalButtons();
+      this._bindExternalLevelHost();
       this.collectionUI.updateCollectionButtons();
       this.lostTempleManager.updateWidget();
       this.ui.showScreen("start-screen");
@@ -3655,6 +4276,7 @@
     }
 
     _applySaveToUI() {
+      this._syncDailyTasksData();
       this.ui.setLevelNumber(this.currentLevelIndex);
       this.ui.setCoins(this._save.coins);
       this._updatePuzzleEnergyUI();
@@ -3698,6 +4320,238 @@
       if (window.gameApp && typeof window.gameApp.updateProfileWidget === "function") {
         window.gameApp.updateProfileWidget();
       }
+      this._renderDailyTasksScreen();
+    }
+
+    _todayKey() {
+      const d = new Date();
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      return `${y}-${m}-${day}`;
+    }
+
+    _syncDailyTasksData() {
+      const today = this._todayKey();
+      if (this._save.dailyTasksDateKey !== today) {
+        const prevDay = Math.max(1, parseInt(this._save.dailyTasksDayIndex, 10) || 1);
+        this._save.dailyTasksDateKey = today;
+        this._save.dailyTasksClaims = {};
+        this._save.dailyTasksMainRewardClaimed = false;
+        this._save.dailyTasksDayIndex = ((prevDay % 7) + 1);
+        this._save.dailyTasksProgress = { level1Complete: 0, piecesPlaced: 0, wheelSpins: 0, raceActions: 0, piggyClaims: 0 };
+        saveSave(this._save);
+      }
+      if (!this._save.dailyTasksProgress || typeof this._save.dailyTasksProgress !== "object") {
+        this._save.dailyTasksProgress = { level1Complete: 0, piecesPlaced: 0, wheelSpins: 0, raceActions: 0, piggyClaims: 0 };
+      }
+      if (!this._save.dailyTasksClaims || typeof this._save.dailyTasksClaims !== "object") {
+        this._save.dailyTasksClaims = {};
+      }
+      if (typeof this._save.dailyTasksMainRewardClaimed !== "boolean") this._save.dailyTasksMainRewardClaimed = false;
+      if (typeof this._save.dailyTasksDayIndex !== "number") this._save.dailyTasksDayIndex = 1;
+      const progress = this._save.dailyTasksProgress;
+      progress.level1Complete = Math.max(0, parseInt(progress.level1Complete, 10) || 0);
+      progress.piecesPlaced = Math.max(0, parseInt(progress.piecesPlaced, 10) || 0);
+      progress.wheelSpins = Math.max(0, parseInt(progress.wheelSpins, 10) || 0);
+      progress.raceActions = Math.max(0, parseInt(progress.raceActions, 10) || 0);
+      progress.piggyClaims = Math.max(0, parseInt(progress.piggyClaims, 10) || 0);
+    }
+
+    _secondsUntilDailyReset() {
+      const now = new Date();
+      const reset = new Date(now);
+      reset.setHours(24, 0, 0, 0);
+      return Math.max(0, Math.floor((reset.getTime() - now.getTime()) / 1000));
+    }
+
+    _dailyTaskModels() {
+      this._syncDailyTasksData();
+      const progress = this._save.dailyTasksProgress || {};
+      const claims = this._save.dailyTasksClaims || {};
+      return DAILY_TASK_DEFS.map((def) => {
+        const current = Math.max(0, parseInt(progress[def.progressKey], 10) || 0);
+        const target = Math.max(1, parseInt(def.target, 10) || 1);
+        const done = current >= target;
+        const claimed = !!claims[def.id];
+        const state = claimed ? "claimed" : (done ? "completed" : (current > 0 ? "in_progress" : "not_started"));
+        return { ...def, current, target, done, claimed, state };
+      });
+    }
+
+    _dailyMainPoints(models) {
+      const tasks = models || this._dailyTaskModels();
+      return tasks.reduce((sum, t) => sum + (t.claimed ? (t.points || 0) : 0), 0);
+    }
+
+    _renderDailyTasksScreen() {
+      const listEl = document.getElementById("daily-tasks-list");
+      if (!listEl) return;
+      const tasks = this._dailyTaskModels();
+      const dayEl = document.getElementById("daily-tasks-day");
+      if (dayEl) {
+        const dayIdx = Math.max(1, Math.min(7, parseInt(this._save.dailyTasksDayIndex, 10) || 1));
+        dayEl.textContent = "Day " + String(dayIdx) + "/7";
+      }
+      const mainTarget = 15;
+      const mainCurrent = Math.min(mainTarget, this._dailyMainPoints(tasks));
+      const mainFill = document.getElementById("daily-tasks-main-fill");
+      if (mainFill) mainFill.style.width = Math.round((mainCurrent / mainTarget) * 100) + "%";
+      const mainCurrentEl = document.getElementById("daily-tasks-main-current");
+      if (mainCurrentEl) mainCurrentEl.textContent = String(mainCurrent);
+      const mainTargetEl = document.getElementById("daily-tasks-main-target");
+      if (mainTargetEl) mainTargetEl.textContent = String(mainTarget);
+      const mainClaimBtn = document.getElementById("btn-daily-main-claim");
+      if (mainClaimBtn) {
+        const canClaimMain = mainCurrent >= mainTarget && !this._save.dailyTasksMainRewardClaimed;
+        mainClaimBtn.disabled = !canClaimMain;
+        mainClaimBtn.textContent = this._save.dailyTasksMainRewardClaimed ? "Claimed" : (canClaimMain ? "Claim" : "Locked");
+      }
+      listEl.innerHTML = "";
+      tasks.forEach((task) => {
+        const pct = Math.max(0, Math.min(100, Math.round((task.current / task.target) * 100)));
+        const item = document.createElement("article");
+        item.className = "daily-task-item state-" + task.state;
+        item.innerHTML =
+          `<div class="daily-task-grid">` +
+            `<div class="daily-task-points">` +
+              `<span class="daily-task-points-medal">🏅</span>` +
+              `<span class="daily-task-points-value">+${task.points}</span>` +
+              `<button type="button" class="daily-task-cheat" data-task-cheat-id="${task.id}" ${task.claimed ? "disabled" : ""}>Cheat</button>` +
+            `</div>` +
+            `<div class="daily-task-center">` +
+              `<h3 class="daily-task-title">${task.title}</h3>` +
+              `<div class="daily-task-bar"><div class="daily-task-bar-fill" style="width:${pct}%"></div></div>` +
+              `<p class="daily-task-progress">${Math.min(task.current, task.target)}/${task.target}</p>` +
+            `</div>` +
+            `<div class="daily-task-reward">${task.rewardText}</div>` +
+          `</div>` +
+          `<div class="daily-task-actions">` +
+            `<button type="button" class="daily-task-claim" data-task-id="${task.id}" ${task.done && !task.claimed ? "" : "disabled"}>` +
+              `${task.claimed ? "Claimed" : (task.done ? "Claim" : "In Progress")}` +
+            `</button>` +
+          `</div>`;
+        listEl.appendChild(item);
+      });
+      const resetEl = document.getElementById("daily-tasks-refresh-timer");
+      if (resetEl) {
+        const sec = this._secondsUntilDailyReset();
+        const h = Math.floor(sec / 3600);
+        const m = Math.floor((sec % 3600) / 60);
+        resetEl.textContent = `${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m`;
+      }
+    }
+
+    _claimDailyTask(taskId) {
+      const task = DAILY_TASK_DEFS.find((t) => t.id === taskId);
+      if (!task) return;
+      const model = this._dailyTaskModels().find((t) => t.id === taskId);
+      if (!model || !model.done || model.claimed) return;
+      this._save.dailyTasksClaims[taskId] = true;
+      if (task.rewardCoins) this._save.coins = (this._save.coins || 0) + task.rewardCoins;
+      if (task.rewardGems) this._save.gemsTotal = (this._save.gemsTotal || 0) + task.rewardGems;
+      saveSave(this._save);
+      this.ui.setCoins(this._save.coins);
+      this._renderDailyTasksScreen();
+    }
+
+    _cheatCompleteDailyTask(taskId) {
+      const task = DAILY_TASK_DEFS.find((t) => t.id === taskId);
+      if (!task) return;
+      this._syncDailyTasksData();
+      if (!this._save.dailyTasksProgress || typeof this._save.dailyTasksProgress !== "object") return;
+      this._save.dailyTasksProgress[task.progressKey] = Math.max(task.target || 1, parseInt(this._save.dailyTasksProgress[task.progressKey], 10) || 0);
+      saveSave(this._save);
+      this._renderDailyTasksScreen();
+    }
+
+    _claimDailyMainReward() {
+      this._syncDailyTasksData();
+      const mainTarget = 15;
+      if (this._save.dailyTasksMainRewardClaimed) return;
+      if (this._dailyMainPoints() < mainTarget) return;
+      this._save.dailyTasksMainRewardClaimed = true;
+      this._save.coins = (this._save.coins || 0) + 120;
+      this._save.albumStars = (this._save.albumStars || 0) + 10;
+      saveSave(this._save);
+      this.ui.setCoins(this._save.coins);
+      this.collectionUI.updateCollectionButtons();
+      this._renderDailyTasksScreen();
+    }
+
+    _openDailyTasksInfoOverlay() {
+      const overlay = document.getElementById("daily-tasks-info-overlay");
+      if (!overlay) return;
+      overlay.classList.remove("hidden");
+      const close = () => this._closeDailyTasksInfoOverlay();
+      overlay.onclick = (e) => { if (e.target === overlay) close(); };
+      const cont = document.getElementById("daily-tasks-info-continue");
+      if (cont) cont.onclick = close;
+    }
+
+    _closeDailyTasksInfoOverlay() {
+      const overlay = document.getElementById("daily-tasks-info-overlay");
+      if (!overlay) return;
+      overlay.classList.add("hidden");
+      overlay.onclick = null;
+      const cont = document.getElementById("daily-tasks-info-continue");
+      if (cont) cont.onclick = null;
+    }
+
+    openDailyTasksScreen() {
+      const screen = document.getElementById("daily-tasks-screen");
+      if (!screen) return;
+      this.ui.showScreen("daily-tasks-screen");
+      const listEl = document.getElementById("daily-tasks-list");
+      if (listEl) {
+        listEl.onclick = (e) => {
+          const cheatBtn = e.target.closest(".daily-task-cheat");
+          if (cheatBtn) {
+            const cheatTaskId = cheatBtn.getAttribute("data-task-cheat-id");
+            if (cheatTaskId) this._cheatCompleteDailyTask(cheatTaskId);
+            return;
+          }
+          const btn = e.target.closest(".daily-task-claim");
+          if (!btn) return;
+          const taskId = btn.getAttribute("data-task-id");
+          if (taskId) this._claimDailyTask(taskId);
+        };
+      }
+      const mainClaimBtn = document.getElementById("btn-daily-main-claim");
+      if (mainClaimBtn) mainClaimBtn.onclick = () => this._claimDailyMainReward();
+      const infoBtn = document.getElementById("btn-daily-tasks-info");
+      if (infoBtn) infoBtn.onclick = () => this._openDailyTasksInfoOverlay();
+      this._renderDailyTasksScreen();
+      if (this._dailyTasksResetTimerId) clearInterval(this._dailyTasksResetTimerId);
+      this._dailyTasksResetTimerId = setInterval(() => this._renderDailyTasksScreen(), 1000);
+      if (this._dailyTasksEscapeHandler) window.removeEventListener("keydown", this._dailyTasksEscapeHandler);
+      this._dailyTasksEscapeHandler = (e) => {
+        if (e.key !== "Escape") return;
+        const overlay = document.getElementById("daily-tasks-info-overlay");
+        if (overlay && !overlay.classList.contains("hidden")) {
+          e.preventDefault();
+          this._closeDailyTasksInfoOverlay();
+        }
+      };
+      window.addEventListener("keydown", this._dailyTasksEscapeHandler);
+    }
+
+    closeDailyTasksScreen() {
+      this._closeDailyTasksInfoOverlay();
+      const listEl = document.getElementById("daily-tasks-list");
+      if (listEl) listEl.onclick = null;
+      const infoBtn = document.getElementById("btn-daily-tasks-info");
+      if (infoBtn) infoBtn.onclick = null;
+      const mainClaimBtn = document.getElementById("btn-daily-main-claim");
+      if (mainClaimBtn) mainClaimBtn.onclick = null;
+      if (this._dailyTasksResetTimerId) {
+        clearInterval(this._dailyTasksResetTimerId);
+        this._dailyTasksResetTimerId = null;
+      }
+      if (this._dailyTasksEscapeHandler) {
+        window.removeEventListener("keydown", this._dailyTasksEscapeHandler);
+        this._dailyTasksEscapeHandler = null;
+      }
     }
 
     _saveState() {
@@ -3725,6 +4579,230 @@
       const disabled = !gameActive || winOpen;
       btn.disabled = disabled;
       btn.classList.toggle("cheat-auto-disabled", disabled);
+    }
+
+    _bindExternalLevelHost() {
+      const backBtn = document.getElementById("btn-external-level-back");
+      if (backBtn) {
+        backBtn.onclick = () => {
+          if (this._externalLevelActive) this._stopExternalPlayableLevel();
+          this.ui.showScreen("start-screen");
+        };
+      }
+      const skipBtn = document.getElementById("btn-external-level-skip");
+      if (skipBtn) skipBtn.onclick = () => this._skipCurrentLevel();
+      if (this.externalLevelFrameEl && !this._externalLevelFrameBound) {
+        this._externalLevelFrameBound = true;
+        this.externalLevelFrameEl.addEventListener("load", () => {
+          if (!this._externalLevelActive) return;
+          // Best effort bridge: if same-origin/same-file context allows it,
+          // connect the uploaded level callbacks to our flow.
+          try {
+            const frameWin = this.externalLevelFrameEl.contentWindow;
+            if (frameWin) {
+              frameWin.gameEnd = () => this._onExternalPlayableCompleted();
+              // Spend 1 main energy for each newly placed piece in embedded levels.
+              const doc = frameWin.document;
+              const layer = doc ? doc.getElementById("pieceLayer") : null;
+              if (layer) {
+                if (this._externalPieceObserver) {
+                  this._externalPieceObserver.disconnect();
+                  this._externalPieceObserver = null;
+                }
+                this._externalSeenPieceIds = new Set();
+                layer.querySelectorAll(".piece[data-i]").forEach((el) => {
+                  const id = String(el.dataset.i || "");
+                  if (id) this._externalSeenPieceIds.add(id);
+                });
+                this._externalPieceObserver = new MutationObserver((mutations) => {
+                  mutations.forEach((m) => {
+                    m.addedNodes.forEach((node) => {
+                      if (!(node instanceof frameWin.Element)) return;
+                      if (!node.classList.contains("piece")) return;
+                      const pieceId = String(node.getAttribute("data-i") || "");
+                      if (!pieceId || this._externalSeenPieceIds.has(pieceId)) return;
+                      this._externalSeenPieceIds.add(pieceId);
+                      this._onExternalPiecePlaced(pieceId);
+                    });
+                  });
+                });
+                this._externalPieceObserver.observe(layer, { childList: true });
+              }
+              // Disable outbound store action and hide download CTAs from embedded level.
+              frameWin.openStore = () => {};
+              if (doc && doc.head) {
+                const style = doc.createElement("style");
+                const hideHints = this.currentLevelIndex > 0;
+                style.textContent =
+                  "#dl,#winDl,.downloadBtn,#winBtns{display:none !important;}" +
+                  (hideHints
+                    ? "#hintOverlay,#hintHand,#scrollHintOverlay,#scrollHintHand{display:none !important;opacity:0 !important;pointer-events:none !important;}"
+                    : "");
+                doc.head.appendChild(style);
+              }
+              if (this.currentLevelIndex > 0) {
+                try {
+                  const doc = frameWin.document;
+                  const hintOverlay = doc ? doc.getElementById("hintOverlay") : null;
+                  if (hintOverlay) hintOverlay.dataset.hand1Ready = "0";
+                  const scrollHintOverlay = doc ? doc.getElementById("scrollHintOverlay") : null;
+                  if (scrollHintOverlay) scrollHintOverlay.dataset.hand2Ready = "0";
+                  frameWin.runBoosterTutorial = () => {};
+                } catch (_) {
+                  // Keep best-effort only.
+                }
+              }
+            }
+          } catch (_) {
+            // Cross-origin restrictions are expected in some runtimes.
+          }
+        });
+      }
+    }
+
+    _toggleGameplayHostUI(useExternalHost) {
+      const progressBar = document.querySelector("#game-screen .progress-bar");
+      const gameArea = document.querySelector("#game-screen .game-area");
+      const debugPanel = document.getElementById("debug-cheat-panel");
+      if (this.externalLevelHostEl) this.externalLevelHostEl.classList.toggle("hidden", !useExternalHost);
+      if (progressBar) progressBar.classList.toggle("hidden", useExternalHost);
+      if (gameArea) gameArea.classList.toggle("hidden", useExternalHost);
+      if (debugPanel) debugPanel.classList.toggle("hidden", useExternalHost);
+    }
+
+    _startExternalPlayableLevel(entry, levelIndex) {
+      if (!entry || !entry.src || !this.externalLevelFrameEl) {
+        this.loadLevel(levelIndex);
+        return;
+      }
+      this._externalLevelActive = true;
+      this.currentLevelIndex = Math.max(0, levelIndex);
+      this.ui.setLevelNumber(this.currentLevelIndex);
+      this._saveState();
+      this.ui.showScreen("game-screen");
+      this._toggleGameplayHostUI(true);
+      const currentSrc = String(this.externalLevelFrameEl.src || "");
+      const canReuseExistingState =
+        this._externalLevelLoadedIndex === levelIndex &&
+        currentSrc &&
+        currentSrc !== "about:blank" &&
+        currentSrc.indexOf(entry.src) >= 0;
+      if (!canReuseExistingState) {
+        this.externalLevelFrameEl.src = entry.src;
+        this._externalLevelLoadedIndex = levelIndex;
+        this._externalLevelLoadedSrc = entry.src;
+      }
+    }
+
+    _stopExternalPlayableLevel() {
+      this._externalLevelActive = false;
+      // Keep iframe state in memory so returning with Play resumes same progress.
+      this._toggleGameplayHostUI(false);
+    }
+
+    _onExternalPlayableCompleted() {
+      const next = this.currentLevelIndex + 1;
+      this._stopExternalPlayableLevel();
+      this.currentLevelIndex = Math.min(next, this.levelManager.getTotalLevels() - 1);
+      this._saveState();
+      this.ui.showScreen("start-screen");
+      this._renderGalleryScreen();
+    }
+
+    _skipCurrentLevel() {
+      const next = this.currentLevelIndex + 1;
+      if (next >= this.levelManager.getTotalLevels()) {
+        this.ui.showScreen("start-screen");
+        return;
+      }
+      if (this._externalLevelActive) this._stopExternalPlayableLevel();
+      this._launchLevelByIndex(next);
+    }
+
+    _resolveGalleryLevels() {
+      const currentProgress = Math.max(0, parseInt(this._save.currentLevel, 10) || 0);
+      return GALLERY_LEVEL_DEFS.map((def, index) => {
+        let state = "locked";
+        if (typeof def.playableLevelIndex === "number") {
+          if (currentProgress > def.playableLevelIndex) state = "completed";
+          else if (currentProgress === def.playableLevelIndex) state = "unlocked";
+          else state = "locked";
+        }
+        return {
+          id: def.id,
+          label: "Level " + String(index + 1),
+          featureIcon: def.featureIcon,
+          state,
+          playableLevelIndex: def.playableLevelIndex,
+        };
+      });
+    }
+
+    _renderGalleryScreen() {
+      const grid = document.getElementById("gallery-grid");
+      if (!grid) return;
+      const levels = this._resolveGalleryLevels();
+      grid.innerHTML = "";
+      levels.forEach((entry) => {
+        const card = document.createElement("button");
+        card.type = "button";
+        card.className = "gallery-level-card state-" + entry.state;
+        card.setAttribute("role", "listitem");
+        card.setAttribute("aria-disabled", entry.state === "locked" ? "true" : "false");
+
+        const bg = document.createElement("span");
+        bg.className = "gallery-level-bg";
+        bg.setAttribute("aria-hidden", "true");
+        card.appendChild(bg);
+
+        const overlay = document.createElement("span");
+        overlay.className = "gallery-level-overlay";
+        overlay.setAttribute("aria-hidden", "true");
+        card.appendChild(overlay);
+
+        const featureIcon = document.createElement("span");
+        featureIcon.className = "gallery-level-feature-icon " + entry.featureIcon;
+        featureIcon.setAttribute("aria-hidden", "true");
+        card.appendChild(featureIcon);
+
+        const badge = document.createElement("span");
+        badge.className = "gallery-level-state-badge";
+        if (entry.state === "unlocked") badge.textContent = "50%";
+        badge.setAttribute("aria-hidden", "true");
+        card.appendChild(badge);
+
+        const title = document.createElement("span");
+        title.className = "gallery-level-title";
+        title.textContent = entry.label;
+        card.appendChild(title);
+
+        if (entry.state !== "locked" && typeof entry.playableLevelIndex === "number") {
+          card.onclick = () => this._launchLevelByIndex(entry.playableLevelIndex);
+        } else {
+          card.onclick = null;
+        }
+        grid.appendChild(card);
+      });
+    }
+
+    openGalleryScreen() {
+      if (this._externalLevelActive) this._stopExternalPlayableLevel();
+      this._renderGalleryScreen();
+      this.ui.showScreen("gallery-screen");
+    }
+
+    _launchLevelByIndex(index) {
+      const safeIndex = Math.max(0, Math.min(index, this.levelManager.getTotalLevels() - 1));
+      this.currentLevelIndex = safeIndex;
+      this.ui.setLevelNumber(this.currentLevelIndex);
+      const entry = this.levelManager.getLevelEntry(this.currentLevelIndex);
+      if (entry && entry.type === "html-playable") {
+        this._startExternalPlayableLevel(entry, this.currentLevelIndex);
+        return;
+      }
+      this.ui.showScreen("game-screen");
+      this._toggleGameplayHostUI(false);
+      this.loadLevel(this.currentLevelIndex);
     }
 
     cheatPlaceOnePiece() {
@@ -3786,13 +4864,14 @@
     }
 
     startGame() {
-      this.ui.showScreen("game-screen");
-      this.loadLevel(this.currentLevelIndex);
+      const savedLevel = Math.max(0, parseInt(this._save.currentLevel, 10) || 0);
+      this._launchLevelByIndex(savedLevel);
     }
 
     loadLevel(index) {
       const level = this.levelManager.getLevel(index);
       if (!level) return;
+      this._stopExternalPlayableLevel();
       this.currentLevelIndex = index;
       this.startTime = Date.now();
       this.mistakes = 0;
@@ -3841,14 +4920,7 @@
     }
 
     onPiecePlaced(pieceId) {
-      if (this._save.leaderboardUnlocked) {
-        this.leaderboardManager.incrementOnPiecePlaced();
-      }
-      if (this._save.battlePassUnlocked && isEventActive(this._save, "battlePassEvent")) {
-        this._save.bpStarsTotal = (this._save.bpStarsTotal || 0) + 1;
-        saveSave(this._save);
-        this.updateBattlePassWidget();
-      }
+      this._awardMetaProgressOnPiecePlaced(pieceId);
       if (this._save.bpTutorStep === 1) {
         this._save.bpTutorStep = 2;
         saveSave(this._save);
@@ -3858,20 +4930,50 @@
           this._bpTutorDragAnimationId = null;
         }
         this._bpTutorShowHandAtElement(this._getBPWidgetElement(), "Tap Battle Pass to see rewards!");
-        return;
-      }
-      const navPieces = document.getElementById("nav-trophies-count");
-      if (navPieces) navPieces.textContent = this.leaderboardManager.getPlayerScore();
-      if (!this._save.piggyBroken && this._save.piggyGemsStored < this._save.piggyCap) {
-        const earn = this._save.piggyEarnPerPiece || PIGGY_EARN_PER_PIECE;
-        this._save.piggyGemsStored = Math.min(this._save.piggyCap, (this._save.piggyGemsStored || 0) + earn);
-        saveSave(this._save);
-        this.updatePiggyWidget();
       }
       this.ui.setProgress(this.board.getPlacedCount(), this.board.getTotalPieces());
       if (document.getElementById("toggle-sfx").getAttribute("aria-checked") === "true") {
         AudioPlayer.place();
       }
+    }
+
+    _awardMetaProgressOnPiecePlaced(pieceId) {
+      const piecePoints = 1;
+      let saveDirty = false;
+      if (this._save.leaderboardUnlocked) {
+        this.leaderboardManager.incrementOnPiecePlaced();
+      }
+      if (this._save.battlePassUnlocked && isEventActive(this._save, "battlePassEvent")) {
+        this._save.bpStarsTotal = (this._save.bpStarsTotal || 0) + piecePoints;
+        saveDirty = true;
+      }
+      if (!this._save.piggyBroken && this._save.piggyGemsStored < this._save.piggyCap) {
+        this._save.piggyGemsStored = Math.min(this._save.piggyCap, (this._save.piggyGemsStored || 0) + piecePoints);
+        saveDirty = true;
+      }
+      if (this._save.raceUnlocked && isRaceActive(this._save)) {
+        raceOnPuzzleCompleted(this._save);
+        saveDirty = true;
+      }
+      this._syncDailyTasksData();
+      this._save.dailyTasksProgress.piecesPlaced = (this._save.dailyTasksProgress.piecesPlaced || 0) + piecePoints;
+      saveDirty = true;
+      if (saveDirty) saveSave(this._save);
+      const navPieces = document.getElementById("nav-trophies-count");
+      if (navPieces) navPieces.textContent = this.leaderboardManager.getPlayerScore();
+      this.updateBattlePassWidget();
+      this.updatePiggyWidget();
+      this.updateRaceEventWidget();
+      this._renderDailyTasksScreen();
+      const raceScreen = document.getElementById("raceEventScreen");
+      if (raceScreen && !raceScreen.classList.contains("hidden")) {
+        this._renderRaceTrack();
+      }
+    }
+
+    _onExternalPiecePlaced(pieceId) {
+      this._awardMetaProgressOnPiecePlaced(pieceId);
+      this._trySpendPuzzleEnergy();
     }
 
     onWrongDrop() {
@@ -3902,6 +5004,8 @@
       const val = this._save.puzzleEnergy || 0;
       const elGame = document.getElementById("energy-count-game");
       if (elGame) elGame.textContent = val;
+      const elStart = document.getElementById("energy-count-start");
+      if (elStart) elStart.textContent = val;
     }
 
     _showEnergyRefillPopup() {
@@ -3966,14 +5070,13 @@
       }
 
       const stars = cheated ? 3 : this._computeStars(timeSec, this.mistakes);
+      if (!cheated && this.currentLevelIndex === 0) {
+        this._syncDailyTasksData();
+        this._save.dailyTasksProgress.level1Complete = 1;
+      }
 
       this.collectionManager.onLevelCompleted(this.currentLevelIndex, { cheated });
       this.addHammers(1);
-      if (this._save.raceUnlocked && isRaceActive(this._save)) {
-        const raceFinished = raceOnPuzzleCompleted(this._save);
-        saveSave(this._save);
-        if (raceFinished) this.updateRaceEventWidget();
-      }
       this.collectionUI.updateCollectionButtons();
 
       if (document.getElementById("toggle-sfx").getAttribute("aria-checked") === "true") {
@@ -4050,6 +5153,7 @@
           if (gameArea) gameArea.classList.remove("game-area--bonus");
           this.ui.setLevelNumber(this.currentLevelIndex);
         }
+        if (this._externalLevelActive) this._stopExternalPlayableLevel();
         this.ui.showScreen("start-screen");
       };
       document.getElementById("btn-close-settings").onclick = () => {
@@ -4065,11 +5169,22 @@
       document.getElementById("btn-cheat-add-album-stars").onclick = () => this.cheatAddAlbumStars();
       document.getElementById("btn-cheat-add-hammers").onclick = () => this.cheatAddEventHammers();
 
-      document.getElementById("nav-home").onclick = () => this.ui.showScreen("start-screen");
-      document.getElementById("nav-game").onclick = () => this.startGame();
-      document.getElementById("nav-settings").onclick = () => this.openSettings();
+      document.getElementById("nav-home").onclick = () => {
+        if (this._externalLevelActive) this._stopExternalPlayableLevel();
+        this.ui.showScreen("start-screen");
+      };
+      document.getElementById("nav-game").onclick = () => this.openGalleryScreen();
+      document.getElementById("nav-settings").onclick = () => {
+        if (this._externalLevelActive) this._stopExternalPlayableLevel();
+        this.rubyCaveManager.open();
+      };
+      const navDailyTasks = document.getElementById("nav-daily-tasks");
+      if (navDailyTasks) navDailyTasks.onclick = () => this.openDailyTasksScreen();
+      const btnHomeSettings = document.getElementById("btn-home-settings");
+      if (btnHomeSettings) btnHomeSettings.onclick = () => this.openSettings();
       document.getElementById("curs_add_leaderboard_from_trophy_button").onclick = () => this.onLeaderboardTrophyClick();
       const openCollection = () => {
+        if (this._externalLevelActive) this._stopExternalPlayableLevel();
         this.collectionUI.showAlbum();
       };
       document.getElementById("nav-collection").onclick = openCollection;
@@ -4119,8 +5234,6 @@
       if (piggyPurchase) piggyPurchase.onclick = () => { if (this._save.piggyGemsStored >= (this._save.piggyCap || PIGGY_CAP_DEFAULT)) this._breakPiggyBank(); };
       const piggyLater = document.getElementById("piggy-btn-later");
       if (piggyLater) piggyLater.onclick = () => this.closePiggyModal();
-      const piggyModal = document.getElementById("piggy-bank-modal");
-      if (piggyModal) piggyModal.onclick = (e) => { if (e.target === piggyModal) this.closePiggyModal(); };
 
       const btnBonusPlay = document.getElementById("btn-bonus-level-play");
       if (btnBonusPlay) btnBonusPlay.onclick = () => this._onBonusLevelPlayClick();
@@ -4390,8 +5503,11 @@
           applyPackResults(self._save, packResult);
           if (!self._save.raceState) self._save.raceState = {};
           self._save.raceState.claimed = true;
+          self._syncDailyTasksData();
+          self._save.dailyTasksProgress.raceActions = Math.max(1, self._save.dailyTasksProgress.raceActions || 0);
           self.addHammers(5);
           saveSave(self._save);
+          self._renderDailyTasksScreen();
 
           packResult.results.forEach((r) => {
             const item = document.createElement("div");
@@ -4541,10 +5657,11 @@
       if (!screen) return;
       const bpStarsTotal = Math.max(0, parseInt(this._save.bpStarsTotal, 10) || 0);
       const towardNext = bpStarsTotal % BP_STARS_PER_CARD;
+      const currentTier = Math.floor(bpStarsTotal / BP_STARS_PER_CARD) + 1;
       const countEl = document.getElementById("battle-pass-modal-count");
       if (countEl) countEl.textContent = bpStarsTotal;
       const towardEl = document.getElementById("battle-pass-modal-toward");
-      if (towardEl) towardEl.textContent = towardNext + "/" + BP_STARS_PER_CARD + " toward next tier";
+      if (towardEl) towardEl.textContent = String(currentTier);
       const fillEl = document.getElementById("battle-pass-modal-fill");
       if (fillEl) fillEl.style.width = (towardNext / BP_STARS_PER_CARD) * 100 + "%";
       const listEl = document.getElementById("battle-pass-reward-list");
@@ -4556,17 +5673,16 @@
       const premiumClaimed = bpClaims.premiumClaimedTiers || [];
 
       if (activateBtn) {
-        activateBtn.classList.toggle("hidden", premiumActive);
-        if (activatePriceEl) activatePriceEl.classList.toggle("hidden", premiumActive);
-        if (!premiumActive) {
-          activateBtn.onclick = () => {
-            this._save.battlePassPremiumActive = true;
-            saveSave(this._save);
-            activateBtn.classList.add("hidden");
-            if (activatePriceEl) activatePriceEl.classList.add("hidden");
-            renderList();
-          };
-        }
+        activateBtn.disabled = premiumActive;
+        activateBtn.textContent = premiumActive ? "Activated" : "Activate";
+        activateBtn.onclick = premiumActive ? null : () => {
+          this._save.battlePassPremiumActive = true;
+          saveSave(this._save);
+          activateBtn.disabled = true;
+          activateBtn.textContent = "Activated";
+          if (activatePriceEl) activatePriceEl.textContent = "Owned";
+          renderList();
+        };
       }
 
       const self = this;
@@ -4590,126 +5706,102 @@
 
         listEl.innerHTML = "";
         const rowsContainer = document.createElement("div");
-        rowsContainer.className = "bp-columns";
+        rowsContainer.className = "bp-track-list";
 
         for (let t = 1; t <= tiersCount; t++) {
           const requiredStars = t * BP_STARS_PER_CARD;
           const tierUnlocked = stars >= requiredStars;
           const freeClaimedT = fClaimed.indexOf(t) >= 0;
           const premiumClaimedT = pClaimed.indexOf(t) >= 0;
-          const isCurrent = !tierUnlocked && (t === 1 || stars >= (t - 1) * BP_STARS_PER_CARD);
+          const isCurrent = t === (Math.floor(stars / BP_STARS_PER_CARD) + 1);
           const premiumLocked = !premiumOn || !tierUnlocked;
           const premiumClaimable = premiumOn && tierUnlocked && !premiumClaimedT;
           const freeClaimable = tierUnlocked && !freeClaimedT;
 
-          const packStars = getPackStarsForTier(t);
-          const meta = self._save.bpPremiumPackMeta[t];
-          const packCardCount = meta && typeof meta.cardCount === "number" ? meta.cardCount : 2;
-
           const row = document.createElement("div");
-          row.className = "bp-row" + (!tierUnlocked ? " locked" : "") + (isCurrent ? " current" : "");
+          row.className = "bp-tier-row" + (isCurrent ? " bp-tier-row--current" : "");
 
-          const cellFree = document.createElement("div");
-          cellFree.className = "bp-cell bp-cell-free";
-          const freeTile = document.createElement("div");
-          const xpAmount = BP_XP_PER_TIER;
-          freeTile.className = "bp-reward-tile bp-reward-tile--free" + (!tierUnlocked ? " bp-reward-tile--locked" : "") + (freeClaimedT ? " bp-reward-tile--claimed" : "") + (freeClaimable ? " bp-reward-tile--claimable" : "");
-          freeTile.setAttribute("data-tier", String(t));
-          freeTile.setAttribute("data-lane", "free");
-          const finner = document.createElement("div");
-          finner.className = "bp-reward-tile-inner";
-          const xpIcon = document.createElement("span");
-          xpIcon.className = "bp-reward-tile-xp-icon";
-          xpIcon.setAttribute("aria-hidden", "true");
-          xpIcon.textContent = "\u2726";
-          finner.appendChild(xpIcon);
-          const flabel = document.createElement("span");
-          flabel.className = "bp-reward-tile-label";
-          flabel.textContent = "+" + xpAmount + " XP";
-          finner.appendChild(flabel);
-          freeTile.appendChild(finner);
-          if (!tierUnlocked) {
-            const lock = document.createElement("span");
-            lock.className = "bp-reward-tile-lock";
-            lock.setAttribute("aria-hidden", "true");
-            lock.innerHTML = "&#128274;";
-            freeTile.appendChild(lock);
-          } else if (freeClaimedT) {
-            const check = document.createElement("span");
-            check.className = "bp-reward-tile-check";
-            check.setAttribute("aria-hidden", "true");
-            check.innerHTML = "&#10003;";
-            freeTile.appendChild(check);
-          } else if (freeClaimable) {
-            const claimHint = document.createElement("span");
-            claimHint.className = "bp-reward-tile-claim-hint";
-            claimHint.textContent = "Claim";
-            freeTile.appendChild(claimHint);
-          }
-          freeTile.onclick = (e) => {
-            e.stopPropagation();
-            if (!freeClaimable) return;
-            self._save.xpTotal = (self._save.xpTotal || 0) + xpAmount;
-            if (!self._save.bpClaims.freeClaimedTiers) self._save.bpClaims.freeClaimedTiers = [];
-            self._save.bpClaims.freeClaimedTiers.push(t);
-            self.addHammers(1);
-            saveSave(self._save);
-            renderList();
-          };
-          cellFree.appendChild(freeTile);
-          row.appendChild(cellFree);
+          const freeCard = document.createElement("div");
+          freeCard.className = "bp-tier-card bp-tier-card--free"
+            + (!tierUnlocked ? " bp-tier-card--locked" : "")
+            + (freeClaimedT ? " bp-tier-card--claimed" : "")
+            + (freeClaimable ? " bp-tier-card--claimable" : "");
+          const freeReward = document.createElement("div");
+          freeReward.className = "bp-tier-reward";
+          freeReward.innerHTML = `<img class="bp-tier-reward-icon" src="${BP_GEM_ICON_SRC}" alt="" aria-hidden="true"><span class="bp-tier-reward-count">x3</span>`;
+          freeCard.appendChild(freeReward);
 
-          const cellCenter = document.createElement("div");
-          cellCenter.className = "bp-cell bp-cell-center";
-          const tierBadge = document.createElement("div");
-          tierBadge.className = "bp-tier-badge" + (tierUnlocked ? " bp-tier-badge--unlocked" : "") + (isCurrent ? " bp-tier-badge--current" : "");
-          tierBadge.setAttribute("aria-label", requiredStars + " stars");
-          tierBadge.textContent = requiredStars;
-          cellCenter.appendChild(tierBadge);
-          row.appendChild(cellCenter);
-
-          const cellPremium = document.createElement("div");
-          cellPremium.className = "bp-cell bp-cell-premium";
-          const premiumTile = document.createElement("div");
-          premiumTile.className = "bp-reward-tile bp-reward-tile--premium bp-reward-tile--pack" + (premiumLocked ? " bp-reward-tile--locked" : "") + (premiumClaimedT ? " bp-reward-tile--claimed" : "") + (premiumClaimable ? " bp-reward-tile--claimable" : "");
-          premiumTile.setAttribute("data-tier", String(t));
-          premiumTile.setAttribute("data-lane", "premium");
-          const premiumRibbon = document.createElement("span");
-          premiumRibbon.className = "bp-reward-tile-ribbon";
-          premiumRibbon.textContent = "PREMIUM";
-          premiumTile.appendChild(premiumRibbon);
-          const packIconEl = renderPackIcon({
-            cardCount: packCardCount,
-            locked: premiumLocked,
-            dimmed: !tierUnlocked,
-            size: "small",
-            claimable: premiumClaimable,
-          });
-          premiumTile.appendChild(packIconEl);
-          if (premiumClaimedT) {
-            const check = document.createElement("span");
-            check.className = "bp-reward-tile-check";
-            check.setAttribute("aria-hidden", "true");
-            check.innerHTML = "&#10003;";
-            premiumTile.appendChild(check);
-          } else if (premiumClaimable) {
-            const claimHint = document.createElement("span");
-            claimHint.className = "bp-reward-tile-claim-hint";
-            claimHint.textContent = "Claim";
-            premiumTile.appendChild(claimHint);
-          }
-          premiumTile.onclick = (e) => {
-            e.stopPropagation();
-            if (!premiumClaimable) return;
-            self._openPackOpeningFlow(t, packStars, () => {
-              self.addHammers(2);
+          if (freeClaimable) {
+            const claimBtn = document.createElement("button");
+            claimBtn.type = "button";
+            claimBtn.className = "bp-claim-btn";
+            claimBtn.textContent = "Claim";
+            claimBtn.onclick = (e) => {
+              e.stopPropagation();
+              if (!freeClaimable) return;
+              self._save.xpTotal = (self._save.xpTotal || 0) + BP_XP_PER_TIER;
+              if (!self._save.bpClaims.freeClaimedTiers) self._save.bpClaims.freeClaimedTiers = [];
+              if (self._save.bpClaims.freeClaimedTiers.indexOf(t) < 0) self._save.bpClaims.freeClaimedTiers.push(t);
+              self.addHammers(1);
+              saveSave(self._save);
               renderList();
-              self.collectionUI.updateCollectionButtons();
-              self.collectionUI.updateGlobalCardsProgress();
-            });
-          };
-          cellPremium.appendChild(premiumTile);
-          row.appendChild(cellPremium);
+            };
+            freeCard.appendChild(claimBtn);
+          }
+
+          if (freeClaimedT || (!tierUnlocked && !freeClaimable)) {
+            const block = document.createElement("div");
+            block.className = "bp-tier-block";
+            block.textContent = freeClaimedT ? "✓" : "";
+            freeCard.appendChild(block);
+          }
+
+          row.appendChild(freeCard);
+
+          const center = document.createElement("div");
+          center.className = "bp-tier-center";
+          const point = document.createElement("div");
+          point.className = "bp-tier-point" + (tierUnlocked ? " bp-tier-point--unlocked" : "") + (isCurrent ? " bp-tier-point--current" : "");
+          point.textContent = String(t);
+          center.appendChild(point);
+          row.appendChild(center);
+
+          const premiumCard = document.createElement("div");
+          premiumCard.className = "bp-tier-card bp-tier-card--premium"
+            + (premiumLocked ? " bp-tier-card--locked" : "")
+            + (premiumClaimedT ? " bp-tier-card--claimed" : "")
+            + (premiumClaimable ? " bp-tier-card--claimable" : "");
+          const premiumReward = document.createElement("div");
+          premiumReward.className = "bp-tier-reward";
+          premiumReward.innerHTML = `<img class="bp-tier-reward-icon bp-tier-reward-icon--chest" src="${BP_CHEST_ICON_SRC}" alt="" aria-hidden="true"><span class="bp-tier-reward-count">x3</span>`;
+          premiumCard.appendChild(premiumReward);
+
+          if (premiumClaimable) {
+            const claimBtn = document.createElement("button");
+            claimBtn.type = "button";
+            claimBtn.className = "bp-claim-btn";
+            claimBtn.textContent = "Claim";
+            claimBtn.onclick = (e) => {
+              e.stopPropagation();
+              if (!premiumClaimable) return;
+              self._openPackOpeningFlow(t, getPackStarsForTier(t), () => {
+                self.addHammers(2);
+                renderList();
+                self.collectionUI.updateCollectionButtons();
+                self.collectionUI.updateGlobalCardsProgress();
+              });
+            };
+            premiumCard.appendChild(claimBtn);
+          }
+
+          if (premiumClaimedT || premiumLocked) {
+            const block = document.createElement("div");
+            block.className = "bp-tier-block";
+            block.textContent = premiumClaimedT ? "✓" : "🔒";
+            premiumCard.appendChild(block);
+          }
+
+          row.appendChild(premiumCard);
 
           rowsContainer.appendChild(row);
         }
@@ -4720,18 +5812,21 @@
       if (bpTimerEl) {
         const tick = () => {
           const ms = getRemainingMs(this._save, "battlePassEvent");
-          bpTimerEl.textContent = ms > 0 ? "Event ends in: " + formatRemaining(ms) : "Event ended";
+          bpTimerEl.textContent = ms > 0 ? "Ends in: " + formatRemaining(ms) : "Ended";
         };
         tick();
         if (this._bpEventTimerId) clearInterval(this._bpEventTimerId);
         this._bpEventTimerId = setInterval(tick, 1000);
       }
       screen.classList.remove("hidden");
+      document.documentElement.classList.add("bp-screen-active");
+      document.body.classList.add("bp-screen-active");
       const infoOverlay = document.getElementById("battlePassInfoOverlay");
       const closeInfo = () => {
         if (infoOverlay) infoOverlay.classList.add("hidden");
         if (infoOverlay) infoOverlay.onclick = null;
-        document.getElementById("btn-bp-info-close").onclick = null;
+        const continueBtn = document.getElementById("btn-bp-info-continue");
+        if (continueBtn) continueBtn.onclick = null;
       };
       const close = () => {
         screen.classList.add("hidden");
@@ -4740,9 +5835,30 @@
           clearInterval(this._bpEventTimerId);
           this._bpEventTimerId = null;
         }
+        if (this._bpEscapeHandler) {
+          window.removeEventListener("keydown", this._bpEscapeHandler);
+          this._bpEscapeHandler = null;
+        }
+        document.documentElement.classList.remove("bp-screen-active");
+        document.body.classList.remove("bp-screen-active");
         document.getElementById("btn-battle-pass-close").onclick = null;
         document.getElementById("btn-battle-pass-info").onclick = null;
       };
+      if (this._bpEscapeHandler) {
+        window.removeEventListener("keydown", this._bpEscapeHandler);
+      }
+      this._bpEscapeHandler = (e) => {
+        if (e.key !== "Escape") return;
+        const info = document.getElementById("battlePassInfoOverlay");
+        if (info && !info.classList.contains("hidden")) {
+          closeInfo();
+          e.preventDefault();
+          return;
+        }
+        e.preventDefault();
+        close();
+      };
+      window.addEventListener("keydown", this._bpEscapeHandler);
       document.getElementById("btn-battle-pass-close").onclick = close;
       const infoBtn = document.getElementById("btn-battle-pass-info");
       if (infoBtn) {
@@ -4750,7 +5866,8 @@
           if (infoOverlay) {
             infoOverlay.classList.remove("hidden");
             infoOverlay.onclick = (e) => { if (e.target === infoOverlay) closeInfo(); };
-            document.getElementById("btn-bp-info-close").onclick = closeInfo;
+            const continueBtn = document.getElementById("btn-bp-info-continue");
+            if (continueBtn) continueBtn.onclick = closeInfo;
           }
         };
       }
@@ -4795,13 +5912,14 @@
         if (!lane) continue;
         const key = order[i];
         const points = pointsFor(key);
-        const pct = Math.min(100, (points / RACE_TARGET_POINTS) * 100);
+        const lanePct = Math.min(100, (points / RACE_TARGET_POINTS) * 100);
+        const pct = 4 + (lanePct * 0.88);
         const racer = document.createElement("div");
         racer.className = "race-racer " + (key === "player" ? "race-racer--player" : "race-racer--bot");
         racer.style.bottom = pct + "%";
         const kartImg = document.createElement("img");
         kartImg.className = "race-racer-kart";
-        kartImg.src = key === "player" ? RACE_KART_RED_SRC : RACE_KART_BLUE_SRC;
+        kartImg.src = RACE_LANE_CAR_SRCS[i] || RACE_LANE_CAR_SRCS[2];
         kartImg.alt = "";
         kartImg.setAttribute("aria-hidden", "true");
         const bubble = document.createElement("span");
@@ -4811,6 +5929,11 @@
         racer.appendChild(kartImg);
         lane.appendChild(racer);
       }
+      const pointPills = document.querySelectorAll("#raceEventScreen .race-point-pill");
+      for (let i = 0; i < pointPills.length; i++) {
+        const key = order[i];
+        pointPills[i].textContent = String(pointsFor(key));
+      }
       const yourPointsEl = document.getElementById("race-your-points-num");
       if (yourPointsEl) yourPointsEl.textContent = playerPoints;
     }
@@ -4818,12 +5941,21 @@
     openRaceEventScreen() {
       const screen = document.getElementById("raceEventScreen");
       if (!screen) return;
+      const htmlEl = document.documentElement;
+      const bodyEl = document.body;
       const rs = getRaceState(this._save);
       if (this._save.raceUnlocked && !rs.active && !rs.winner) {
         startRace(this._save);
         saveSave(this._save);
         this.updateRaceEventWidget();
       }
+      const currentState = getRaceState(this._save);
+      const raceStateLabel = !this._save.raceUnlocked
+        ? "locked"
+        : currentState.winner
+          ? (currentState.winner === "player" && !currentState.claimed ? "reward" : "completed")
+          : (currentState.active ? "active" : "idle");
+      screen.dataset.raceState = raceStateLabel;
       this._renderRaceTrack();
       const profile = this._save.playerProfile;
       const playerName = (profile && profile.name && String(profile.name).trim()) ? String(profile.name).trim() : "You";
@@ -4845,18 +5977,66 @@
           imgEl.parentNode.replaceChild(wrap, imgEl);
         }
       }
+      const opponentNames = Array.isArray(this._save.raceBotNames) && this._save.raceBotNames.length >= 4
+        ? this._save.raceBotNames
+        : RACE_BOT_NAMES;
+      const opponentNameIds = [
+        "race-racer-name-0",
+        "race-racer-name-1",
+        "race-racer-name-3",
+        "race-racer-name-4",
+      ];
+      for (let i = 0; i < opponentNameIds.length; i++) {
+        const nameEl = document.getElementById(opponentNameIds[i]);
+        if (!nameEl) continue;
+        const botName = String(opponentNames[i] || RACE_BOT_NAMES[i] || "Rival").trim();
+        nameEl.textContent = botName || "Rival";
+      }
+      const rewardState = this._save.raceRewards || {};
+      const rewardCoinsEl = document.getElementById("race-reward-coins");
+      const rewardGemsEl = document.getElementById("race-reward-gems");
+      const rewardBoostEl = document.getElementById("race-reward-boost");
+      if (rewardCoinsEl) rewardCoinsEl.textContent = String(Math.max(0, parseInt(rewardState.coins, 10) || 300));
+      if (rewardGemsEl) rewardGemsEl.textContent = String(Math.max(0, parseInt(rewardState.gems, 10) || 150));
+      if (rewardBoostEl) rewardBoostEl.textContent = String(Math.max(0, parseInt(rewardState.boost, 10) || 10));
       const winner = getRaceWinner(this._save);
+      const timerEl = document.getElementById("race-event-timer");
+      const updateTimer = () => {
+        const state = getRaceState(this._save);
+        if (state.winner) {
+          if (timerEl) timerEl.textContent = "Finished";
+          return;
+        }
+        if (!state.startTime) {
+          if (timerEl) timerEl.textContent = formatRaceRemaining(RACE_EVENT_DURATION_MS);
+          return;
+        }
+        const remaining = (state.startTime + RACE_EVENT_DURATION_MS) - Date.now();
+        if (timerEl) timerEl.textContent = remaining <= 0 ? "Ended" : formatRaceRemaining(remaining);
+      };
       const self = this;
       const close = () => {
         screen.classList.add("hidden");
         if (self._raceEventRefreshId) { clearInterval(self._raceEventRefreshId); self._raceEventRefreshId = null; }
+        if (self._raceEventEscapeHandler) {
+          window.removeEventListener("keydown", self._raceEventEscapeHandler);
+          self._raceEventEscapeHandler = null;
+        }
+        htmlEl.classList.remove("race-screen-active");
+        bodyEl.classList.remove("race-screen-active");
         document.getElementById("btn-race-event-close").onclick = null;
         document.getElementById("btn-race-continue").onclick = null;
         document.getElementById("btn-race-event-info").onclick = null;
         const infoOverlay = document.getElementById("raceEventInfoOverlay");
-        if (infoOverlay) infoOverlay.classList.add("hidden");
+        if (infoOverlay) {
+          infoOverlay.classList.add("hidden");
+          infoOverlay.onclick = null;
+        }
+        const infoContinue = document.getElementById("btn-race-info-continue");
+        if (infoContinue) infoContinue.onclick = null;
         const rp = document.getElementById("raceResultPopup");
         if (rp) rp.classList.add("hidden");
+        delete screen.dataset.raceState;
       };
       document.getElementById("btn-race-event-close").onclick = close;
       document.getElementById("btn-race-continue").onclick = close;
@@ -4865,13 +6045,36 @@
         infoBtn.onclick = () => {
           const infoOverlay = document.getElementById("raceEventInfoOverlay");
           if (infoOverlay) {
+            const closeInfo = () => infoOverlay.classList.add("hidden");
             infoOverlay.classList.remove("hidden");
-            infoOverlay.onclick = (e) => { if (e.target === infoOverlay) infoOverlay.classList.add("hidden"); };
-            document.getElementById("btn-race-info-close").onclick = () => infoOverlay.classList.add("hidden");
+            infoOverlay.onclick = (e) => { if (e.target === infoOverlay) closeInfo(); };
+            const infoContinue = document.getElementById("btn-race-info-continue");
+            if (infoContinue) infoContinue.onclick = closeInfo;
           }
         };
       }
+      this._raceEventEscapeHandler = (e) => {
+        if (e.key !== "Escape") return;
+        const infoOverlay = document.getElementById("raceEventInfoOverlay");
+        if (infoOverlay && !infoOverlay.classList.contains("hidden")) {
+          infoOverlay.classList.add("hidden");
+          e.preventDefault();
+          return;
+        }
+        const rp = document.getElementById("raceResultPopup");
+        if (rp && !rp.classList.contains("hidden")) {
+          rp.classList.add("hidden");
+          e.preventDefault();
+          close();
+          return;
+        }
+        e.preventDefault();
+        close();
+      };
+      window.addEventListener("keydown", this._raceEventEscapeHandler);
       screen.classList.remove("hidden");
+      htmlEl.classList.add("race-screen-active");
+      bodyEl.classList.add("race-screen-active");
       const resultPopup = document.getElementById("raceResultPopup");
       const resultTitle = document.getElementById("race-result-title");
       const resultMessage = document.getElementById("race-result-message");
@@ -4901,9 +6104,13 @@
         }
         if (btnResultClose) btnResultClose.onclick = () => { resultPopup.classList.add("hidden"); close(); };
       }
-      const refreshTrack = () => this._renderRaceTrack();
+      const refreshTrack = () => {
+        this._renderRaceTrack();
+        updateTimer();
+      };
       if (this._raceEventRefreshId) clearInterval(this._raceEventRefreshId);
       this._raceEventRefreshId = setInterval(refreshTrack, 1000);
+      updateTimer();
     }
 
     _showWheelUnlockTutorial(onAfter) {
@@ -4966,6 +6173,10 @@
     }
 
     updatePiggyWidget() {
+      const piggyModal = document.getElementById("piggy-bank-modal");
+      if (piggyModal && !piggyModal.classList.contains("hidden") && typeof PiggyBankScreen !== "undefined") {
+        PiggyBankScreen.syncFromSave(this);
+      }
       const widget = document.getElementById("piggy-widget");
       if (!widget) return;
       if (this._save.piggyBroken) {
@@ -5008,56 +6219,23 @@
     }
 
     openPiggyModal() {
+      if (typeof PiggyBankScreen !== "undefined" && PiggyBankScreen.open) {
+        PiggyBankScreen.open(this);
+        return;
+      }
       if (this._save.piggyBroken) return;
       const modal = document.getElementById("piggy-bank-modal");
       if (!modal) return;
-      const stored = Math.min(this._save.piggyCap, this._save.piggyGemsStored || 0);
-      const cap = this._save.piggyCap || PIGGY_CAP_DEFAULT;
-      const isFull = stored >= cap;
-      const pct = cap > 0 ? Math.min(100, (stored / cap) * 100) : 0;
-      const fillEl = document.getElementById("piggy-progress-fill");
-      if (fillEl) fillEl.style.width = pct + "%";
-      const currentEl = document.getElementById("piggy-progress-current");
-      if (currentEl) currentEl.textContent = stored;
-      const capEl = document.getElementById("piggy-progress-cap");
-      if (capEl) capEl.textContent = cap;
-      const descEl = document.getElementById("piggy-modal-desc");
-      if (descEl) descEl.textContent = isFull ? "The piggy bank is full! Open it and get lots of gems!" : "Keep placing puzzle pieces to fill the piggy bank. Then open it for gems!";
-      const purchaseBtn = document.getElementById("piggy-btn-purchase");
-      if (purchaseBtn) {
-        purchaseBtn.disabled = !isFull;
-        purchaseBtn.textContent = isFull ? "$1.99" : "Not full yet";
-      }
       modal.classList.remove("hidden");
-      const infoOverlay = document.getElementById("piggy-info-overlay");
-      const btnPiggyInfo = document.getElementById("btn-piggy-info");
-      const closePiggyInfo = () => {
-        if (infoOverlay) infoOverlay.classList.add("hidden");
-      };
-      if (btnPiggyInfo) {
-        btnPiggyInfo.onclick = () => {
-          if (infoOverlay) infoOverlay.classList.remove("hidden");
-        };
-      }
-      if (infoOverlay) {
-        infoOverlay.onclick = closePiggyInfo;
-        const infoContinue = document.getElementById("piggy-info-continue");
-        if (infoContinue) infoContinue.onclick = (e) => { e.stopPropagation(); closePiggyInfo(); };
-      }
     }
 
     closePiggyModal() {
+      if (typeof PiggyBankScreen !== "undefined" && PiggyBankScreen.close) {
+        PiggyBankScreen.close();
+        return;
+      }
       const modal = document.getElementById("piggy-bank-modal");
       if (modal) modal.classList.add("hidden");
-      const infoOverlay = document.getElementById("piggy-info-overlay");
-      if (infoOverlay) {
-        infoOverlay.classList.add("hidden");
-        infoOverlay.onclick = null;
-      }
-      const btnPiggyInfo = document.getElementById("btn-piggy-info");
-      if (btnPiggyInfo) btnPiggyInfo.onclick = null;
-      const infoContinue = document.getElementById("piggy-info-continue");
-      if (infoContinue) infoContinue.onclick = null;
     }
 
     _breakPiggyBank() {
@@ -5066,7 +6244,10 @@
       this._save.gemsTotal = (this._save.gemsTotal || 0) + amount;
       this._save.piggyGemsStored = 0;
       this._save.piggyBroken = true;
+      this._syncDailyTasksData();
+      this._save.dailyTasksProgress.piggyClaims = Math.max(1, this._save.dailyTasksProgress.piggyClaims || 0);
       saveSave(this._save);
+      this._renderDailyTasksScreen();
       this.closePiggyModal();
       this.updatePiggyWidget();
       const popup = document.getElementById("piggy-reward-popup");
@@ -5087,12 +6268,20 @@
     openWheelScreen() {
       const modal = document.getElementById("wheel-modal");
       if (!modal) return;
+      modal.setAttribute("data-wheel-state", "loading");
+      document.documentElement.classList.add("wheel-screen-active");
+      document.body.classList.add("wheel-screen-active");
       const now = Date.now();
       const nextFree = Math.max(0, parseInt(this._save.wheelNextFreeAt, 10) || 0);
       const freeAvailable = now >= nextFree;
       const pool = this.collectionManager.getWheelSegmentPool();
       const rotatable = document.getElementById("wheel-rotatable");
       const segmentsEl = document.getElementById("wheel-segments");
+      const stateFromCooldown = () => {
+        const n = Math.max(0, parseInt(this._save.wheelNextFreeAt, 10) || 0);
+        return Date.now() >= n ? "ready" : "disabled";
+      };
+      const setWheelState = (state) => modal.setAttribute("data-wheel-state", state);
       if (segmentsEl && pool.length === WHEEL_SEGMENTS) {
         segmentsEl.innerHTML = "";
         const segmentAngle = 360 / WHEEL_SEGMENTS;
@@ -5124,6 +6313,12 @@
             img.onerror = function () { this.src = mysteryCardSrc; };
             inner.appendChild(img);
           }
+          const mul = document.createElement("div");
+          mul.className = "wheel-segment-multiplier";
+          if (item.type === "pack") mul.textContent = "x" + (item.cardCount || 1);
+          else if (item.type === "hammers") mul.textContent = "x" + (item.amount || 1);
+          else mul.textContent = "x1";
+          inner.appendChild(mul);
           seg.appendChild(inner);
           segmentsEl.appendChild(seg);
         }
@@ -5133,26 +6328,33 @@
       const spinBtn = document.getElementById("btn-wheel-spin");
       const timerEl = document.getElementById("wheel-timer");
       const timerValue = document.getElementById("wheel-timer-value");
+      const subtitleEl = document.getElementById("wheel-subtitle");
       if (freeAvailable) {
         if (spinBtn) {
-          spinBtn.textContent = "FREE";
+          spinBtn.textContent = "Free Spin";
           spinBtn.disabled = false;
           spinBtn.classList.remove("hidden");
         }
+        if (subtitleEl) subtitleEl.textContent = "Spin for free!";
         if (timerEl) timerEl.classList.add("hidden");
+        setWheelState("ready");
       } else {
         if (spinBtn) {
           spinBtn.disabled = true;
           spinBtn.textContent = "SPIN";
         }
+        if (subtitleEl) subtitleEl.textContent = "Come back for your next free spin.";
         if (timerEl) timerEl.classList.remove("hidden");
+        setWheelState("disabled");
         const updateTimer = () => {
           const remain = Math.max(0, nextFree - Date.now());
           if (remain <= 0) {
             if (timerValue) timerValue.textContent = "00:00:00";
             spinBtn.disabled = false;
-            spinBtn.textContent = "FREE";
+            spinBtn.textContent = "Free Spin";
             timerEl.classList.add("hidden");
+            if (subtitleEl) subtitleEl.textContent = "Spin for free!";
+            setWheelState("ready");
             if (this._wheelTimerId) clearInterval(this._wheelTimerId);
             this._wheelTimerId = null;
             return;
@@ -5168,6 +6370,8 @@
       }
       const spinCheatBtn = document.getElementById("btn-wheel-spin-cheat");
       const doSpin = (useCooldown) => {
+        setWheelState("spinning");
+        if (subtitleEl) subtitleEl.textContent = "Spinning...";
         if (spinBtn) spinBtn.disabled = true;
         if (spinCheatBtn) spinCheatBtn.disabled = true;
         if (spinBtn) spinBtn.onclick = null;
@@ -5187,16 +6391,21 @@
             pointerEl.classList.add("wheel-pointer-glow");
             setTimeout(() => pointerEl.classList.remove("wheel-pointer-glow"), 600);
           }
+          this._syncDailyTasksData();
+          this._save.dailyTasksProgress.wheelSpins = (this._save.dailyTasksProgress.wheelSpins || 0) + 1;
           if (useCooldown) {
             this._save.wheelNextFreeAt = Date.now() + WHEEL_FREE_COOLDOWN_MS;
           }
           saveSave(this._save);
           this.updateWheelWidget();
+          this._renderDailyTasksScreen();
           close();
+          setWheelState("result");
           if (wonItem.type === "pack") {
             this._openPackOpeningFlowGeneric(wonItem.packStars, wonItem.cardCount, () => {
               this.collectionUI.updateCollectionButtons();
               this.collectionUI.updateGlobalCardsProgress();
+              setWheelState(stateFromCooldown());
             });
             return;
           }
@@ -5214,6 +6423,7 @@
               if (rewardModal) rewardModal.classList.add("hidden");
               document.getElementById("btn-wheel-reward-ok").onclick = null;
               rewardModal.onclick = null;
+              setWheelState(stateFromCooldown());
             };
             document.getElementById("btn-wheel-reward-ok").onclick = onAwesome;
             rewardModal.onclick = (e) => { if (e.target === rewardModal) onAwesome(); };
@@ -5248,23 +6458,36 @@
             if (rewardModal) rewardModal.classList.add("hidden");
             document.getElementById("btn-wheel-reward-ok").onclick = null;
             rewardModal.onclick = null;
+            setWheelState(stateFromCooldown());
           };
           document.getElementById("btn-wheel-reward-ok").onclick = onAwesome;
           rewardModal.onclick = (e) => { if (e.target === rewardModal) onAwesome(); };
         }, WHEEL_SPIN_DURATION_MS + 200);
       };
 
+      let keyHandler = null;
       const close = () => {
         modal.classList.add("hidden");
+        modal.removeAttribute("data-wheel-state");
+        document.documentElement.classList.remove("wheel-screen-active");
+        document.body.classList.remove("wheel-screen-active");
         if (this._wheelTimerId) clearInterval(this._wheelTimerId);
         this._wheelTimerId = null;
         document.getElementById("btn-wheel-close").onclick = null;
         if (spinBtn) spinBtn.onclick = null;
         if (spinCheatBtn) spinCheatBtn.onclick = null;
-        modal.onclick = null;
+        if (keyHandler) {
+          document.removeEventListener("keydown", keyHandler);
+          keyHandler = null;
+        }
       };
       document.getElementById("btn-wheel-close").onclick = close;
-      modal.onclick = (e) => { if (e.target === modal) close(); };
+      keyHandler = (e) => {
+        if (e.key !== "Escape") return;
+        e.preventDefault();
+        close();
+      };
+      document.addEventListener("keydown", keyHandler);
 
       modal.classList.remove("hidden");
 
@@ -5408,6 +6631,7 @@
       const accessoriesPanel = document.getElementById("profile-accessories-panel");
       const tabAccessories = document.getElementById("profile-tab-accessories");
       const tabSkins = document.getElementById("profile-tab-skins");
+      const skinsGrid = document.getElementById("profile-skins-grid");
       const displayName = (profile.name && String(profile.name).trim()) ? String(profile.name).trim() : generateDefaultUserName();
       if (pillEl) {
         pillEl.textContent = displayName;
@@ -5420,6 +6644,58 @@
       }
       this._updateProfileModalPreview(previewEl, profile.avatarId, profile.accessoryId);
       const currentAccessoryId = (profile.accessoryId != null && profile.accessoryId !== "") ? String(profile.accessoryId) : "none";
+      const profileSkinCatalog = [
+        { avatarId: 0, state: "used", label: "Used", selectable: true },
+        { avatarId: 1, state: "available", label: "Available", selectable: true },
+        { avatarId: 2, state: "available", label: "Available", selectable: true },
+        { avatarId: 3, state: "locked-ads", label: "0/10", icon: PROFILE_ICON_ADS_SRC, selectable: false },
+        { avatarId: 4, state: "locked-gems", label: "5", icon: PROFILE_ICON_GEM_SRC, selectable: false },
+        { avatarId: 5, state: "locked-gems", label: "10", icon: PROFILE_ICON_GEM_SRC, selectable: false },
+      ];
+      const renderSkins = () => {
+        if (!skinsGrid) return;
+        skinsGrid.innerHTML = "";
+        profileSkinCatalog.forEach((item) => {
+          const isSelected = item.avatarId === profile.avatarId;
+          const card = document.createElement("div");
+          card.className = "profile-item-card" + (item.selectable ? "" : " profile-item-card--locked");
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "profile-item-button";
+          if (!item.selectable) {
+            button.setAttribute("aria-disabled", "true");
+          }
+          const thumb = document.createElement("div");
+          thumb.className = "profile-item-thumb" + (isSelected ? " profile-item-thumb--selected" : "");
+          thumb.innerHTML = getAvatarSvg(item.avatarId);
+          const pill = document.createElement("div");
+          const toneClass = item.state === "used" ? " profile-item-pill--used" : (item.state === "available" ? " profile-item-pill--available" : "");
+          pill.className = "profile-item-pill" + toneClass;
+          if (item.icon) {
+            const icon = document.createElement("img");
+            icon.className = "profile-item-price-icon";
+            icon.src = item.icon;
+            icon.alt = "";
+            icon.setAttribute("aria-hidden", "true");
+            pill.appendChild(icon);
+          }
+          const txt = document.createElement("span");
+          txt.textContent = item.label;
+          pill.appendChild(txt);
+          button.appendChild(thumb);
+          button.appendChild(pill);
+          button.onclick = () => {
+            if (!item.selectable) return;
+            this._save.playerProfile.avatarId = item.avatarId;
+            saveSave(this._save);
+            this._updateProfileModalPreview(previewEl, item.avatarId, profile.accessoryId);
+            renderSkins();
+            this.updateProfileWidget();
+          };
+          card.appendChild(button);
+          skinsGrid.appendChild(card);
+        });
+      };
       const switchToSkins = () => {
         if (tabSkins) { tabSkins.classList.add("profile-tab--active"); tabSkins.classList.remove("profile-tab--inactive"); }
         if (tabAccessories) { tabAccessories.classList.remove("profile-tab--active"); tabAccessories.classList.add("profile-tab--inactive"); }
@@ -5439,41 +6715,53 @@
         accessoriesGrid.innerHTML = "";
         ACCESSORY_DEFS.forEach((def) => {
           const tile = document.createElement("div");
-          tile.className = "profile-accessory-tile" + (def.id === currentAccessoryId ? " profile-accessory-tile--selected" : "");
-          tile.setAttribute("data-accessory-id", def.id);
+          tile.className = "profile-item-card";
           tile.setAttribute("role", "listitem");
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "profile-item-button";
+          const thumb = document.createElement("div");
+          thumb.className = "profile-item-thumb" + (def.id === currentAccessoryId ? " profile-item-thumb--selected" : "");
           if (def.id === "none") {
-            tile.innerHTML = "<span class=\"profile-accessory-tile-label\">None</span><span class=\"profile-accessory-tile-check\" aria-hidden=\"true\">✓</span>";
+            thumb.innerHTML = "<span class=\"profile-username-pill\" style=\"font-size:0.9rem;padding:0;line-height:1;\">None</span>";
           } else if (def.iconSvg) {
-            tile.innerHTML = "<span class=\"profile-accessory-tile-icon\">" + def.iconSvg + "</span><span class=\"profile-accessory-tile-check\" aria-hidden=\"true\">✓</span>";
+            thumb.innerHTML = def.iconSvg;
           } else {
-            tile.innerHTML = "<span class=\"profile-accessory-tile-label\">" + (def.displayName || def.id) + "</span><span class=\"profile-accessory-tile-check\" aria-hidden=\"true\">✓</span>";
+            thumb.innerHTML = "<span class=\"profile-username-pill\" style=\"font-size:0.75rem;padding:0;line-height:1.1;\">" + (def.displayName || def.id) + "</span>";
           }
-          tile.onclick = () => {
+          const pill = document.createElement("div");
+          pill.className = "profile-item-pill" + (def.id === currentAccessoryId ? " profile-item-pill--used" : " profile-item-pill--available");
+          const txt = document.createElement("span");
+          txt.textContent = def.id === currentAccessoryId ? "Used" : "Available";
+          pill.appendChild(txt);
+          button.appendChild(thumb);
+          button.appendChild(pill);
+          tile.appendChild(button);
+          if (def.id === "none") {
+            tile.setAttribute("data-accessory-id", "none");
+          }
+          button.onclick = () => {
             this._save.playerProfile.accessoryId = def.id;
             saveSave(this._save);
-            accessoriesGrid.querySelectorAll(".profile-accessory-tile").forEach((t) => t.classList.remove("profile-accessory-tile--selected"));
-            tile.classList.add("profile-accessory-tile--selected");
+            profile.accessoryId = def.id;
             this._updateProfileModalPreview(previewEl, profile.avatarId, def.id);
+            accessoriesGrid.querySelectorAll(".profile-item-thumb").forEach((t) => t.classList.remove("profile-item-thumb--selected"));
+            accessoriesGrid.querySelectorAll(".profile-item-pill").forEach((t) => {
+              t.classList.remove("profile-item-pill--used");
+              t.classList.add("profile-item-pill--available");
+              const s = t.querySelector("span");
+              if (s) s.textContent = "Available";
+            });
+            thumb.classList.add("profile-item-thumb--selected");
+            pill.classList.remove("profile-item-pill--available");
+            pill.classList.add("profile-item-pill--used");
+            txt.textContent = "Used";
             this.updateProfileWidget();
           };
           accessoriesGrid.appendChild(tile);
         });
       }
-      const avatarContainers = modal.querySelectorAll("[data-profile-avatar]");
-      avatarContainers.forEach((el) => {
-        const id = parseInt(el.getAttribute("data-profile-avatar"), 10);
-        el.classList.toggle("profile-skin-tile--selected", id === profile.avatarId);
-        el.innerHTML = getAvatarSvg(id);
-        el.onclick = () => {
-          this._save.playerProfile.avatarId = id;
-          avatarContainers.forEach((e) => e.classList.remove("profile-skin-tile--selected"));
-          el.classList.add("profile-skin-tile--selected");
-          this._updateProfileModalPreview(previewEl, id, profile.accessoryId);
-          saveSave(this._save);
-          this.updateProfileWidget();
-        };
-      });
+      renderSkins();
       const commitName = () => {
         if (inputEl && !inputEl.classList.contains("hidden")) {
           this._saveProfileFromModal(pillEl, inputEl);
@@ -5505,6 +6793,10 @@
         modal.classList.add("hidden");
         if (!isEdit) this._save.profileSetupCompleted = true;
         saveSave(this._save);
+        if (this._profileModalEscapeHandler) {
+          window.removeEventListener("keydown", this._profileModalEscapeHandler);
+          this._profileModalEscapeHandler = null;
+        }
         if (pillEl) pillEl.onclick = null;
         if (inputEl) {
           inputEl.onkeydown = null;
@@ -5513,15 +6805,25 @@
         if (tabSkins) tabSkins.onclick = null;
         if (tabAccessories) tabAccessories.onclick = null;
         if (accessoriesGrid) {
-          accessoriesGrid.querySelectorAll(".profile-accessory-tile").forEach((t) => { t.onclick = null; });
+          accessoriesGrid.querySelectorAll(".profile-item-button").forEach((t) => { t.onclick = null; });
+          accessoriesGrid.innerHTML = "";
         }
-        avatarContainers.forEach((el) => { el.onclick = null; });
+        if (skinsGrid) {
+          skinsGrid.querySelectorAll(".profile-item-button").forEach((t) => { t.onclick = null; });
+          skinsGrid.innerHTML = "";
+        }
         modal.onclick = null;
         const closeBtn = document.getElementById("profile-modal-close");
         if (closeBtn) closeBtn.onclick = null;
         this.updateProfileWidget();
       };
       modal.onclick = (e) => { if (e.target === modal) close(); };
+      this._profileModalEscapeHandler = (e) => {
+        if (e.key !== "Escape") return;
+        e.preventDefault();
+        close();
+      };
+      window.addEventListener("keydown", this._profileModalEscapeHandler);
       const closeBtn = document.getElementById("profile-modal-close");
       if (closeBtn) closeBtn.onclick = () => close();
       modal.classList.remove("hidden");

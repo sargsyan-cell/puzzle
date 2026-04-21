@@ -106,6 +106,12 @@
         </button>
         <span id="wheel-badge" class="top-feature-badge hidden" aria-hidden="true">!</span>
       </div>
+      <div class="top-feature-icon home-event-widget" aria-label="Moon Observatory Event">
+        <button type="button" id="btn-home-event" class="top-feature-btn top-feature-btn--observatory">
+          <span class="top-feature-art" aria-hidden="true"></span>
+          <span id="home-event-timer" class="top-feature-sublabel">1d 12h 39m</span>
+        </button>
+      </div>
     </div>
     <div class="top-features-right" id="top-features-right">
       <div id="lost-temple-widget" class="top-feature-icon lost-temple-widget" aria-label="Lost Temple">
@@ -131,10 +137,6 @@
         </button>
       </div>
     </div>
-    <div class="home-side-widget home-side-widget--ads">
-      <button type="button" id="btn-no-ads" class="home-side-btn home-side-btn--ads" aria-label="No ads"></button>
-    </div>
-
     <main class="app-main" id="app-main">
       <section id="start-screen" class="screen active">
         <div class="home-bg-map" aria-hidden="true"></div>
@@ -148,6 +150,10 @@
           </div>
         </div>
         <div class="main-center">
+          <button id="btn-home-daily-tasks" class="top-feature-btn top-feature-btn--task-entry home-play-side-entry home-play-side-entry--left" type="button" aria-label="Daily Tasks" onclick="if(window.gameApp&&window.gameApp.openDailyTasksScreen){window.gameApp.openDailyTasksScreen();}">
+            <span class="top-feature-art" aria-hidden="true"></span>
+            <span class="top-feature-sublabel">Task List</span>
+          </button>
           <button id="btn-play" class="home-play-btn btn btn-primary">
             <span class="home-play-main">PLAY</span>
             <span class="home-play-sub">Level <span id="level-number-home">1</span></span>
@@ -166,34 +172,31 @@
       <section id="daily-tasks-screen" class="screen">
         <div class="daily-tasks-screen-bg" aria-hidden="true"></div>
         <div class="daily-tasks-shell">
-          <header class="daily-tasks-header-card">
-            <button type="button" id="btn-daily-tasks-info" class="daily-tasks-header-btn daily-tasks-header-btn--info" aria-label="How Daily Tasks work"></button>
-            <div class="daily-tasks-title-wrap">
-              <h1 id="daily-tasks-title" class="daily-tasks-title">Daily Tasks</h1>
-              <p class="daily-tasks-day-line"><span id="daily-tasks-day">Day 1/7</span></p>
-            </div>
-          </header>
-          <section class="daily-tasks-main-reward">
-            <div class="daily-tasks-main-art" aria-hidden="true"></div>
-            <div class="daily-tasks-main-progress-wrap">
-              <div class="daily-tasks-main-progress-bar">
-                <div id="daily-tasks-main-fill" class="daily-tasks-main-progress-fill"></div>
+          <section class="daily-tasks-modal" aria-label="Daily Tasks">
+            <header class="daily-tasks-main-reward">
+              <button type="button" id="btn-daily-tasks-close" class="daily-tasks-close-btn" aria-label="Close Daily Tasks">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                  <path d="M18 6L6 18M6 6l12 12"></path>
+                </svg>
+              </button>
+              <div class="daily-tasks-main-art" aria-hidden="true"></div>
+              <div class="daily-tasks-title-wrap">
+                <h1 id="daily-tasks-title" class="daily-tasks-title">Task List</h1>
+                <p class="daily-tasks-day-line"><span id="daily-tasks-day">Day 1/7</span></p>
               </div>
-              <p class="daily-tasks-main-progress-text"><span id="daily-tasks-main-current">0</span>/<span id="daily-tasks-main-target">15</span></p>
-            </div>
-            <div class="daily-tasks-main-reward-row">
-              <div class="daily-tasks-pack-preview" aria-hidden="true">🃏</div>
-              <p class="daily-tasks-main-reward-label">Main Reward: Card Pack (15 points)</p>
-              <button type="button" id="btn-daily-main-claim" class="daily-tasks-main-claim" disabled>Claim</button>
-            </div>
+              <div class="daily-tasks-main-progress-wrap">
+                <div class="daily-tasks-main-progress-bar">
+                  <div id="daily-tasks-main-fill" class="daily-tasks-main-progress-fill"></div>
+                  <p class="daily-tasks-main-progress-text"><span id="daily-tasks-main-current">0</span>/<span id="daily-tasks-main-target">15</span></p>
+                </div>
+                <img class="daily-tasks-main-pack" src="https://www.figma.com/api/mcp/asset/42181573-8446-4aea-b7c9-266b88d441bd" alt="" aria-hidden="true" />
+              </div>
+            </header>
+            <p class="daily-tasks-main-reward-label">Complete tasks in the City, fill the progress bar and get amazing rewards!</p>
+            <section class="daily-tasks-card">
+              <div id="daily-tasks-list" class="daily-tasks-list"></div>
+            </section>
           </section>
-          <section class="daily-tasks-card">
-            <div id="daily-tasks-list" class="daily-tasks-list"></div>
-          </section>
-          <footer class="daily-tasks-refresh-footer">
-            <span class="daily-tasks-refresh-icon" aria-hidden="true">⏱</span>
-            <span>Tasks refresh in: <strong id="daily-tasks-refresh-timer">00h 00m</strong></span>
-          </footer>
         </div>
       </section>
 
@@ -423,77 +426,105 @@
     <div id="rubyCaveScreen" class="rc-screen hidden">
       <div class="rc-inner">
       <div id="rc-hub" class="rc-view">
-        <div class="rc-hub-scene">
-          <div class="rc-scene-sky"></div>
-          <div class="rc-scene-dome"></div>
-          <div class="rc-scene-dome-struts"></div>
-          <div class="rc-scene-wall-l"></div>
-          <div class="rc-scene-wall-r"></div>
-          <div class="rc-scene-wall-c"></div>
-          <div class="rc-scene-floor-area"></div>
-          <div class="rc-scene-debris"></div>
-          <div class="rc-scene-glow"></div>
-        </div>
-        <div class="rc-hub-header">
-          <button id="rc-closeBtn" class="rc-hdr-btn" type="button" aria-label="Back">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <div class="rc-hub-bg" aria-hidden="true"></div>
+        <div class="rc-hub-header rc-hub-header--events">
+          <button id="rc-closeBtn" class="rc-hdr-btn rc-hdr-btn--left" type="button" aria-label="Back">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
           </button>
-          <span class="rc-hub-title">Moon Observatory</span>
-          <button id="rc-infoBtn" class="rc-hdr-btn" type="button" aria-label="Info">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          <div class="rc-events-title-card">
+            <div class="rc-events-title-main">Observatory</div>
+            <div class="rc-events-title-timer" id="rc-hubTimer">Ends In: 9d 18h 24m</div>
+          </div>
+          <button id="rc-infoBtn" class="rc-hdr-btn rc-hdr-btn--right" type="button" aria-label="Info">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
           </button>
         </div>
-        <div id="rc-info-panel" class="rc-info-panel rc-info-panel--hidden">
-          <div class="rc-info-panel-card">
-            <div class="rc-info-step">
-              <span class="rc-info-step-icon">🧩</span>
-              <span class="rc-info-step-text">Play levels</span>
-            </div>
-            <div class="rc-info-arrow">↓</div>
-            <div class="rc-info-step">
-              <span class="rc-info-step-icon">⏳</span>
-              <span class="rc-info-step-text">Event time is limited</span>
-            </div>
-            <div class="rc-info-arrow">↓</div>
-            <div class="rc-info-step">
-              <span class="rc-info-step-icon">🏆</span>
-              <span class="rc-info-step-text">Complete all levels and get a reward</span>
-            </div>
+        <div class="rc-hub-balance">
+          <div class="rc-hub-balance-left">⚡</div>
+          <div class="rc-hub-balance-mid" id="rc-hub-balance-mid">04:43</div>
+          <div class="rc-hub-balance-right">
+            <span id="rc-hubEnergy">5/5</span>
+            <span id="rc-hubRegen">• Full</span>
           </div>
         </div>
-        <div id="rc-info-backdrop" class="rc-info-backdrop rc-info-panel--hidden"></div>
-        <div class="rc-hub-badges">
-          <div class="rc-timer-badge" id="rc-hubTimer">🕐 2d 00:00:00</div>
-          <div class="rc-energy-badge"><span class="rc-energy-icon">⚡</span><span id="rc-hubEnergy">5/5</span> <span id="rc-hubRegen">• Full</span></div>
+        <div class="rc-hub-main">
+          <div class="rc-events-stage-rail">
+            <div id="rc-nodes" class="rc-stage-list"></div>
+          </div>
+          <div class="rc-events-tier-card">
+            <div class="rc-events-tier-art" aria-hidden="true"></div>
+            <div class="rc-events-tier-reward">
+              <p class="rc-events-reward-copy">Finish all levels before the event ends for a reward!</p>
+              <div class="rc-events-reward-chips">
+                <span class="rc-events-chip">🪙 50</span>
+                <span class="rc-events-chip">⚡ 150</span>
+                <span class="rc-events-chip">💚 25</span>
+                <span class="rc-events-chip">⛏ 5</span>
+                <span class="rc-events-chip">🃏 2</span>
+                <span class="rc-events-chip">🎴 1</span>
+                <span class="rc-events-chip">🏷 1</span>
+              </div>
+              <button id="rc-hub-claim" class="rc-events-claim-btn" type="button" disabled>Claim</button>
+            </div>
+          </div>
         </div>
         <div id="rc-hubProgress" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)"></div>
         <div id="rc-hubSum" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)"></div>
-        <div class="rc-hub-progress-area">
-          <div class="rc-map">
-            <svg class="rc-path-line" viewBox="0 0 100 10" preserveAspectRatio="none"><line x1="5" y1="5" x2="95" y2="5" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <div id="rc-nodes"></div>
-          </div>
-        </div>
         <button id="rc-enterBtn" class="rc-hub-play" type="button">Play</button>
       </div>
       <div id="rc-game" class="rc-view rc-view--hidden">
         <div class="rc-game-bg"></div>
-        <div class="rc-hud">
-          <div class="rc-pill rc-timer-pill" id="rc-gameTimer">Event: 2d 00:00:00</div>
-          <div class="rc-pill rc-energy-pill"><span class="rc-energy-icon">⚡</span><span id="rc-gameEnergy">5/5</span><span id="rc-gameRegen">• Full</span></div>
-          <div class="rc-pill rc-progress-pill" id="rc-gameInfo">Level 1 / 10</div>
+        <div class="rc-game-header">
+          <button id="rc-backBtn" class="rc-game-hdr-btn" type="button" aria-label="Back to events">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="rc-game-title-card">
+            <div class="rc-game-title-main" id="rc-game-title-main">Level 1</div>
+            <div class="rc-game-title-timer" id="rc-gameTimer">Ends In: 9d 18h 24m</div>
+          </div>
+          <button id="rc-gameInfoBtn" class="rc-game-hdr-btn" type="button" aria-label="Event info">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          </button>
         </div>
-        <button id="rc-backBtn" class="rc-back" type="button">← Hub</button>
-        <div class="rc-game-title">Puzzle Room</div>
+        <div class="rc-game-balance">
+          <div class="rc-game-balance-left">⚡</div>
+          <div class="rc-game-balance-mid" id="rc-game-balance-time">04:43</div>
+          <div class="rc-game-balance-right" id="rc-gameInfo">Level 1 / 5</div>
+        </div>
+        <div id="rc-game-energy-meta" class="rc-game-energy-meta hidden"><span id="rc-gameEnergy">5/5</span><span id="rc-gameRegen">• Full</span></div>
         <div id="rc-external-host" class="rc-external-host rc-external-host--hidden" aria-label="Event playable level">
           <iframe id="rc-external-frame" class="rc-external-frame" title="Event playable level"></iframe>
         </div>
         <div id="rc-scene" class="rc-scene"></div>
         <div id="rc-tray" class="rc-tray"></div>
       </div>
+      <div id="rc-feature-info-overlay" class="rc-feature-info-overlay rc-info-panel--hidden" role="dialog" aria-modal="true" aria-labelledby="rc-feature-info-title">
+        <div class="rc-feature-info-modal">
+          <header class="rc-feature-info-header">
+            <h2 id="rc-feature-info-title" class="rc-feature-info-title">How does it work?</h2>
+          </header>
+          <div class="rc-feature-info-content">
+            <div class="rc-feature-info-row">
+              <p>Use Moon Energy to solve riddles and wait for refills</p>
+              <img class="rc-feature-info-art" src="https://www.figma.com/api/mcp/asset/23af1a1a-fa2c-46f2-827c-1f268fc221a8" alt="" aria-hidden="true" />
+            </div>
+            <div class="rc-feature-info-sep" aria-hidden="true"></div>
+            <div class="rc-feature-info-row">
+              <p>Keep playing before the event ends</p>
+              <img class="rc-feature-info-art" src="https://www.figma.com/api/mcp/asset/a565d7bf-66e3-4a11-b46b-37c1a6f3829d" alt="" aria-hidden="true" />
+            </div>
+            <div class="rc-feature-info-sep" aria-hidden="true"></div>
+            <div class="rc-feature-info-row">
+              <p>Complete all levels to claim the final reward</p>
+              <img class="rc-feature-info-art rc-feature-info-art--chest" src="https://www.figma.com/api/mcp/asset/f8ecef84-59ee-43ca-b1fd-f9c9a4e09ae0" alt="" aria-hidden="true" />
+            </div>
+          </div>
+          <button id="rc-feature-info-continue" class="rc-feature-info-continue" type="button">Got It!</button>
+        </div>
+      </div>
       <div id="rc-done" class="rc-overlay"><div class="rc-modal"><h3>Level Cleared!</h3><p>You advanced deeper into the Moon Observatory.</p><button id="rc-nextLevelBtn" class="rc-btn" type="button">Next Level</button></div></div>
       <div id="rc-grand-reward" class="rc-overlay">
-        <div class="rc-grand-modal">
+        <div class="rc-grand-modal rc-grand-modal--legacy">
           <div class="rc-grand-confetti"></div>
           <h2 class="rc-grand-title">Congratulations!</h2>
           <p class="rc-grand-sub">You completed the event.</p>
@@ -600,10 +631,73 @@
             </svg>
           </div>
           <p class="rc-grand-reward-label">You won a new building!</p>
-          <button id="rc-grand-claim" class="rc-btn rc-grand-claim-btn" type="button">Claim</button>
+          <button id="rc-grand-claim-legacy" class="rc-btn rc-grand-claim-btn" type="button">Claim</button>
+        </div>
+        <div class="rc-events-complete-screen">
+          <div class="rc-events-complete-header">
+            <button id="rc-grand-close" type="button" class="rc-events-complete-icon" aria-label="Back to Events">
+              <img src="https://www.figma.com/api/mcp/asset/bdcd7426-8598-4c41-85a4-62dedf9db6d7" alt="" aria-hidden="true" />
+            </button>
+            <div class="rc-events-complete-title-card">
+              <div class="rc-events-complete-title">Observatory</div>
+              <div class="rc-events-complete-sub">Event Completed • <span id="rc-complete-levels">10/10</span></div>
+            </div>
+            <button id="rc-grand-info" type="button" class="rc-events-complete-icon rc-events-complete-icon--info" aria-label="Event complete info">
+              <img src="https://www.figma.com/api/mcp/asset/d4d02f74-08eb-4d33-8bfa-965821dedda9" alt="" aria-hidden="true" />
+            </button>
+          </div>
+          <div class="rc-events-complete-body">
+            <div class="rc-events-complete-rail">
+              <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+            </div>
+            <div class="rc-events-complete-card">
+              <div class="rc-events-complete-art"></div>
+              <div class="rc-events-complete-reward">
+                <div class="rc-events-complete-chest" aria-hidden="true">
+                  <img src="https://www.figma.com/api/mcp/asset/0f61c626-8420-45f3-87f7-2b079f49345f" alt="" />
+                </div>
+                <div class="rc-events-complete-chips">
+                  <span><img src="https://www.figma.com/api/mcp/asset/a6240608-2afb-482b-b7e4-7bd98be06cd7" alt="" />50</span>
+                  <span><img src="https://www.figma.com/api/mcp/asset/d0c55268-0a95-4889-b527-6f6bea172f36" alt="" />150</span>
+                  <span><img src="https://www.figma.com/api/mcp/asset/1c62a439-a727-49da-92ae-e5ba5ecb31fa" alt="" />25</span>
+                  <span><img src="https://www.figma.com/api/mcp/asset/2e9d2131-4218-4322-8c66-6157a11566a5" alt="" />5</span>
+                  <span><img src="https://www.figma.com/api/mcp/asset/65b65d78-f00b-4452-bb7d-bf568fae9291" alt="" />2</span>
+                  <span><img src="https://www.figma.com/api/mcp/asset/541ed077-2bc2-4be8-87be-3a445468a5e6" alt="" />1</span>
+                  <span><img src="https://www.figma.com/api/mcp/asset/8c8213bd-5415-498e-85c0-cd0a736a07f4" alt="" />1</span>
+                </div>
+                <button id="rc-grand-claim" class="rc-events-complete-claim" type="button">Claim</button>
+              </div>
+            </div>
+          </div>
+          <div class="rc-events-complete-footer">Finished in <span id="rc-complete-timer">0d 00h 00m</span></div>
         </div>
       </div>
-      <div id="rc-energyModal" class="rc-overlay"><div class="rc-modal"><h3>Out of Energy</h3><p>Refill your event energy to continue exploring the cave.</p><button id="rc-refillBtn" class="rc-btn" type="button">Refill to 5/5</button></div></div>
+      <div id="rc-energyModal" class="rc-overlay rc-energy-overlay" aria-modal="true" role="dialog" aria-labelledby="rc-energy-title">
+        <div class="rc-energy-modal">
+          <header class="rc-energy-modal-header">
+            <h3 id="rc-energy-title" class="rc-energy-modal-title">Need Moon Energy</h3>
+            <button id="rc-energy-close" class="rc-energy-close" type="button" aria-label="Close">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+                <path d="M18 6L6 18M6 6l12 12"/>
+              </svg>
+            </button>
+          </header>
+          <div class="rc-energy-main">
+            <img class="rc-energy-bolt-art" src="https://www.figma.com/api/mcp/asset/50beced4-eec7-4919-a2d2-c1baa243d4d6" alt="" aria-hidden="true" />
+            <span class="rc-energy-plus">+5</span>
+          </div>
+          <div class="rc-energy-actions">
+            <button id="rc-refill-gems" class="rc-energy-action rc-energy-action--gems" type="button">
+              <img class="rc-energy-action-icon" src="https://www.figma.com/api/mcp/asset/89ee1462-c87f-410a-87a7-f230b167e078" alt="" aria-hidden="true" />
+              <span>1000</span>
+            </button>
+            <button id="rc-refill-ad" class="rc-energy-action rc-energy-action--ad" type="button">
+              <img class="rc-energy-action-icon" src="https://www.figma.com/api/mcp/asset/ec4bca3d-b654-4cb2-857b-c0ff9dbe3151" alt="" aria-hidden="true" />
+              <span>Ad</span>
+            </button>
+          </div>
+        </div>
+      </div>
       <div id="rc-toast" class="rc-toast">Not enough energy</div>
       <div id="rc-tutorial-overlay" class="rc-tutor-overlay rc-tutor-hidden">
         <div id="rc-tutor-highlight" class="rc-tutor-highlight"></div>
@@ -629,12 +723,6 @@
         </span>
         <span class="nav-label">Gallery</span>
       </button>
-      <button type="button" class="nav-item" id="nav-settings" aria-label="Event">
-        <span class="nav-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-        </span>
-        <span class="nav-label">Event</span>
-      </button>
       <button type="button" class="nav-item collection-btn" id="nav-collection" aria-label="Collection" title="Collection" aria-disabled="false">
         <span class="nav-icon nav-icon-cards" aria-hidden="true">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="8" height="16" rx="1"/><rect x="14" y="4" width="8" height="16" rx="1"/></svg>
@@ -644,16 +732,6 @@
         </span>
         <span class="nav-label">Cards</span>
         <span class="collection-badge nav-badge hidden">!</span>
-      </button>
-      <button type="button" class="nav-item" id="nav-daily-tasks" aria-label="Daily Tasks">
-        <span class="nav-icon" aria-hidden="true">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-        </span>
-        <span class="nav-label">Tasks</span>
-      </button>
-      <button type="button" class="nav-item" id="nav-ruby-cave" aria-label="Moon Observatory Event">
-        <span class="nav-icon" aria-hidden="true">💎</span>
-        <span class="nav-label">Event</span>
       </button>
     </nav>
   </div>

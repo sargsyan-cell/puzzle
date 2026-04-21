@@ -118,12 +118,61 @@
     { id: "gallery_level_8", label: "Tutorial", featureIcon: "feature-cards" },
   ];
   const DAILY_TASK_DEFS = [
-    { id: "complete_level_1", title: "Complete Level 1", target: 1, points: 5, progressKey: "level1Complete", rewardText: "30C", rewardCoins: 30 },
-    { id: "place_100_pieces", title: "Place 100 puzzle pieces", target: 100, points: 5, progressKey: "piecesPlaced", rewardText: "60C", rewardCoins: 60 },
-    { id: "spin_wheel_5", title: "Spin Wheel of Fortune 5 times", target: 5, points: 5, progressKey: "wheelSpins", rewardText: "5G", rewardGems: 5 },
-    { id: "race_action", title: "Complete a Race action", target: 1, points: 10, progressKey: "raceActions", rewardText: "80C", rewardCoins: 80 },
-    { id: "piggy_claim", title: "Claim Piggy Bank reward", target: 1, points: 10, progressKey: "piggyClaims", rewardText: "10G", rewardGems: 10 },
+    {
+      id: "complete_level_1",
+      title: "Build a Mall",
+      target: 1,
+      points: 5,
+      progressKey: "level1Complete",
+      rewards: [{ type: "coin", amount: 50 }],
+      rewardCoins: 50,
+    },
+    {
+      id: "place_100_pieces",
+      title: "Upgrade the Mall to Level 2",
+      target: 100,
+      points: 5,
+      progressKey: "piecesPlaced",
+      rewards: [{ type: "coin", amount: 50 }],
+      rewardCoins: 50,
+    },
+    {
+      id: "spin_wheel_5",
+      title: "Build a Ferris Wheel",
+      target: 5,
+      points: 15,
+      progressKey: "wheelSpins",
+      rewards: [{ type: "coin", amount: 50 }, { type: "crystal", amount: 50 }],
+      rewardCoins: 50,
+      rewardGems: 50,
+    },
+    {
+      id: "race_action",
+      title: "Collect 500 Coins in the City",
+      target: 1,
+      points: 5,
+      progressKey: "raceActions",
+      rewards: [{ type: "energy", amount: 50 }, { type: "boost_a", amount: 5 }, { type: "boost_b", amount: 5 }],
+      rewardCoins: 50,
+    },
+    {
+      id: "piggy_claim",
+      title: "Upgrade wheel attraction in the City",
+      target: 1,
+      points: 15,
+      progressKey: "piggyClaims",
+      rewards: [{ type: "coin", amount: 50 }, { type: "energy", amount: 50 }, { type: "boost_b", amount: 5 }],
+      rewardCoins: 50,
+      rewardGems: 10,
+    },
   ];
+  const DAILY_TASK_REWARD_ICON_BY_TYPE = {
+    coin: "https://www.figma.com/api/mcp/asset/14a18448-631a-44ee-b4e3-41cd4ac41214",
+    crystal: "https://www.figma.com/api/mcp/asset/e890eb9d-35db-439d-aa40-4d32c38149ff",
+    energy: "https://www.figma.com/api/mcp/asset/bbb65678-3762-4a72-bcb3-008e6f9476f2",
+    boost_a: "https://www.figma.com/api/mcp/asset/68bbb76e-4ad4-482f-9b28-599199cf2475",
+    boost_b: "https://www.figma.com/api/mcp/asset/31190ee7-2e49-4575-9e57-6f9bde5aa3a9",
+  };
 
   function ensureEvent(save, key, startNowIfMissing) {
     const ev = save[key];
@@ -3282,6 +3331,10 @@
       const externalLevelActive = !!(window.gameApp && window.gameApp._externalLevelActive);
       const galleryActive = id === "gallery-screen";
       document.body.classList.toggle("home-layout-active", id === "start-screen" || galleryActive || (id === "game-screen" && externalLevelActive));
+      if (id === "start-screen") {
+        document.body.classList.remove("daily-tasks-clean");
+        document.body.classList.remove("cards-screen-clean");
+      }
       document.body.classList.toggle("level-active", id === "game-screen");
       document.body.classList.toggle("gallery-screen-active", galleryActive);
       const stripStart = document.getElementById("status-strip-start");
@@ -3292,7 +3345,7 @@
       if (id === "game-screen" && externalLevelActive && stripStart) stripStart.classList.remove("hidden");
       if (id === "game-screen" && !externalLevelActive && stripGame) stripGame.classList.remove("hidden");
       document.querySelectorAll(".nav-item").forEach((n) => n.classList.remove("active"));
-      const navMap = { "start-screen": "nav-home", "gallery-screen": "nav-game", "album-screen": "nav-collection", "daily-tasks-screen": "nav-daily-tasks" };
+      const navMap = { "start-screen": "nav-home", "gallery-screen": "nav-game", "album-screen": "nav-collection" };
       const navId = navMap[id];
       if (navId) {
         const navEl = document.getElementById(navId);
@@ -3399,6 +3452,7 @@
      Moon Observatory Event Manager
      =================================================================== */
   class RubyCaveManager {
+    static EVENT_TOTAL_LEVELS = 10;
     static SHAPES = {
       star:{color:"#ffd639",rich:"#f0a000",bg:"#fef9e7",border:"#f5c518",shadow:"rgba(245,197,24,.34)",svg:`<svg viewBox="0 0 100 100"><polygon points="50,8 61,38 94,38 67,58 78,90 50,70 22,90 33,58 6,38 39,38" fill="FILL"/></svg>`},
       heart:{color:"#ff5c8a",rich:"#e0245e",bg:"#fde8ee",border:"#f44074",shadow:"rgba(244,64,116,.30)",svg:`<svg viewBox="0 0 100 100"><path d="M50 88 C25 65 5 50 5 33 5 18 17 8 30 8 38 8 46 13 50 20 54 13 62 8 70 8 83 8 95 18 95 33 95 50 75 65 50 88Z" fill="FILL"/></svg>`},
@@ -3463,6 +3517,7 @@
       this._cacheEls();
       this._bindEvents();
       this._startTimers();
+      this.completed = Math.min(this.completed, this._eventLevelCount());
     }
 
     _cacheEls() {
@@ -3474,12 +3529,17 @@
         backBtn: q("rc-backBtn"),
         closeBtn: q("rc-closeBtn"),
         nextLevelBtn: q("rc-nextLevelBtn"),
-        refillBtn: q("rc-refillBtn"),
+        refillGemsBtn: q("rc-refill-gems"),
+        refillAdBtn: q("rc-refill-ad"),
+        refillCloseBtn: q("rc-energy-close"),
         done: q("rc-done"),
         energyModal: q("rc-energyModal"),
         toast: q("rc-toast"),
         hubTimer: q("rc-hubTimer"),
+        hubBalanceMid: q("rc-hub-balance-mid"),
         gameTimer: q("rc-gameTimer"),
+        gameBalanceTime: q("rc-game-balance-time"),
+        gameTitleMain: q("rc-game-title-main"),
         hubEnergy: q("rc-hubEnergy"),
         gameEnergy: q("rc-gameEnergy"),
         hubRegen: q("rc-hubRegen"),
@@ -3494,6 +3554,11 @@
         externalFrame: q("rc-external-frame"),
         grandReward: q("rc-grand-reward"),
         grandClaim: q("rc-grand-claim"),
+        grandClose: q("rc-grand-close"),
+        grandInfo: q("rc-grand-info"),
+        hubClaim: q("rc-hub-claim"),
+        featureInfoOverlay: q("rc-feature-info-overlay"),
+        featureInfoContinue: q("rc-feature-info-continue"),
       };
     }
 
@@ -3504,14 +3569,18 @@
       this.el.closeBtn.addEventListener("click", () => this.close());
       this.el.nextLevelBtn.addEventListener("click", (e) => this._handleNextLevel(e));
       this.el.nextLevelBtn.addEventListener("pointerup", (e) => this._handleNextLevel(e));
-      this.el.refillBtn.addEventListener("click", () => {
-        this.energy = RubyCaveManager.ENERGY_MAX;
-        this.nextEnergyAt = null;
-        this._persist();
-        this._updateEnergyUI();
-        this.el.energyModal.classList.remove("rc-visible");
-      });
+      if (this.el.refillGemsBtn) this.el.refillGemsBtn.addEventListener("click", () => this._onEnergyRefillWithGems());
+      if (this.el.refillAdBtn) this.el.refillAdBtn.addEventListener("click", () => this._onEnergyRefillWithAd());
+      if (this.el.refillCloseBtn) this.el.refillCloseBtn.addEventListener("click", () => this._closeEnergyRefillModal());
       this.el.grandClaim.addEventListener("click", () => this._claimGrandReward());
+      if (this.el.grandClose) this.el.grandClose.addEventListener("click", () => {
+        this.el.grandReward.classList.remove("rc-visible");
+        this._showView("hub");
+      });
+      if (this.el.grandInfo) this.el.grandInfo.addEventListener("click", () => this._openFeatureInfo());
+      if (this.el.hubClaim) {
+        this.el.hubClaim.addEventListener("click", () => this._onHubClaim());
+      }
 
       this._onDown = (e) => this._pointerDown(e);
       this._onMove = (e) => this._pointerMove(e);
@@ -3521,15 +3590,14 @@
       document.addEventListener("pointerup", this._onUp);
 
       const infoBtn = document.getElementById("rc-infoBtn");
-      const infoPanel = document.getElementById("rc-info-panel");
-      const infoBackdrop = document.getElementById("rc-info-backdrop");
-      if (infoBtn && infoPanel && infoBackdrop) {
-        const toggle = () => {
-          const hidden = infoPanel.classList.toggle("rc-info-panel--hidden");
-          infoBackdrop.classList.toggle("rc-info-panel--hidden", hidden);
-        };
-        infoBtn.addEventListener("click", toggle);
-        infoBackdrop.addEventListener("click", toggle);
+      const gameInfoBtn = document.getElementById("rc-gameInfoBtn");
+      if (infoBtn && this.el.featureInfoOverlay) {
+        infoBtn.addEventListener("click", () => this._openFeatureInfo());
+        if (gameInfoBtn) gameInfoBtn.addEventListener("click", () => this._openFeatureInfo());
+        if (this.el.featureInfoContinue) this.el.featureInfoContinue.addEventListener("click", () => this._closeFeatureInfo());
+        this.el.featureInfoOverlay.addEventListener("click", (e) => {
+          if (e.target === this.el.featureInfoOverlay) this._closeFeatureInfo();
+        });
       }
 
       this._bindExternalEventFrame();
@@ -3569,6 +3637,9 @@
           internalIndex: idx,
         });
       });
+      if (defs.length > RubyCaveManager.EVENT_TOTAL_LEVELS) {
+        defs.length = RubyCaveManager.EVENT_TOTAL_LEVELS;
+      }
       this._cachedEventLevelDefs = defs;
       return defs;
     }
@@ -3592,10 +3663,21 @@
         this.el.hub.classList.remove("rc-view--hidden");
         this._updateHubProgress();
       } else {
+        this._closeFeatureInfo();
         this.el.game.classList.remove("rc-view--hidden");
       }
       this._updateEnergyUI();
       this._updateTimerUI();
+    }
+
+    _openFeatureInfo() {
+      if (!this.el.featureInfoOverlay) return;
+      this.el.featureInfoOverlay.classList.remove("rc-info-panel--hidden");
+    }
+
+    _closeFeatureInfo() {
+      if (!this.el.featureInfoOverlay) return;
+      this.el.featureInfoOverlay.classList.add("rc-info-panel--hidden");
     }
 
     _timerText() {
@@ -3609,8 +3691,17 @@
 
     _updateTimerUI() {
       const t = this._timerText();
-      if (this.el.hubTimer) this.el.hubTimer.textContent = `🕐 ${t}`;
-      if (this.el.gameTimer) this.el.gameTimer.textContent = `🕐 ${t}`;
+      const compact = this._timerTextCompact();
+      if (this.el.hubTimer) this.el.hubTimer.textContent = `Ends In: ${compact}`;
+      if (this.el.gameTimer) this.el.gameTimer.textContent = `Ends In: ${compact}`;
+    }
+
+    _timerTextCompact() {
+      const s = Math.max(0, Math.floor((this.eventEnd - Date.now()) / 1000));
+      const d = Math.floor(s / 86400);
+      const h = Math.floor((s % 86400) / 3600);
+      const m = Math.floor((s % 3600) / 60);
+      return `${d}d ${String(h).padStart(2, "0")}h ${String(m).padStart(2, "0")}m`;
     }
 
     _updateEnergyUI() {
@@ -3618,14 +3709,18 @@
       this.el.hubEnergy.textContent = val;
       this.el.gameEnergy.textContent = val;
       let txt = "• Full";
+      let shortTxt = "Full";
       if (this.energy < RubyCaveManager.ENERGY_MAX) {
         if (!this.nextEnergyAt) this.nextEnergyAt = Date.now() + RubyCaveManager.REGEN_MS;
         const left = Math.max(0, Math.ceil((this.nextEnergyAt - Date.now()) / 1000));
         const m = Math.floor(left / 60), s = left % 60;
         txt = `• ${m}:${String(s).padStart(2,"0")}`;
+        shortTxt = `${m}:${String(s).padStart(2,"0")}`;
       }
       this.el.hubRegen.textContent = txt;
       this.el.gameRegen.textContent = txt;
+      if (this.el.hubBalanceMid) this.el.hubBalanceMid.textContent = shortTxt;
+      if (this.el.gameBalanceTime) this.el.gameBalanceTime.textContent = shortTxt;
     }
 
     _regenTick() {
@@ -3646,32 +3741,43 @@
       this.el.hubProgress.textContent = `Completed ${this.completed} • Current ${current} • Remaining ${remain}`;
       if (this.completed >= total) {
         this.el.hubSum.textContent = "All levels completed!";
-        this.el.enterBtn.textContent = "Completed";
-        this.el.enterBtn.disabled = true;
+        this.el.enterBtn.textContent = this._save.rubyCaveRewardClaimed ? "Completed" : "View Reward";
+        this.el.enterBtn.disabled = !!this._save.rubyCaveRewardClaimed;
       } else {
         this.el.hubSum.textContent = `Level ${current} is ready`;
-        this.el.enterBtn.textContent = "Play";
+        this.el.enterBtn.textContent = "PLAY";
         this.el.enterBtn.disabled = false;
+      }
+      if (this.el.hubClaim) {
+        const canClaim = this.completed >= total && !this._save.rubyCaveRewardClaimed;
+        this.el.hubClaim.disabled = !canClaim;
+        this.el.hubClaim.textContent = this._save.rubyCaveRewardClaimed ? "Claimed" : "Claim";
       }
       this._drawNodes();
     }
 
     _drawNodes() {
       this.el.nodes.innerHTML = "";
-      const total = this._eventLevelCount();
-      for (let i = 0; i < total; i++) {
-        const fallbackX = total > 1 ? (5 + (90 * i / (total - 1))) : 50;
-        const nodePos = RubyCaveManager.NODE_POS[i] || [fallbackX, 50];
-        const [x, y] = nodePos;
+      const total = Math.max(1, this._eventLevelCount());
+      const stageCount = 5;
+      const progressed = Math.max(0, Math.min(stageCount, Math.floor((this.completed / total) * stageCount)));
+      for (let i = 0; i < stageCount; i++) {
+        const item = document.createElement("div");
+        item.className = "rc-stage-item";
         const n = document.createElement("div");
         n.className = "rc-node";
-        if (i < this.completed) n.classList.add("rc-done");
-        else if (i === this.completed) n.classList.add("rc-cur");
+        if (this.completed >= total || i < progressed) n.classList.add("rc-done");
+        else if (i === progressed) n.classList.add("rc-cur");
         else n.classList.add("rc-lock");
-        n.style.left = `${x}%`;
-        n.style.top = `${y}%`;
-        n.textContent = i < this.completed ? "✓" : (i + 1);
-        this.el.nodes.appendChild(n);
+        n.textContent = String(i + 1);
+        item.appendChild(n);
+        if (i < stageCount - 1) {
+          const link = document.createElement("div");
+          link.className = "rc-stage-link";
+          if (this.completed >= total || i < progressed) link.classList.add("rc-stage-link--done");
+          item.appendChild(link);
+        }
+        this.el.nodes.appendChild(item);
       }
     }
 
@@ -3771,7 +3877,7 @@
     _onExternalEventPiecePlaced(pieceId) {
       if (this._eventExternalLevelDone) return;
       if (this.energy < 1) {
-        this.el.energyModal.classList.add("rc-visible");
+        this._openEnergyRefillModal();
         this._showToast("Not enough energy");
         return;
       }
@@ -3892,7 +3998,7 @@
       const piece = e.target.closest(".rc-piece");
       if (!piece) return;
       if (this.energy <= 0) {
-        this.el.energyModal.classList.add("rc-visible");
+        this._openEnergyRefillModal();
         this._showToast("Not enough energy");
         return;
       }
@@ -3922,7 +4028,7 @@
       if (!target) { this._toTray(piece); return; }
       if (this.energy < 1) {
         this._toTray(piece);
-        this.el.energyModal.classList.add("rc-visible");
+        this._openEnergyRefillModal();
         this._showToast("Not enough energy");
         return;
       }
@@ -3938,14 +4044,21 @@
     _handleEnterLevel(evt) {
       if (evt) { evt.preventDefault(); evt.stopPropagation(); }
       this.el.done.classList.remove("rc-visible");
-      this.el.energyModal.classList.remove("rc-visible");
+      this._closeEnergyRefillModal();
+      if (this.energy < 1) {
+        this._openEnergyRefillModal();
+        this._showToast("Not enough energy");
+        return;
+      }
       const totalLevels = this._eventLevelCount();
       if (this.completed >= totalLevels) {
-        this._showToast("All event levels completed");
+        if (!this._save.rubyCaveRewardClaimed) this._showGrandReward();
+        else this._showToast("All event levels completed");
         return;
       }
       const nextIdx = Math.min(Math.max(0, this.completed), totalLevels - 1);
       this.currentLevel = nextIdx;
+      if (this.el.gameTitleMain) this.el.gameTitleMain.textContent = `Level ${nextIdx + 1}`;
       const def = this._eventLevelDef(nextIdx);
       if (def && def.type === "html-playable") {
         const started = this._startExternalEventLevel(def);
@@ -3967,11 +4080,68 @@
       this._persist();
       this.el.done.classList.remove("rc-visible");
       this._stopExternalEventLevel();
+      if (this.completed >= this._eventLevelCount() && !this._save.rubyCaveRewardClaimed) {
+        this._showGrandReward();
+        return;
+      }
       this._showView("hub");
     }
 
     _showGrandReward() {
+      const total = this._eventLevelCount();
+      const levelsEl = document.getElementById("rc-complete-levels");
+      const timerEl = document.getElementById("rc-complete-timer");
+      if (levelsEl) levelsEl.textContent = `${Math.min(this.completed, total)}/${total}`;
+      if (timerEl) timerEl.textContent = this._timerTextCompact();
+      this.el.done.classList.remove("rc-visible");
       this.el.grandReward.classList.add("rc-visible");
+    }
+
+    _openEnergyRefillModal() {
+      if (!this.el.energyModal) return;
+      this.el.energyModal.classList.add("rc-visible");
+    }
+
+    _closeEnergyRefillModal() {
+      if (!this.el.energyModal) return;
+      this.el.energyModal.classList.remove("rc-visible");
+    }
+
+    _applyEnergyRefill() {
+      this.energy = RubyCaveManager.ENERGY_MAX;
+      this.nextEnergyAt = null;
+      this._persist();
+      this._updateEnergyUI();
+      this._closeEnergyRefillModal();
+    }
+
+    _onEnergyRefillWithGems() {
+      const cost = 1000;
+      const gems = Math.max(0, parseInt(this._save.gemsTotal, 10) || 0);
+      if (gems < cost) {
+        this._showToast("Not enough gems");
+        return;
+      }
+      this._save.gemsTotal = gems - cost;
+      this._applyEnergyRefill();
+    }
+
+    _onEnergyRefillWithAd() {
+      // Prototype behavior: treat ad flow as instant successful refill.
+      this._applyEnergyRefill();
+    }
+
+    _onHubClaim() {
+      const total = this._eventLevelCount();
+      if (this.completed < total) {
+        this._showToast("Finish all levels first");
+        return;
+      }
+      if (this._save.rubyCaveRewardClaimed) {
+        this._showToast("Reward already claimed");
+        return;
+      }
+      this._showGrandReward();
     }
 
     _claimGrandReward() {
@@ -3983,7 +4153,11 @@
 
     open() {
       this._screen.classList.remove("hidden");
+      this._closeFeatureInfo();
       this._showView("hub");
+      if (this.completed >= this._eventLevelCount() && !this._save.rubyCaveRewardClaimed) {
+        this._showGrandReward();
+      }
       if (!this._save.rubyCaveTutorialDone) {
         this._tutorStep = 0;
         setTimeout(() => this._runTutorialStep(), 350);
@@ -3992,8 +4166,9 @@
 
     close() {
       this._endTutorial();
+      this._closeFeatureInfo();
       this.el.done.classList.remove("rc-visible");
-      this.el.energyModal.classList.remove("rc-visible");
+      this._closeEnergyRefillModal();
       this.el.grandReward.classList.remove("rc-visible");
       this._stopExternalEventLevel();
       this._screen.classList.add("hidden");
@@ -4381,7 +4556,12 @@
 
     _dailyMainPoints(models) {
       const tasks = models || this._dailyTaskModels();
-      return tasks.reduce((sum, t) => sum + (t.claimed ? (t.points || 0) : 0), 0);
+      return tasks.reduce((sum, t) => sum + (t.done ? (t.points || 0) : 0), 0);
+    }
+
+    _dailyMainTarget(models) {
+      const tasks = models || this._dailyTaskModels();
+      return Math.max(1, tasks.reduce((sum, t) => sum + Math.max(0, parseInt(t.points, 10) || 0), 0));
     }
 
     _renderDailyTasksScreen() {
@@ -4393,7 +4573,7 @@
         const dayIdx = Math.max(1, Math.min(7, parseInt(this._save.dailyTasksDayIndex, 10) || 1));
         dayEl.textContent = "Day " + String(dayIdx) + "/7";
       }
-      const mainTarget = 15;
+      const mainTarget = this._dailyMainTarget(tasks);
       const mainCurrent = Math.min(mainTarget, this._dailyMainPoints(tasks));
       const mainFill = document.getElementById("daily-tasks-main-fill");
       if (mainFill) mainFill.style.width = Math.round((mainCurrent / mainTarget) * 100) + "%";
@@ -4401,38 +4581,50 @@
       if (mainCurrentEl) mainCurrentEl.textContent = String(mainCurrent);
       const mainTargetEl = document.getElementById("daily-tasks-main-target");
       if (mainTargetEl) mainTargetEl.textContent = String(mainTarget);
-      const mainClaimBtn = document.getElementById("btn-daily-main-claim");
-      if (mainClaimBtn) {
+      const mainPackEl = document.querySelector(".daily-tasks-main-pack");
+      if (mainPackEl) {
         const canClaimMain = mainCurrent >= mainTarget && !this._save.dailyTasksMainRewardClaimed;
-        mainClaimBtn.disabled = !canClaimMain;
-        mainClaimBtn.textContent = this._save.dailyTasksMainRewardClaimed ? "Claimed" : (canClaimMain ? "Claim" : "Locked");
+        mainPackEl.classList.toggle("is-claimable", canClaimMain);
+        mainPackEl.classList.toggle("is-claimed", !!this._save.dailyTasksMainRewardClaimed);
+        mainPackEl.setAttribute("title", this._save.dailyTasksMainRewardClaimed ? "Main reward claimed" : (canClaimMain ? "Claim main reward" : "Complete more quests"));
       }
       listEl.innerHTML = "";
-      tasks.forEach((task) => {
-        const pct = Math.max(0, Math.min(100, Math.round((task.current / task.target) * 100)));
+      const visibleTasks = tasks.filter((task) => !task.claimed);
+      visibleTasks.forEach((task) => {
+        const progressCurrent = Math.min(task.current, task.target);
+        const pct = Math.max(0, Math.min(100, Math.round((progressCurrent / task.target) * 100)));
+        const rewards = Array.isArray(task.rewards) ? task.rewards : [];
+        const rewardHtml = rewards.map((reward) => {
+          const icon = DAILY_TASK_REWARD_ICON_BY_TYPE[reward.type] || DAILY_TASK_REWARD_ICON_BY_TYPE.coin;
+          return `<span class="daily-task-reward-chip"><img src="${icon}" alt="" aria-hidden="true" /><span>${reward.amount}</span></span>`;
+        }).join("");
+        const cheatDisabled = task.done || task.claimed;
         const item = document.createElement("article");
         item.className = "daily-task-item state-" + task.state;
         item.innerHTML =
           `<div class="daily-task-grid">` +
-            `<div class="daily-task-points">` +
-              `<span class="daily-task-points-medal">🏅</span>` +
-              `<span class="daily-task-points-value">+${task.points}</span>` +
-              `<button type="button" class="daily-task-cheat" data-task-cheat-id="${task.id}" ${task.claimed ? "disabled" : ""}>Cheat</button>` +
-            `</div>` +
             `<div class="daily-task-center">` +
-              `<h3 class="daily-task-title">${task.title}</h3>` +
+              `<div class="daily-task-head">` +
+                `<h3 class="daily-task-title">${task.title}</h3>` +
+                `<p class="daily-task-progress">${progressCurrent}/${task.target}</p>` +
+              `</div>` +
+              `<div class="daily-task-points">+${task.points} points</div>` +
               `<div class="daily-task-bar"><div class="daily-task-bar-fill" style="width:${pct}%"></div></div>` +
-              `<p class="daily-task-progress">${Math.min(task.current, task.target)}/${task.target}</p>` +
+              `<div class="daily-task-reward-row">${rewardHtml}</div>` +
             `</div>` +
-            `<div class="daily-task-reward">${task.rewardText}</div>` +
           `</div>` +
-          `<div class="daily-task-actions">` +
-            `<button type="button" class="daily-task-claim" data-task-id="${task.id}" ${task.done && !task.claimed ? "" : "disabled"}>` +
-              `${task.claimed ? "Claimed" : (task.done ? "Claim" : "In Progress")}` +
-            `</button>` +
+          `${task.done ? `<div class="daily-task-claim-row"><button type="button" class="daily-task-claim-btn" data-task-id="${task.id}" ${task.claimed ? "disabled" : ""}>${task.claimed ? "Claimed" : "Claim"}</button></div>` : ""}` +
+          `<div class="daily-task-bottom">` +
+            `<button type="button" class="daily-task-cheat" data-task-cheat-id="${task.id}" ${cheatDisabled ? "disabled" : ""}>Cheat</button>` +
           `</div>`;
         listEl.appendChild(item);
       });
+      if (!visibleTasks.length) {
+        const empty = document.createElement("article");
+        empty.className = "daily-task-item state-claimed";
+        empty.innerHTML = `<div class="daily-task-center"><h3 class="daily-task-title">All daily quests claimed</h3></div>`;
+        listEl.appendChild(empty);
+      }
       const resetEl = document.getElementById("daily-tasks-refresh-timer");
       if (resetEl) {
         const sec = this._secondsUntilDailyReset();
@@ -4467,7 +4659,7 @@
 
     _claimDailyMainReward() {
       this._syncDailyTasksData();
-      const mainTarget = 15;
+      const mainTarget = this._dailyMainTarget();
       if (this._save.dailyTasksMainRewardClaimed) return;
       if (this._dailyMainPoints() < mainTarget) return;
       this._save.dailyTasksMainRewardClaimed = true;
@@ -4511,16 +4703,18 @@
             if (cheatTaskId) this._cheatCompleteDailyTask(cheatTaskId);
             return;
           }
-          const btn = e.target.closest(".daily-task-claim");
+          const btn = e.target.closest(".daily-task-claim-btn");
           if (!btn) return;
           const taskId = btn.getAttribute("data-task-id");
           if (taskId) this._claimDailyTask(taskId);
         };
       }
-      const mainClaimBtn = document.getElementById("btn-daily-main-claim");
-      if (mainClaimBtn) mainClaimBtn.onclick = () => this._claimDailyMainReward();
-      const infoBtn = document.getElementById("btn-daily-tasks-info");
-      if (infoBtn) infoBtn.onclick = () => this._openDailyTasksInfoOverlay();
+      const closeBtn = document.getElementById("btn-daily-tasks-close");
+      if (closeBtn) closeBtn.onclick = () => this.ui.showScreen("start-screen");
+      const mainPackEl = document.querySelector(".daily-tasks-main-pack");
+      if (mainPackEl) {
+        mainPackEl.onclick = () => this._claimDailyMainReward();
+      }
       this._renderDailyTasksScreen();
       if (this._dailyTasksResetTimerId) clearInterval(this._dailyTasksResetTimerId);
       this._dailyTasksResetTimerId = setInterval(() => this._renderDailyTasksScreen(), 1000);
@@ -4531,7 +4725,10 @@
         if (overlay && !overlay.classList.contains("hidden")) {
           e.preventDefault();
           this._closeDailyTasksInfoOverlay();
+          return;
         }
+        e.preventDefault();
+        this.ui.showScreen("start-screen");
       };
       window.addEventListener("keydown", this._dailyTasksEscapeHandler);
     }
@@ -4540,10 +4737,12 @@
       this._closeDailyTasksInfoOverlay();
       const listEl = document.getElementById("daily-tasks-list");
       if (listEl) listEl.onclick = null;
-      const infoBtn = document.getElementById("btn-daily-tasks-info");
-      if (infoBtn) infoBtn.onclick = null;
-      const mainClaimBtn = document.getElementById("btn-daily-main-claim");
-      if (mainClaimBtn) mainClaimBtn.onclick = null;
+      const closeBtn = document.getElementById("btn-daily-tasks-close");
+      if (closeBtn) closeBtn.onclick = null;
+      const mainPackEl = document.querySelector(".daily-tasks-main-pack");
+      if (mainPackEl) {
+        mainPackEl.onclick = null;
+      }
       if (this._dailyTasksResetTimerId) {
         clearInterval(this._dailyTasksResetTimerId);
         this._dailyTasksResetTimerId = null;
@@ -5169,30 +5368,66 @@
       document.getElementById("btn-cheat-add-album-stars").onclick = () => this.cheatAddAlbumStars();
       document.getElementById("btn-cheat-add-hammers").onclick = () => this.cheatAddEventHammers();
 
-      document.getElementById("nav-home").onclick = () => {
-        if (this._externalLevelActive) this._stopExternalPlayableLevel();
-        this.ui.showScreen("start-screen");
-      };
-      document.getElementById("nav-game").onclick = () => this.openGalleryScreen();
-      document.getElementById("nav-settings").onclick = () => {
-        if (this._externalLevelActive) this._stopExternalPlayableLevel();
-        this.rubyCaveManager.open();
-      };
+      const navHome = document.getElementById("nav-home");
+      if (navHome) {
+        navHome.onclick = () => {
+          if (this._externalLevelActive) this._stopExternalPlayableLevel();
+          this.ui.showScreen("start-screen");
+        };
+      }
+      const navGame = document.getElementById("nav-game");
+      if (navGame) navGame.onclick = () => this.openGalleryScreen();
+      const navSettings = document.getElementById("nav-settings");
+      if (navSettings) {
+        navSettings.onclick = () => {
+          if (this._externalLevelActive) this._stopExternalPlayableLevel();
+          this.rubyCaveManager.open();
+        };
+      }
       const navDailyTasks = document.getElementById("nav-daily-tasks");
       if (navDailyTasks) navDailyTasks.onclick = () => this.openDailyTasksScreen();
+      const homeDailyTasks = document.getElementById("btn-home-daily-tasks");
+      if (homeDailyTasks) {
+        const openDailyFromHome = (e) => {
+          if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+          }
+          this.openDailyTasksScreen();
+          return false;
+        };
+        homeDailyTasks.onclick = openDailyFromHome;
+        homeDailyTasks.onpointerup = openDailyFromHome;
+        homeDailyTasks.ontouchend = openDailyFromHome;
+      }
+      if (!this._homeDailyTasksCaptureBound) {
+        this._homeDailyTasksCaptureBound = true;
+        document.addEventListener("click", (e) => {
+          const btn = e.target && e.target.closest ? e.target.closest("#btn-home-daily-tasks") : null;
+          if (!btn) return;
+          e.preventDefault();
+          e.stopPropagation();
+          this.openDailyTasksScreen();
+        }, true);
+      }
+      const homeEventBtn = document.getElementById("btn-home-event");
+      if (homeEventBtn) homeEventBtn.onclick = () => this.rubyCaveManager.open();
       const btnHomeSettings = document.getElementById("btn-home-settings");
       if (btnHomeSettings) btnHomeSettings.onclick = () => this.openSettings();
-      document.getElementById("curs_add_leaderboard_from_trophy_button").onclick = () => this.onLeaderboardTrophyClick();
+      const leaderboardBtn = document.getElementById("curs_add_leaderboard_from_trophy_button");
+      if (leaderboardBtn) leaderboardBtn.onclick = () => this.onLeaderboardTrophyClick();
       const openCollection = () => {
         if (this._externalLevelActive) this._stopExternalPlayableLevel();
         this.collectionUI.showAlbum();
       };
-      document.getElementById("nav-collection").onclick = openCollection;
+      const navCollection = document.getElementById("nav-collection");
+      if (navCollection) navCollection.onclick = openCollection;
 
       const openBattlePass = () => {
         this.openBattlePassScreen();
       };
-      document.getElementById("nav-battle-pass").onclick = openBattlePass;
+      const navBattlePass = document.getElementById("nav-battle-pass");
+      if (navBattlePass) navBattlePass.onclick = openBattlePass;
       const bpWidget = document.getElementById("btn-battle-pass-widget");
       if (bpWidget) bpWidget.onclick = openBattlePass;
       const bpWidgetGame = document.getElementById("btn-battle-pass-widget-game");
